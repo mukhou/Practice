@@ -1,0 +1,64 @@
+package com.collectionsandstring;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.Scanner;
+
+public class FindAllSubstringsOfAString {
+	Hashtable resultSet = new Hashtable();
+	int i = 0;
+	String toBeAdded = "";
+
+	public void genSS(String s) {
+
+		if (s.length() != 0) {
+			toBeAdded = s.substring(0, s.length());
+
+			if (!resultSet.containsValue(toBeAdded)) {
+				resultSet.put(i, toBeAdded);
+				i++;
+			}
+
+			genSS(s.substring(1, s.length()));
+			genSS(s.substring(0, s.length() - 1));
+		}
+		
+		for(int i = 0; i < resultSet.size(); i++)  
+        {  
+            System.out.println(resultSet.get(i));  
+        }  
+
+	}
+
+	public static void main(String[] args) {
+		String string, sub;
+		int i, j, length;
+
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter a string to print it's all substrings");
+		string = in.nextLine();
+		ArrayList<String> al = new ArrayList<String>();
+
+		length = string.length();
+
+		System.out.println("Substrings of \"" + string + "\" are :-");
+
+		for (i = 0; i < length; i++) {
+			for (j = 1; j <= length - i; j++) {
+				sub = string.substring(i, i + j);
+				System.out.println(sub);
+			}
+
+		}
+		HashSet hs = new HashSet();
+		hs.addAll(al);
+		// al.clear();
+		al.addAll(hs);
+
+		for (String str : al) {
+			System.out.println(str);
+		}
+
+	}
+}

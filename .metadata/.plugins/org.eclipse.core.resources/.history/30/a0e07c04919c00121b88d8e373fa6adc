@@ -1,0 +1,30 @@
+package com.careercup.arraysandstrings;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+public class FindUniqueWordAndItsCount {
+
+	
+	
+	public static void main(String[] args) {
+		Map<String, Integer> map = new HashMap<String, Integer>();		
+		
+		String[] words = {"urmi", "rini", "rini"};
+		for(String s : words){
+			if(!map.containsKey(s)){
+				map.put(s, 1);
+			}else{
+				map.put(s, map.get(s)+1);
+			}
+		}
+		
+       System.out.println(map.size() + " distinct words:");
+       System.out.println(map);
+       Iterator<String> it = map.keySet().iterator();
+       
+
+	}
+
+}

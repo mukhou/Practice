@@ -1,0 +1,33 @@
+/**
+ * Given an infinite sequence of integers which are repeated many times. 
+ * WAP to print "beep" if an integer appears ODDth time else print "no beep".
+ *  example: input: a[] = { 1,4,2,4,3,2,4} 
+ *  output: beep, beep, beep, no beep, beep, no beep, beep
+ */
+
+package com.careercup.arraysandstrings;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class BeepNoBeep {
+
+	public static void printBeep(int[] arr){
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for(int i = 0; i <= arr.length - 1; i++){
+			if(!map.containsKey(arr[i])){
+				map.put(arr[i], 1);
+				System.out.println("beep");				
+			}else if((map.get(arr[i])) % 2 == 1){
+				
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		int[] arr = new int[]{1, 4, 2, 4, 3, 2, 4};
+		printBeep(arr);
+
+	}
+
+}

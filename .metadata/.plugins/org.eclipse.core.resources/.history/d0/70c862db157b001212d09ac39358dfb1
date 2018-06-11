@@ -1,0 +1,29 @@
+package com.careercup.java;
+
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+public class HashMTimestamp {
+	
+	public void findIDs(HashMap<Long, Timestamp> map1, HashMap<Long, Timestamp> map2){
+		Map<Long, Timestamp> map = new HashMap<Long, Timestamp>();
+		
+		try{
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			Date date = dateFormat.parse("23/09/2007");
+			long time = date.getTime();
+			new Timestamp(time);
+		}catch (Exception e) {
+			
+		}
+
+		
+		
+		
+	}
+
+}

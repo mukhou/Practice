@@ -1,0 +1,21 @@
+package com.collectionsandstring;
+
+import java.util.Arrays;
+
+public class SearchObjArray {
+
+	
+	public static void main(String[] args) {
+		
+		String[] sa = {"one", "two", "three", "four"};
+		Arrays.sort(sa);
+		// now the array sa has the elements in this order: four, one, three, two
+		for(String s : sa){
+			System.out.print(s + " ");
+			// the binary search returns the index of the string one
+			System.out.println("\none = "+ Arrays.binarySearch(sa, "one"));
+		}
+
+	}
+
+}

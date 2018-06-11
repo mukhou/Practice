@@ -1,0 +1,26 @@
+package com.careercup.sortandsearch;
+
+public class SelectionSort {
+
+	public static int[] selectionSort(int[] arr){
+		for(int i = 0; i < arr.length; i++){
+			int smallest_index = i;
+			// find the smallest element
+			for(int j = i + 1; i < arr.length; j++){
+				if(arr[j] < arr[smallest_index]){
+					smallest_index = j;
+				}
+			}
+			// exchange smallest element with i
+			int temp = arr[smallest_index];
+			arr[smallest_index] = arr[i];
+			arr[i] = temp;			
+		}
+		return arr;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

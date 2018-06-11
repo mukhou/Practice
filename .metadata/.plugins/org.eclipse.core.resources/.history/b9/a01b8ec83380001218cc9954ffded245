@@ -1,0 +1,16 @@
+package com.careercup.java;
+
+public class TestVarargs {
+	
+	public static void show(int... x){
+		System.out.println("the values are:" + x.toString());
+		for(int s : x){
+			System.out.println(s);
+		}
+	}
+	public static void main(String[] args){
+		show(5, 4);
+		
+	}
+
+}

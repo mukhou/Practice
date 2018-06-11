@@ -1,0 +1,20 @@
+package com.careercup.arraysandstrings;
+
+public class RemoveMultipleSpacesInString {
+
+	
+	public static void main(String[] args) {
+		String str = "Ur     m  i";
+		int count = 0;
+		for(int i = 0; i < str.length(); i++){
+			if(Character.toString(str.charAt(i)).equals(" ")){
+				count++;
+				if(count == 1){
+					str = str.
+				}
+			}
+		}
+
+	}
+
+}

@@ -1,0 +1,37 @@
+package com.careercup.arraysandstrings;
+
+public class RemoveMultipleSpacesInString {
+
+	String PruneSpace(String s)
+	{
+		if(s== null || s.Length == 0)
+			return s;
+		StringBuilder sb = new StringBuilder(s);
+		int pos = 0;
+		int spaceIndex;
+		while (pos < sb.Length)
+		{
+			spaceIndex = sb.ToString().IndexOf(' ', pos);
+			pos = spaceIndex + 1;
+			while (sb[pos] == ' ')
+				pos++;
+			sb.Replace(' ', '', spaceIndex, pos - spaceIndex);
+			pos = spaceIndex + 1;
+		}
+		return sb.ToString();
+	}
+	public static void main(String[] args) {
+		String str = "Ur     m  i";
+		int count = 0;
+		for(int i = 0; i < str.length(); i++){
+			if(Character.toString(str.charAt(i)).equals(" ")){
+				count++;
+				if(count == 1){
+					str = str.
+				}
+			}
+		}
+
+	}
+
+}

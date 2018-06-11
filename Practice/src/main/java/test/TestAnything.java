@@ -1,0 +1,68 @@
+package test;
+
+import java.util.List;
+
+public class TestAnything {
+
+	public TestAnything() {
+		System.out.println("Default constructor");
+		ID = 0;
+	}
+	static int ID;
+	
+	public static void main(String[] args) {
+		Integer d, n = 523;
+		String str = n.toString();
+		String s = "";
+		for(int i = 0; i < str.length(); i++){
+			d = n % 10;
+			s = s + d;
+			n = n / 10;
+		}
+		
+		Object[] arr = new Long[1];
+		// Throws ArrayStoreException at runtime
+		//arr[0] = "urmi";
+		//System.out.println(s);
+		
+		Integer i = new Integer(5);
+		Integer j = new Integer(5);
+		//System.out.println(i==j);
+		
+		byte b = 0110;
+		int x = b & 0Xff;
+		//System.out.println(x);
+		String stsr = "restated";
+		
+		System.out.println(stsr.substring(1));
+		
+		
+		
+			
+	}
+	
+	
+	
+
+}
+abstract class MyTest{
+	public MyTest() {
+		// TODO Auto-generated constructor stub
+	}
+}
+
+ class A
+{
+   protected int x;
+    void F(A a, B b) {
+      a.x = 1;      // Ok
+      b.x = 1;      // Ok
+   }
+}
+ class B extends A
+{
+    void F(A a, B b) {
+      a.x = 1;
+      b.x = 1;      // Ok
+   }
+}

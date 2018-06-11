@@ -1,0 +1,13 @@
+package com.careercup.bitmanipulation;
+
+public class FindNumberOfBitsSetInAByte {
+
+	public static void findSetBits(byte b){
+		System.out.println(b < 0);
+	}
+	public static void main(String[] args) {
+		findSetBits(0010);
+
+	}
+
+}

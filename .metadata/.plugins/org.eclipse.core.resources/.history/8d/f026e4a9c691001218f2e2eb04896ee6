@@ -1,0 +1,42 @@
+package com.careercup.matrix;
+
+public class LargestNumberInAMatrix {
+
+	public static int findLargestNumber(int[][] matrix){
+		int rows = matrix.length;
+		int cols = matrix[0].length;
+		int max = 0;
+		for(int i = 0; i < rows; i ++){
+			for(int j = 0; j <cols; j ++){
+				if(matrix[i][j] > max){
+					max = matrix[i][j];
+				}
+			}
+		}
+		return max;
+	}
+	public static void main(String[] args) {
+		int[][] a = new int[4][4];
+		a[0][0] = 1;
+		a[0][1] = 7;
+		a[0][2] = 19;
+		a[0][3] = 22;
+		a[1][0] = 16;
+		a[1][1] = 45;
+		a[1][1] = 31;
+		a[1][1] = 18;
+		a[2][0] = 89;
+		a[2][1] = 76;
+		a[2][2] = 5;
+		a[2][3] = 21;
+		a[3][0] = 2;
+		a[3][1] = 23;
+		a[3][2] = 52;
+		a[3][3] = 63;
+		findLargestNumber(a);
+		
+ 
+
+	}
+
+}

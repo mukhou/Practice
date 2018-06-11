@@ -1,0 +1,19 @@
+1384042717585	Rename local variable 'v'
+1384048483666	Rename local variable 'm'
+1384048504981	Rename local variable 'row'
+1384048511020	Rename local variable 'n'
+1384087019639	Rename local variable 'head'
+1384088882350	Rename local variable 'sets'
+1384111503200	Delete element
+1384117629937	Rename local variable 'c'
+1384121834951	Rename local variable 'm'
+1384121839975	Rename local variable 'n'
+1384204482337	Delete element
+1384205034881	Rename type 'CompareTwoArrays'
+1384205553371	Copy compilation unit
+1384206184672	Rename method 'find_distance'
+1384225412367	Rename local variable 'i'
+1384278649324	Rename local variable 'a'
+1384279193035	Rename local variable 'length'
+1384284867820	Rename type 'FIndKthLargestNumberArray'
+1384309632757	Delete element

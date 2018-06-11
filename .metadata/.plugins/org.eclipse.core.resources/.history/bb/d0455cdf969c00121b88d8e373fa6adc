@@ -1,0 +1,62 @@
+/**
+ * Design a method to find the frequency of occurrences of any given word in a book.
+ */
+
+package com.careercup.arraysandstrings;
+
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Map;
+
+
+public class FrequencyOfWordsInABook {
+
+	public static int findSingleWordCount(String[] wordList, String word){
+		
+		// for one word
+		int count = 0;		
+		for(String aWord : wordList){
+			if(aWord.equals(word)){
+				count ++;
+			}
+		}
+		return count;
+	}
+	
+	// for multiple words
+	public static Hashtable<String, Integer> findMultipleWordount(String[] wordList){
+		Hashtable<String, Integer> table = new Hashtable<String, Integer>();
+		for(String word : wordList){
+			word = word.toLowerCase();
+			if(word.trim() != ""){
+				if(!table.containsKey(word)){
+					table.put(word, 1);
+				}else{
+					table.put(word, table.get(word)+1);
+				}
+			}
+		}
+		
+		return table;
+	}
+	
+	public static void main(String[] args) {
+		String[] wordList = new String[]{"the", "world", "the", "best"}; 
+		//System.out.println(findSingleWordCount(wordList, "the"));
+		//System.out.println(findMultipleWordount(wordList));
+		Hashtable<String, Integer> result = findMultipleWordount(wordList);
+		Enumeration<String> keys = result.keys();
+		while(keys.hasMoreElements()){
+			Object key = keys.nextElement();
+			//System.out.println("Key: " + key + " Value: " + result.get(key));
+		}
+		for(Map.Entry<String, Integer> entrySet : result.entrySet()){
+			 System.out.println(entrySet.getKey() + " = " + entrySet.getValue());
+		}
+			
+		}
+		
+
+	}
+
+}

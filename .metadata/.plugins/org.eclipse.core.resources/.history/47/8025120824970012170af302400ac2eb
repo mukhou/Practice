@@ -1,0 +1,37 @@
+package com.collectionsandstring;
+
+import java.util.Scanner;
+
+public class FindAllSubstringsOfAString {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		String string = "abc", sub;
+		int i, j, length;
+
+		
+
+		length = string.length();
+
+		System.out.println("Substrings of \"" + string + "\" are :-");
+
+		/*for (i = 0; i < length; i++) {
+			for (j = 1; j <= length - i; j++) {
+				sub = string.substring(i, i + j);
+				System.out.println(sub);
+			}
+
+		}
+*/
+		for( c = 0 ; c < length ; c++ )
+	      {
+	         for( i = 1 ; i <= length - c ; i++ )
+	         {
+	            sub = string.substring(c, c+i);
+	            System.out.println(sub);
+	         }
+	      }
+	}
+}

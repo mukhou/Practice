@@ -1,0 +1,26 @@
+package com.careercup.arraysandstrings;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class FindAllSubstringsOfAString {
+
+	public static void main(String[] args) {
+		String string = "abc", sub;
+		int i, j, length;
+
+		length = string.length();
+
+		System.out.println("Substrings of \"" + string + "\" are :-");
+
+		for (i = 0; i < length; i++) {
+			for (j = 1; j <= length - i; j++) {
+				// 0 -> 0+1...etc
+				sub = string.substring(i, i + j);
+				System.out.println(sub);
+			}
+
+		}
+
+	}
+}

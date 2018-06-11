@@ -1,0 +1,27 @@
+package com.collectionsandstring;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ConvertListToArray {
+
+	
+	public static void main(String[] args) {
+		
+		List<Integer> list = new ArrayList<Integer>();
+		for(int i=0; i<3; i++){
+			list.add(i);
+		}
+		//Object [] objArr = list.toArray();
+		Integer [] intArr = new Integer[3];
+		intArr = list.toArray(intArr);
+		
+		
+		
+		for(Integer x : intArr){
+			System.out.println(x);
+		}
+
+	}
+
+}

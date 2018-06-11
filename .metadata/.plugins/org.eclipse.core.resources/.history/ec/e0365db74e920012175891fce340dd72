@@ -1,0 +1,15 @@
+package com.collectionsandstring;
+
+public class FindSubstringInAnotherString {
+
+	public void findSubstring(String s1, String s2){
+		
+	}
+	public static void main(String[] args) {
+		String str = "abcd";
+		str = str.substring(0, 1);
+		System.out.println();
+
+	}
+
+}

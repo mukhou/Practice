@@ -1,0 +1,118 @@
+package dataStructures;
+
+public class LinkedList {
+	
+	private Node head;
+	private int listCount;
+	
+	// this is an empty list, so the reference to the head node
+	// is set to a new node with no data
+	public LinkedList(){
+		head = new Node(null);
+		listCount = 0;
+	}
+	
+	// given an element(data), adds a node to the end of the list
+	public void addNode(Object data){
+		
+		Node temp = new Node(data);
+		Node current = head;
+		
+		while(current.getNext() != null){
+			current.getNext();
+		}
+		current = current.getNext();
+		current.setNext(temp);
+	}
+	
+	public void AddNodeAtIndex(Object data, int index){
+		
+		Node temp = new Node(data);
+		Node current = head;
+		
+		for(int i=0; i<index && current.getNext() != null; i++){
+			current = current.getNext();
+		}
+		
+		//next node of temp becomes current and vice versa
+		temp.setNext(current.getNext());
+		current.setNext(temp);
+		listCount++;
+	}
+	
+	public Object getObject(int index){
+		
+		if(index<=0){
+			return null;
+		}
+		Node current = head.getNext();
+		for(int i=0; i<index; i++){
+			
+			if(current.getNext() == null){
+				return null;
+			}
+			current = current.getNext();
+		}
+		
+		return current.getData();
+	}
+	
+	public boolean removeObject(int index){
+		
+		if(index < 1 || index > size()){
+			return false;
+		}
+		
+		Node current = head;
+		
+		for(int i = 0; i<index; i++){
+			
+			if(current.getNext() == null){
+				return false;
+			}
+			current = current.getNext();
+		}
+		current.setNext(current.getNext().getNext());
+		listCount--;
+		return true;
+	}
+	
+	public int size(){
+		return listCount;
+	}
+
+}
+
+// The Node class
+ class Node{
+	
+	Node next;
+	Object data;
+	
+	Node(Object _data){
+		next = null;
+		data = _data;
+	}
+	
+	Node(Object _data, Node _next){
+		next = _next;
+		data = _data;
+	}
+	
+	public Object getData(){
+		return data;
+	}
+	
+	public void setData(Object _data){
+		data = _data;
+	}
+	
+	public Node getNext(){
+		return next;		
+	}
+	
+	public void setNext(Node _next){
+		next = _next;
+	}
+	
+}

@@ -1,0 +1,14 @@
+package com.careercup.bitmanipulation;
+
+public class CheckHighestOrderBit {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		byte b = 00000100;
+		int x = (b & 0Xff) >> 7;
+
+	}
+
+}

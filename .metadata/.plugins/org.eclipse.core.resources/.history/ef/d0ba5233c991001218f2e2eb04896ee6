@@ -1,0 +1,39 @@
+package com.careercup.matrix;
+
+public class LargestSubmatrixInAMatrix {
+
+	public static int findLargestSubMatrix(int[][] a, int range){
+		int rows = a.length;
+		int cols = a[0].length;
+		int currentSum = 0, maxSum = 0;
+		for(int i = 0; i < rows; i ++){
+			for(int j = 0; j <cols - 1; j ++){
+				
+					currentSum = a[i][j] + a[i][j + 1] + a[i + 1][j] + a [i + 1][j + 1];
+					if(currentSum > maxSum){
+						maxSum = currentSum;
+					}
+				
+			}
+		}
+		return maxSum;
+	}
+	public static void main(String[] args) {
+		int[][] a = new int[3][3];
+		a[0][0] = 1;
+		a[0][1] = 2;
+		a[0][2] = 3;		
+		a[1][0] = 4;
+		a[1][1] = 5;
+		a[1][2] = 6;		
+		a[2][0] = 7;
+		a[2][1] = 8;
+		a[2][2] = 9;
+		System.out.println(findLargestSubMatrix(a, 2));
+		
+		
+				
+
+	}
+
+}

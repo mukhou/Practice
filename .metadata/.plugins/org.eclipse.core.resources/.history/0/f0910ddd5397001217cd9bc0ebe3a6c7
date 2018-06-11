@@ -1,0 +1,33 @@
+package com.careercup.arraysandstrings;
+
+import java.util.Random;
+
+public class CreateRandomArray {
+
+	// creates random array of elements of value 0 to n-1
+	public static int[] randomIntArray(int length, int n)
+	{
+	  int[] a = new int[length];
+	  Random generator = new Random();
+	  // for each item in the list
+	  for (int i = 0; i < a.length; i++)
+	  {
+	      // create a new random number and populate the
+	      // current location in the list with it
+	      a[i] = generator.nextInt(n);
+	  }
+	  return a;
+	}
+	public static void main(String[] args) {
+		int[] arr = new int[] { 0, 1, 2, 3 };
+		int[] temp = randomIntArray(arr.length, 4);
+		for(int i : temp){
+			System.out.println(i);
+		}
+		
+		
+		
+
+	}
+
+}

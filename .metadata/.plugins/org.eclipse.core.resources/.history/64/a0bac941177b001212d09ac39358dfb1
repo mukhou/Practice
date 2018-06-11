@@ -1,0 +1,43 @@
+package com.careercup.java;
+
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+public class HashMTimestamp {
+	
+	public void findIDs(){
+		Map<Long, Timestamp> map1 = new HashMap<Long, Timestamp>();
+		Map<Long, Timestamp> map2 = new HashMap<Long, Timestamp>();
+		
+		Timestamp t1 = null;
+		Timestamp t2 = null;
+		Timestamp t3 = null;
+		Timestamp t4 = null;
+		try{
+			DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+			Date date1 = df.parse("23/09/2013");
+			long time1 = date1.getTime();
+			t1 = new Timestamp(time1);
+			
+			Date date2 = df.parse("23/10/2013");
+			long time2 = date1.getTime();
+			t2 = new Timestamp(time2);
+			
+		}catch (Exception e) {
+			
+		}
+		
+		map1.put((long) 1, t1);
+		map2.put((long)2, t2);
+		
+
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,25 @@
+package com.careercup.arraysandstrings;
+
+public class RemoveCharsFromString {
+
+	public static void removeString(String str, char a, char k){
+		char[] ch = str.toCharArray();
+		int index = 0;
+		for(int i = 0; i < ch.length; i ++){
+			if(ch[i] == a | ch[i] == k){
+				ch[i] = ch[i + 1];
+			
+		}
+		
+		for(char c : ch){
+			System.out.println(c);
+		}
+		
+		
+	}
+	public static void main(String[] args) {
+		removeString("abcdeff", 'a', 'i');
+
+	}
+
+}

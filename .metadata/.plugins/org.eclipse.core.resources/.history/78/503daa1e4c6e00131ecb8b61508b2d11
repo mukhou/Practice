@@ -1,0 +1,17 @@
+package test;
+
+public class TestMethodCall {
+
+	boolean checkNum(int a , int b){
+		return a == b;
+	}
+	
+	public boolean checkMethodCall(){
+		return 5 == checkNum(2, 3);
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

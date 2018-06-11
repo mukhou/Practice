@@ -1,0 +1,16 @@
+package com.careercup.arraysandstrings;
+
+public class CheckTwoDArray {
+	
+	public static void main(String[] args){
+		int[][] arr = new int[2][3];
+		System.out.println("length of array is "+ arr.length);
+		System.out.println("No. of cols of the array is " + arr[0].length);
+		//int i;
+		int[] sa = {1, 2, 3};
+		for(int i : sa){
+			
+		}
+	}
+
+}

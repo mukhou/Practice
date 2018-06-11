@@ -1,0 +1,39 @@
+package com.collectionsandstring;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class FindAllSubstringsOfAString {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		String string = "abc", sub;
+		int i, j, length;
+
+		
+
+		length = string.length();
+
+		/*System.out.println("Substrings of \"" + string + "\" are :-");
+
+		for (i = 0; i < length; i++) {
+			for (j = 1; j <= length - i; j++) {
+				sub = string.substring(i, i + j);
+				System.out.println(sub);
+			}
+
+		}*/
+		Set<String> set = new HashSet<String>();
+	    for( i=0; i < string.length() - length + 1; i++) {
+	        sub = string.substring(i,length+i);
+	        set.add(sub);
+	    }
+	    for (String str : set) {
+	        System.out.println(str);
+	    }
+	    return set.size();
+
+	}
+}

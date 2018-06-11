@@ -1,0 +1,18 @@
+package dataStructures;
+
+public class ABC {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		int curr = 5;
+		int temp = curr;
+		curr = 6;
+		 System.out.println(temp);
+		 System.out.println(curr);
+		
+
+	}
+
+}

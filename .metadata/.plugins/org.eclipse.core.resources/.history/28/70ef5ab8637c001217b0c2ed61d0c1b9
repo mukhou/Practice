@@ -1,0 +1,204 @@
+package dataStructures;
+
+public class LinkedList {
+	
+	private Node head;
+	private int listCount;
+	
+	// this is an empty list, so the reference to the head node
+	// is set to a new node with no data
+	public LinkedList(){
+		head = new Node(null);
+		listCount = 0;
+	}
+	
+	// given an element(data), adds a node to the end of the list
+	public void addNodeAtEnd(Object data){
+		
+		Node temp = new Node(data);
+		Node current = head;
+		
+		// traverse till the end of the linked list
+		while(current.getNext() != null){
+			current.getNext();
+		}
+		// the last node in the linkedlist
+		current = current.getNext();
+		// set the new node as the next(last) node of the linked list
+		current.setNext(temp);
+	}
+	
+	// given an element(data), adds a node to the head of the list
+	public Node insertAtHead(Object data){
+		// create the new node
+		Node n = new Node(data);
+		// the previous head becomes the next node of the newly created node
+		n.next = head;
+		return n;
+	}
+	
+	public void AddNodeAtIndex(Object data, int index){
+		
+		Node temp = new Node(data);
+		Node current = head;
+		
+		for(int i=0; i<index && current.getNext() != null; i++){
+			current = current.getNext();
+		}
+		
+		//next node of temp becomes current and vice versa
+		temp.setNext(current.getNext());
+		current.setNext(temp);
+		listCount++;
+	}
+	
+	// retrieves the data at the current node
+	public Object getObject(int index){
+		
+		if(index<=0){
+			return null;
+		}
+		Node current = head.getNext();
+		for(int i=0; i<index; i++){
+			
+			if(current.getNext() == null){
+				return null;
+			}
+			current = current.getNext();
+		}
+		
+		return current.getData();
+	}
+	
+	// to reverse a Single LinkedList(longer method)
+	public void reverse(){
+		Node currentNode, nextNode, loopNode;
+		currentNode = head;
+		nextNode = head.next;
+		loopNode = null;
+		
+		while(nextNode != null){
+			// set next of head to NULL
+			currentNode.next = null;
+			// store the current node temporarily in the loopNode
+			loopNode = currentNode;
+			// set currentNode as the nextNode, traverse through the list
+			currentNode = nextNode;
+			// set next as next of next
+			nextNode = nextNode.next;
+		}
+		
+		head = currentNode;
+		head.next = loopNode;
+	}
+	
+	// to reverse a Single LinkedList(shorter method)
+	public void reverseList(){
+		Node current = head;
+		head = null;
+		
+		while(current != null){
+			Node temp = current;
+			current = current.next;
+			temp.next = head;// set the next of head to null
+			head = temp;
+		}
+	}
+	// to traversal of a linked list
+	public Node find(Object data){
+		while(head != null && head.data != data){
+			head = head.next;
+		}
+		return head;
+	}
+	
+	public boolean removeObject(int index){
+		
+		if(index < 1 || index > size()){
+			return false;
+		}
+		
+		Node current = head;
+		
+		// traverse till the index is reached
+		for(int i = 0; i<index; i++){
+			
+			if(current.getNext() == null){
+				return false;
+			}
+			current = current.getNext();
+		}
+		// set next of current bypassing the immediate next of it
+		current.setNext(current.getNext().getNext());
+		listCount--;
+		return true;
+	}
+	
+	// Delete node from the middle of a linked list
+	public void deleteMiddleNode(Node middle){
+		Node temp = middle.getNext();
+		// simply copy the data of the next of the middle to the middle
+		// so that the next of middle becomes the middle
+		// and make it point to next of next
+		// middle now becomes temp(next of middle)
+		middle.data = temp.data;
+		middle.next = temp.next;
+		// or
+		// middle.setNext(temp.getNext());
+	}
+	
+	public void removeDuplicates(){
+		Node current = head;
+		while(current.getNext() != null){
+			current = current.getNext();
+			Node temp = head;
+			while(current != temp){
+				// if head data is equal to the data of the next node,
+				// then set the next of head as next of current(next to next)
+				if(temp.getData().equals(current.getData())){
+					temp.setNext(current.getNext());
+					listCount --;
+				}
+			}
+		}
+	}
+	
+	public int size(){
+		return listCount;
+	}
+
+}
+
+// The Node class
+ class Node{
+	
+	Node next;
+	Object data;
+	
+	Node(Object _data){
+		next = null;
+		data = _data;
+	}
+	
+	Node(Object _data, Node _next){
+		next = _next;
+		data = _data;
+	}
+	
+	public Object getData(){
+		return data;
+	}
+	
+	public void setData(Object _data){
+		data = _data;
+	}
+	
+	public Node getNext(){
+		return next;		
+	}
+	
+	public void setNext(Node _next){
+		next = _next;
+	}
+	
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.codehaus.groovy.eclipse.groovyConsoleLaunchConfiguration">
+<stringAttribute key="org.codehaus.groovy.eclipse.launch.runType" value="algorithms.Test1"/>
+<listAttribute key="org.eclipse.jdt.launching.CLASSPATH">
+<listEntry value="E:\Urmi\Java\wrspc_practice_jobs\Practice\bin"/>
+<listEntry value="C:\Users\Urmi\.groovy\greclipse\global_dsld_support"/>
+<listEntry value="E:\Java\eclipse-juno\plugins\org.codehaus.groovy_2.3.7.xx-201411061336-e42-RELEASE\plugin_dsld_support\"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.codehaus.groovy.tools.GroovyStarter"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--classpath &quot;${workspace_loc:\Practice}\src;${workspace_loc:\Practice}\bin&quot; --main groovy.ui.Console &quot;${resource_loc:/Practice/src/algorithms/Test1.groovy}&quot;"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Practice"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value=" -Dgroovy.home=&quot;${groovy_home}&quot;"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:\Practice}"/>
+</launchConfiguration>

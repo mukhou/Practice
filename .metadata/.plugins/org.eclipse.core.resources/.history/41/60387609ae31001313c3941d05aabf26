@@ -1,0 +1,43 @@
+package anything;
+
+public class Read {
+	private  int[] gid;
+	private static int sppi;
+	private static int g5;
+	private static String gid_str;
+	private static String g5_str;
+	private static String sppi_str;
+
+	/*public Read(int[]gid,int[]g5,int[]sppi){
+		this.g5=g5;
+		
+	}
+
+	*/
+	public static void main(String[] arguments)
+	{
+	MatFileReader matfilereader=null;
+	try
+	{
+	 matfilereader = new MatFileReader("C:/Users/Sharmi/Documents/MATLAB/netSVMpackage1/BC_PPI.mat" );
+	}
+	catch (Exception e) 
+	{
+	 System.out.println("error reading file");
+	 e.printStackTrace();
+	 System.exit(1); 
+	}
+	gid_str=((MLDouble)matfilereader.getMLArray( "gid" )).contentToString();
+	int[]gid=new int[gid_str.length()];
+	for (int i=0;i<gid_str.length();i++){
+		gid[i] =Integer.parseInt(gid_str[i]);
+	}
+	g5_str=((MLDouble)matfilereader.getMLArray( "g5" )).contentToString();
+	g5 =Integer.parseInt(g5_str);
+	sppi_str=((MLDouble)matfilereader.getMLArray( "sppi" )).contentToString();
+	sppi =Integer.parseInt(sppi_str);
+	System.out.println(gid);
+	//System.out.println(k);
+	}
+
+}

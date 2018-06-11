@@ -1,0 +1,42 @@
+package com.careercup.sortandsearch;
+
+import java.util.Arrays;
+
+public class SelectionSort {
+
+	public static int[] selectionSort(int[] arr){
+		/*for(int i = 0; i < arr.length - 1; i++){
+			int smallest_index = i;
+			// find the smallest element
+			for(int j = i + 1; i < arr.length; j++){
+				if(arr[j] < arr[smallest_index]){
+					smallest_index = j;
+				}
+			}
+			// exchange smallest element with i
+			int temp = arr[smallest_index];
+			arr[smallest_index] = arr[i];
+			arr[i] = temp;			
+		}
+		return arr;*/
+		for (int i = 0; i < arr.length - 1; i++)
+        {
+            int index = i;
+            for (int j = i + 1; j < arr.length; j++)
+                if (arr[j] < arr[index]) 
+                    index = j;
+      
+            int smallerNumber = arr[index];  
+            arr[index] = arr[i];
+            arr[i] = smallerNumber;
+        }
+        return arr;
+	}
+	public static void main(String[] args) {
+		int[] arr = {10,34,2,56,7,67,88,42};
+		int[] result = selectionSort(arr);
+		System.out.println(Arrays.toString(arr));
+
+	}
+
+}

@@ -1,0 +1,51 @@
+package com.careercup.arraysandstrings;
+
+import java.util.Random;
+
+public class CreateRandomArray {
+
+	// creates random array of elements of value 0 to n-1
+	public static int[] randomIntArray(int length, int n)
+	{
+	  int[] a = new int[length];
+	  Random generator = new Random();
+	  int max = a.length;
+	  int min = 0;
+	  // for each item in the list
+	  for (int i = 0; i < a.length; i++)
+	  {
+	      // create a new random number and populate the
+	      // current location in the list with it
+		  int tempIndex = min + (int)(Math.random() * ((max - min) + 1));
+		  int temp = a[i];
+		  a[i] = a[tempIndex];
+		  a[tempIndex] = temp;
+	      
+	  }
+	  return a;
+	}
+	public static void main(String[] args) {
+		int[] arr = new int[] { 0, 1, 2, 3 };
+		/*int[] temp = randomIntArray(arr.length, 4);
+		for(int i : temp){
+			System.out.println(i);
+		}*/
+		
+		Random randNumGenerator = new Random();
+		int[] x = new int[7];
+		for (int i=0; i<x.length; i++)
+		{
+			x[i] = (randNumGenerator.nextInt(4)+1);
+		}
+		for(int k : x){
+			System.out.println(k);
+		}
+		
+		/*String str = "abcde";
+		String str1 = "bd";
+		System.out.println(str.contains(str1));*/
+		
+
+	}
+
+}
