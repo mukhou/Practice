@@ -4,8 +4,8 @@ public class MatrixMultiplicaton {
 
 	public static int[][] multiply(int[][] a, int[][] b) {
 
-		int aRows = a.length, aColumns = a[0].length, bRows = b.length, 
-		bColumns = b[0].length;
+		int aRows = a.length, aColumns = a[0].length;
+		int bRows = b.length, bColumns = b[0].length;
 
 		if (aColumns != bRows) {
 			throw new IllegalArgumentException("A:Rows: " + aColumns

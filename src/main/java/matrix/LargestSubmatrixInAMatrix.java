@@ -8,12 +8,10 @@ public class LargestSubmatrixInAMatrix {
 		int currentSum = 0, maxSum = 0;
 		for(int i = 0; i < rows - 1; i ++){
 			for(int j = 0; j <cols - 1; j ++){
-				
 					currentSum = a[i][j] + a[i][j + 1] + a[i + 1][j] + a [i + 1][j + 1];
 					if(currentSum > maxSum){
 						maxSum = currentSum;
 					}
-				
 			}
 		}
 		return maxSum;
