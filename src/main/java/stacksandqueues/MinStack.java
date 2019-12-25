@@ -18,11 +18,10 @@ public class MinStack extends StackUsingArray {
 	StackUsingArray min;
 	
 	public void push(int x){
-		if(isEmpty() == true){
-			super.push(x);
+		super.push(x);
+		if(isEmpty()){
 			min.push(x);
 		}else{
-			super.push(x);
 			int y = min.top;
 
 			/* push only when the incoming element of main stack is smaller 
@@ -35,10 +34,10 @@ public class MinStack extends StackUsingArray {
 	
 	public int pop(){
 		int x = super.pop();
-		int y = min.pop();
+		int y = min.top;
 		/* Push the popped element y  back only if it is not equal to x */
-		if(x != y){
-			min.push(y);
+		if(x == y){
+			min.pop();
 		}
 		return x;
 	}
@@ -46,9 +45,10 @@ public class MinStack extends StackUsingArray {
 	/* MinStack's member method to get minimum element from it. */
 	int getMin()
 	{
-	    int x = min.pop();
-	    min.push(x);
-	    return x;
+	    if(isEmpty()){
+	    	return Integer.MAX_VALUE;
+		}
+		return min.top;
 	}
 
 }

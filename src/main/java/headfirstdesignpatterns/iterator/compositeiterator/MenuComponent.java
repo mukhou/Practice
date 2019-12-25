@@ -1,5 +1,9 @@
 package headfirstdesignpatterns.iterator.compositeiterator;
 
+/**
+ * The Iterator Pattern provides a way to access the elements of an aggregate object
+ * sequentially without exposing its underlying representation.
+ */
 public abstract class MenuComponent {
     public void add(MenuComponent menuComponent) {
         throw new UnsupportedOperationException();
