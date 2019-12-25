@@ -2,8 +2,9 @@ package stacksandqueues;
 import dataStructures.*;
 
 import java.util.LinkedHashMap;
+import java.util.NoSuchElementException;
 
-public class QueueUsingLinkedNodes {
+public class QueueUsingLinkedList {
 	
 	// head is at the head (left end) (LRU)
 	// back is at the back(right end)
@@ -11,24 +12,25 @@ public class QueueUsingLinkedNodes {
 
 	
 	public Object dequeue(ListNode n){
-		if(front != null){
-			Object item = front.getdata();
-			front = front.next;
-			return item;
+		if(front == null){
+			throw  new NoSuchElementException();
 		}
-		return null;
-		
-		
+		int data = front.getdata();
+		front = front.next;
+		if(front == null){
+			back = null;
+		}
+		return data;
 	}
 	
 	public void enqueue(Object data){
-		if(front == null){
-			ListNode temp = new ListNode(data);
-			front = temp;
-		}else{
-			ListNode temp = new ListNode(data);
+		ListNode temp = new ListNode(data);
+		if(back != null){
 			back.next = temp;
-			back = temp;
+		}
+		back = temp;
+		if(front == null) {
+			front = back;
 		}
 	}
 

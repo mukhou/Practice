@@ -13,9 +13,11 @@
  */
 package stacksandqueues;
 
-public class SpecialStack extends MyStack{
+import headfirstdesignpatterns.state.State;
+
+public class SpecialStack extends StackUsingArray{
 	
-	MyStack min;
+	StackUsingArray min;
 	
 	public void push(int x){
 		if(isEmpty() == true){

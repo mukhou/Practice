@@ -1,6 +1,7 @@
 package stacksandqueues;
 
 import java.util.Arrays;
+import java.util.Hashtable;
 
 /**
  * Algorithm:
@@ -12,8 +13,9 @@ import java.util.Arrays;
  * Link: http://www.algo-faq.com/Stacks-and-Queues/How-to-implement-a-Stack-using-two-Queues.php
  */
 public class StackUsingQueue {
+
     QueueUsingArray q1, q2;
-    StackUsingArray myStack = new StackUsingArray();
+
     public void push(int value){
         if(q1.isFull()){
             System.out.println("Underflow");
@@ -22,18 +24,18 @@ public class StackUsingQueue {
         }
     }
 
+
     public int pop(){
         if(q1.isEmpty()){
             System.out.println("Overflow");
             return -1;
         }else {
             while(q1.getSize() != 1){
-                int val = q1.deQueue();
-                q2.enQueue(val);
+                q2.enQueue(q1.deQueue());
             }
             //Now only last element left in q1 , this is the one that needs to be pushed to Stack
             int stackValue = q1.deQueue();
-            myStack.push(stackValue);
+
             // reload Q1
             while (!q2.isEmpty()){
                 q1.enQueue(q2.deQueue());

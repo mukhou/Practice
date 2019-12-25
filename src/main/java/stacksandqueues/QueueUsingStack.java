@@ -1,8 +1,17 @@
 package stacksandqueues;
 
 
+/**
+ * Algorithm:
+ * Stacks s1, s2
+ * 1. For push operation: s1 will be ordered with the newest elements on the top, while s2 will have the oldest elements on the top.
+ * 2. For pop operation: We push the new elements onto s1, and peek and pop from s2.
+ * When s2 is empty, we’ll transfer all the elements from s1 onto s2, in reverse order.
+ */
 public class QueueUsingStack {
+
     StackUsingArray s1, s2;
+
     public void enQueue(int value){
         if(s1.isFull()){
             System.out.println("Overflow");
@@ -12,21 +21,25 @@ public class QueueUsingStack {
     }
 
     public int deQueue(){
-        if(s1.isEmpty()){
-            System.out.println("Underflow");
-            return 0;
+        if(!s2.isEmpty()){
+            return s2.pop();
         }else {
             while(!s1.isEmpty()){
                 s2.push(s1.pop());
             }
-            // obtaining the value to return
-            int value = s2.pop();
-            // copying the values back to s1
-            while(!s2.isEmpty()){
-                s1.push(s2.pop());
-            }
-
-            return value;
+            return s2.pop();
         }
+    }
+
+    public int peek(){
+        if(!s2.isEmpty()){
+            return s2.top();
+        }else {
+            while(!s1.isEmpty()){
+                s2.push(s1.pop());
+            }
+            return s2.top;
+        }
+
     }
 }
