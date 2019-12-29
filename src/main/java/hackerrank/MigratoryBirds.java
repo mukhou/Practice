@@ -9,8 +9,6 @@ package hackerrank;
  * To change this template use File | Settings | File Templates.
  */
 
-import java.util.*;
-
 /**
  * https://www.hackerrank.com/challenges/migratory-birds/problem
  * 1, 4, 4, 4, 5, 3

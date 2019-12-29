@@ -39,7 +39,8 @@ public class PrintAllAnagramsOfAWord {
 
     public static void main(String[] args) {
 
-        System.out.println(permute("aabc"));
+        System.out.println(permute("abc"));
+
 
     }
 
