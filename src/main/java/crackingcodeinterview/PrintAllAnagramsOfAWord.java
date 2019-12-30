@@ -21,7 +21,7 @@ public class PrintAllAnagramsOfAWord {
             for (int i = 0; i < chars.length(); i++) {
                 // Remove the character at index i from the string
                 String first = chars.substring(0, i);//0 -> i
-                String rest = chars.substring(i + 1);// i + 1 -> rest
+                String rest = chars.substring(i + 1);// i + 1 -> end
                 String remaining = first + rest;
 
                 // Recursive call: to find all the permutations of the remaining chars

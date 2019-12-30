@@ -43,6 +43,41 @@ public class Calculator {
     }
 
 
+    //main method
+    public static double compute(String sequence) {
+        Stack<Double> numberStack = new Stack<Double>();
+        Stack<Operator> operatorStack = new Stack<Operator>();
+
+        for (int i = 0; i < sequence.length(); i++) {
+            try
+            {
+                /* Get number and push. */
+                int value = parseNextNumber(sequence, i);
+                numberStack.push((double) value);
+
+                /* Move to the operator. */
+                i += Integer.toString(value).length();
+                if (i >= sequence.length()) {
+                    break;
+                }
+
+                /* Get operator, collapse top as needed, push operator. */
+                Operator op = parseNextOperator(sequence, i);
+                collapseTop(op, numberStack, operatorStack);
+                operatorStack.push(op);
+            } catch (NumberFormatException ex) {
+                return Integer.MIN_VALUE;
+            }
+        }
+
+        /* Do final collapse. */
+        collapseTop(Operator.BLANK, numberStack, operatorStack);
+        if (numberStack.size() == 1 && operatorStack.size() == 0) {
+            return numberStack.pop();
+        }
+        return 0;
+    }
+
 
     /* Collapse top until priority(futureTop) <= priority(top).
      * Collapsing means to pop the top 2 numbers and apply the
@@ -85,40 +120,6 @@ public class Calculator {
         return Operator.BLANK;
     }
 
-    //main method
-    public static double compute(String sequence) {
-        Stack<Double> numberStack = new Stack<Double>();
-        Stack<Operator> operatorStack = new Stack<Operator>();
-
-        for (int i = 0; i < sequence.length(); i++) {
-            try
-            {
-                /* Get number and push. */
-                int value = parseNextNumber(sequence, i);
-                numberStack.push((double) value);
-
-                /* Move to the operator. */
-                i += Integer.toString(value).length();
-                if (i >= sequence.length()) {
-                    break;
-                }
-
-                /* Get operator, collapse top as needed, push operator. */
-                Operator op = parseNextOperator(sequence, i);
-                collapseTop(op, numberStack, operatorStack);
-                operatorStack.push(op);
-            } catch (NumberFormatException ex) {
-                return Integer.MIN_VALUE;
-            }
-        }
-
-        /* Do final collapse. */
-        collapseTop(Operator.BLANK, numberStack, operatorStack);
-        if (numberStack.size() == 1 && operatorStack.size() == 0) {
-            return numberStack.pop();
-        }
-        return 0;
-    }
 
 
 

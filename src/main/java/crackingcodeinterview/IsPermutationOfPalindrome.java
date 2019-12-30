@@ -25,7 +25,26 @@ public class IsPermutationOfPalindrome {
         return countOdd <= 1;
     }
 
+    private static boolean isPerm1(String str){
+        int[] table = new int[128];
+        int countOdd = 0;
+        for(Character c : str.toCharArray()){
+            int val = Character.getNumericValue(c);
+            if(val != -1){
+                table[val] ++;
+            }
+            if(table[val] % 2 == 1){
+                countOdd ++;
+            }else {
+                countOdd --;
+            }
+        }
+        return countOdd <= 1;
+    }
+
     public static void main(String[] args){
         System.out.println(isPerm("tacat"));
+        System.out.println(isPerm1("tacau"));
+
     }
 }

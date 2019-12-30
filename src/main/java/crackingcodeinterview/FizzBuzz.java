@@ -9,7 +9,7 @@ package crackingcodeinterview;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class FizzBuzz implements Runnable{
+public class  FizzBuzz implements Runnable{
 
     private Predicate<Integer> validate;
     private Function<Integer, String> printer;

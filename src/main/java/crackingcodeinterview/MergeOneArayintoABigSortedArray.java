@@ -14,12 +14,21 @@ package crackingcodeinterview;
 //IDEA: if we insert an element into the front of A, then we'll have to shift the existing
 //elements backwards to make room for it. It's better to insert elements into the back of the array, where
 //there's empty space.
+//CTCI Q 10.1
 
+import java.util.Arrays;
+
+/** Merges array
+ * @param a first array
+ * @param b second array
+ * @param countA number of "real" elements in a
+ * @param countB number of "real" elements in b
+ */
 public class MergeOneArayintoABigSortedArray {
-    public void merge(int[] a, int[]b, int lastA, int lastB){
-        int indexA = lastA - 1;//99
-        int indexB = lastB - 1;//49
-        int indexMerged = lastA + lastB - 1;
+    public static int[] merge(int[] a, int[]b, int countA, int countB){
+        int indexA = countA - 1;//99
+        int indexB = countB - 1;//49
+        int indexMerged = countA + countB - 1;
 
         //iterate over b array
         while(indexB >= 0){
@@ -32,6 +41,14 @@ public class MergeOneArayintoABigSortedArray {
             }
             indexMerged--;
         }
+        return a;
+
+    }
+
+    public static void main(String[] args){
+        int[] a = {10, 14, 19, 20, 30, 0, 0};
+        int[] b = {25, 40};
+        System.out.println(Arrays.toString(merge(a, b, 5, b.length)));
 
     }
 }

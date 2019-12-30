@@ -6,7 +6,7 @@ Time: 1:56 PM
 
 /**
  * You are building a diving board by placing a bunch of planks of wood end-to-end.
- * There are two types of planks, one of length s h o r t e r and one of length longer. You must use
+ * There are two types of planks, one of length shorter and one of length longer. You must use
  * exactly K planks of wood. Write a method to generate ail possible lengths for the diving board.
  */
 package crackingcodeinterview;

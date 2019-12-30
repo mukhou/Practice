@@ -34,7 +34,7 @@ public class MaxPeopleAlive {
                     maxAlive = currentAlive;
                     maxAliveYear = birthYears[birthIndex];
                 }
-                //NOTE: the birthInex should be increased AFTER the max check,
+                //NOTE: the birthIndex should be increased AFTER the max check,
                 // otherwise the birthIndex will be incorrect
                 birthIndex++;
             } else {

@@ -11,16 +11,24 @@ package crackingcodeinterview;
  */
 public class AddWithoutPlus {
 
-    public static int add(int a, int b){
-        while(b != 0){
-            //only sum value
-            int sum = a ^ b;
+    public static int add(int x, int y){
+        while(y != 0){
             //only carry value
-            int carry = (a & b) << 1;
-            a = sum;
-            b = carry;
+            // carry now contains common
+            // set bits of x and y
+            int carry = (x & y);
+
+            //only sum value
+            // Sum of bits of x and
+            // y where at least one
+            // of the bits is not set
+            x = x ^ y;
+            // Carry is shifted by
+            // one so that adding it
+            // to x gives the required sum
+            y = carry << 1;
         }
-        return a;
+        return x;
 
     }
 }

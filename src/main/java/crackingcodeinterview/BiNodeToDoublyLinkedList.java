@@ -44,6 +44,7 @@ public class BiNodeToDoublyLinkedList {
             concat(root, part2);
         }
 
+        //part1 will be front of left subtree
         return part1 == null ? root : part1;
     }
 

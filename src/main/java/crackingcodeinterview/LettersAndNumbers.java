@@ -14,6 +14,7 @@ public class LettersAndNumbers {
 
     public static char[] findLongestSubarray(char[] array){
         for(int len = array.length; len > 0; len --){
+            //IMP: i goes upto array.length - len
             for(int i = 0; i < array.length - len; i++){
                 if(hasEqualLettersNumbers(array, i, i + len - 1)){
                     return extractSubarray(array, i, i + len - 1);
@@ -21,15 +22,6 @@ public class LettersAndNumbers {
             }
         }
         return null;
-    }
-
-    private static char[] extractSubarray(char[] array, int start, int end) {
-        if (start > end) return null;
-        char[] sub = new char[end - start + 1];
-        for(int i = start; i <= end; i++){
-            sub[i - start] = array[i];
-        }
-        return sub;
     }
 
     private static boolean hasEqualLettersNumbers(char[] array, int start, int end) {
@@ -43,6 +35,17 @@ public class LettersAndNumbers {
         }
         return counter == 0;
     }
+
+
+    private static char[] extractSubarray(char[] array, int start, int end) {
+        if (start > end) return null;
+        char[] sub = new char[end - start + 1];
+        for(int i = start; i <= end; i++){
+            sub[i - start] = array[i];
+        }
+        return sub;
+    }
+
 
     public static void main(String[] args) {
         char b = '1';
