@@ -10,26 +10,18 @@ import static java.lang.Math.abs;
 
 public class Operations {
 
-    public static int minus(int a, int b) {
-        int negate = negateNum(b);
-        return a + negate;
-    }
+   public static int multiply(int a, int b) {
 
-    public static int multiply(int a, int b) {
-        boolean negative = false;
-        if (a < 0 && b < 0) {
-            a = abs(a);
-            b = abs(b);
-        } else if (a < 0) {
-            negative = true;
-            a = abs(a);
-        } else if (b < 0) {
-            negative = true;
-            b = abs(b);
+        int absa = Math.abs(a);
+        int absb = Math.abs(b);
+
+        int res = (absa < absb) ? multiplyPos(absa, absb) : multiplyPos(absb, absa);
+        if ((a < 0 && b < 0) || (a > 0 && b > 0)) {
+            return res;
+        } else {
+            return negateNum(res);
         }
 
-        int res = (a < b) ? multiplyPos(a, b) : multiplyPos(b, a);
-        return negative ? negateNum(res) : res;
     }
 
     private static int multiplyPos(int smaller, int larger) {
@@ -50,6 +42,7 @@ public class Operations {
         int absa = abs(a);
         int absb = abs(b);
 
+        //EXACTLY SAME LOGIC AS IN CalcDivision
         int res = 0, count = 0;
         while (res + absb <= absa){
             res += absb;

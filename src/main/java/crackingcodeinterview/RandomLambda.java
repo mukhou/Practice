@@ -5,7 +5,7 @@ Time: 5:46 PM
 */
 
 /**
- * Using Lambda expressions, write a function L i s t < I n t e g e r >
+ * Using Lambda expressions, write a function List <Integer>
  * getRandomSubset(List<Integer> l i s t ) that returns a random subset of arbitrary size. All
  * subsets (including the empty set) should be equally likely to be chosen.
  */

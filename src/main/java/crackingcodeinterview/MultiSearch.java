@@ -31,7 +31,7 @@ public class MultiSearch {
     //k is the length of the longest string in T, b is the length of the bigger string, and t is
     //the number of smaller strings within T.
     private static Map<String,List<Integer>> searchAll(String big, String[] smalls) {
-        Map<String,List<Integer>> map = new HashMap<>();
+        Map<String, List<Integer>> map = new HashMap<>();
 
         Trie1 trie1 = Trie1.createTrieFromString(big);
         for(String s : smalls){

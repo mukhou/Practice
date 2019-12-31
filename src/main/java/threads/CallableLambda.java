@@ -16,8 +16,6 @@ public class CallableLambda {
                 e.printStackTrace();
                 throw new IllegalStateException("task interrupted", e);
             }
-
-
         };
 
         Future<Integer> future = es.submit(task);

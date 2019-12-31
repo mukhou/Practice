@@ -1,5 +1,8 @@
 package crackingcodeinterview;
 
+/**
+ * Given a number n, generate all powers of 2 upto that number
+ */
 public class PowersOf2 {
 
     static int powers0f2(int n) {
@@ -18,7 +21,7 @@ public class PowersOf2 {
 
     }
     public static void main(String[] args){
-        powers0f2(4);
+        powers0f2(33);
 
     }
 }
