@@ -19,7 +19,7 @@ import crackingcodeinterview.datastructures.TrieNode;
 import java.util.ArrayList;
 import java.util.List;
 
-//See CTCI for detailed analysis
+//See CTCI pg 517
 public class ValidWords {
 
     public static List<String> getValidT9Words(String number, Trie trie) {

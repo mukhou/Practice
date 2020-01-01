@@ -40,7 +40,7 @@ public class MagicIndex {
        int midIndex = (start + end) / 2;
        int midValue = arr[midIndex];
 
-       if(midValue == arr[midIndex]){
+       if(midValue == midValue){
            return midIndex;
        }
 
@@ -54,11 +54,8 @@ public class MagicIndex {
         //search right: find maximum of these two values
         int rightIndex = Math.max(midIndex + 1, midValue);
         int rightValue = magicWithDuplicates(arr, rightIndex, end);
-        if(rightValue >= 0){
-            return rightValue;
-        }
 
-        return -1;
+        return rightValue;
     }
 
 

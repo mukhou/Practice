@@ -1,8 +1,8 @@
 package crackingcodeinterview;
 
 /**WAP to check if two strings are anagrams or not.
- * two words with the same character counts—to implement
- * this algorithm. We simply iterate through this code, counting how many times each character appears.
+ * two words with the same character counts
+ * To implement this algorithm, we simply iterate through this code, counting how many times each character appears.
  * Then, afterwards, we compare the two arrays.
  */
 public class StringsWithIdenticalChars {
@@ -11,9 +11,10 @@ public class StringsWithIdenticalChars {
         if(s1.length() != s2.length()){
             return false;
         }
+
         int[] letters = new int[128];//assumption ASCII chars
-        char[] arr = s1.toCharArray();
-        for(char c : arr){
+
+        for(char c : s1.toCharArray()){
             letters[c]++;
         }
         for(int i = 0; i < s2.length(); i++){
@@ -22,7 +23,6 @@ public class StringsWithIdenticalChars {
             if(letters[c]  < 0){
                 return false;
             }
-
         }
         return true;
     }

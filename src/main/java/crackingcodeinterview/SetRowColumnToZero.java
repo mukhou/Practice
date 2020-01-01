@@ -24,7 +24,7 @@ public class SetRowColumnToZero {
 
 			}
 		}
-		for(int k : row){
+		/*for(int k : row){
 			System.out.print(k + "\t");
 		}
 		System.out.println();
@@ -33,7 +33,7 @@ public class SetRowColumnToZero {
 		}
 		System.out.println();
 		System.out.println("####################");
-		
+		*/
 
 		// Set arr[i][j] to 0 if either row i or column j has a 0
 		for (int i = 0; i < matrix.length; i++) {

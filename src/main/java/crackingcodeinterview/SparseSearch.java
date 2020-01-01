@@ -18,64 +18,66 @@ package crackingcodeinterview;
 
 //The worst-case runtime for this algorithm is 0 ( n ) .
 public class SparseSearch {
-    public int search(String[] arr, String key){
-        return searchIter(arr, 0, arr.length - 1 , key);
+    public int search(String[] arr, String key) {
+        if (arr == null || key.isEmpty()) {
+            return -1;
+        }
+        return searchIter(arr, 0, arr.length - 1, key);
     }
 
     private int searchIter(String[] arr, int start, int end, String key) {
-
-        while(start <= end){
+        while (start <= end) {
             int mid = (start + end) / 2;
+
             //adjust mid
-            if(arr[mid].isEmpty()){
+            if (arr[mid].isEmpty()) {
                 int left = mid - 1;
                 int right = mid + 1;
-                while(true){
-                    if(left < start && right > end){
+                while (true) {
+                    if (left < start && right > end) {
                         return -1;
-                    }else if(right <= end && !arr[right].isEmpty()){
+                    } else if (right <= end && !arr[right].isEmpty()) {
                         mid = right;//new mid found
                         break;
-                    }else if(left >= start && !arr[left].isEmpty()){//new mid
+                    } else if (left >= start && !arr[left].isEmpty()) {//new mid
                         mid = left;
                         break;
                     }
-                    left --;
-                    right ++;
+                    left--;
+                    right++;
                 }
             }
 
             int res = arr[mid].compareTo(key);
-            if(res == 0){
+            if (res == 0) {
                 return mid;
-            }else if(res < 0){
+            } else if (res < 0) {
                 start = mid + 1;
-            }else {
+            } else {
                 end = mid - 1;
             }
 
         }
         return -1;
-
     }
 
-    private int searchRecur(String[] arr, int start, int end, String key){
-        if(start > end){
+    private int searchRecur(String[] arr, int start, int end, String key) {
+        if (start > end) {
             return -1;
         }
 
         int mid = (start + end) / 2;
 
-        if(arr[mid].isEmpty()){
-            while(true){
-                int left = mid -1;
+        if (arr[mid].isEmpty()) {
+            while (true) {
+                int left = mid - 1;
                 int right = mid + 1;
-                if(left < start && right > end){
+                if (left < start && right > end) {
                     return -1;
-                }else if(right <= end && !arr[right].isEmpty()){
+                } else if (right <= end && !arr[right].isEmpty()) {
                     mid = right;
                     break;
-                }else if(left >= start && !arr[left].isEmpty()){
+                } else if (left >= start && !arr[left].isEmpty()) {
                     mid = left;
                     break;
                 }
@@ -85,11 +87,11 @@ public class SparseSearch {
         }
 
         int res = arr[mid].compareTo(key);
-        if(res == 0){
+        if (res == 0) {
             return mid;
-        }else if(res < 0){
+        } else if (res < 0) {
             return searchRecur(arr, mid + 1, end, key);
-        }else {
+        } else {
             return searchRecur(arr, start, mid - 1, key);
         }
     }

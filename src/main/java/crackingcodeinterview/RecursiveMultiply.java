@@ -6,7 +6,7 @@
 
 package crackingcodeinterview;
 
-//see explanation on Ch 8, problem 5 of CTCI
+//see explanation on CTCI, pg 364
 public class RecursiveMultiply {
 
     public static int mult(int a, int b){
@@ -24,8 +24,10 @@ public class RecursiveMultiply {
         }
 
         int res;
+        //or right shift smaller: temp = smaller >> 1
         int temp = smaller / 2;
-        //recuse
+
+        //recurse
         int halfprod = multHelper(temp, bigger);
 
         if(smaller % 2 == 0){

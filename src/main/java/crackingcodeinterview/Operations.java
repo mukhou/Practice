@@ -73,6 +73,6 @@ public class Operations {
 
     public static void main(String[] args) {
         System.out.println(divide(16, 2));
-        System.out.println(multiply(4, -80));
+        System.out.println(multiply(31, 35));
     }
 }

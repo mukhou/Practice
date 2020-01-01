@@ -12,7 +12,7 @@ import java.util.Arrays;
 //array) with the smallest (non-negative) difference. Return the difference.
 public class SmallestDifference {
 
-    //BRUTE FORECE APPROACH: time complexity: O(a X b), see below better way
+    //BRUTE FORCE APPROACH: time complexity: O(a X b), see below better way
     public static int diff(int[] a, int[] b){
         int minDiff = 0;
         for(int i = 0; i < a.length; i++){
@@ -26,13 +26,13 @@ public class SmallestDifference {
 
     //Consider the following two arrays:
     //A: {1, 2, 11, IS)
-    //6: {4, 12, 19, 23, 127, 235}
+    //B: {4, 12, 19, 23, 127, 235}
     //Try the following approach:
     //1. Suppose a pointer a points to the beginning of A and a pointer b points to the beginning of B. The
     //current difference between a and b is 3, Store this as the min.
     //2. How can we (potentially) make this difference smaller? Well, the value at b is bigger than the value at a,
     //so moving b will only make the difference larger. Therefore, we want to move a.
-    //3. Now a points to 2 and b (stilt) points to 4. This difference is 2, so we should update min. Move a, since
+    //3. Now a points to 2 and b (still) points to 4. This difference is 2, so we should update min. Move a, since
     //it is smaller.
     //4. Now a points to 11 and b points to 4. Move b.
     //5. Now a points to 11 and b points to 12. Update min to 1. Move b.

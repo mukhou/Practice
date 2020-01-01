@@ -53,6 +53,11 @@ public class SwapArray {
         return set;
     }
 
+    /**
+     * sumA - a + b = sumB - b + a
+     * sumA - sumB = 2a - 2b
+     * (sumA - sumB) / 2 = a - b
+     */
     private static Integer findTarget(int sumA, int sumB) {
         if((sumA - sumB) % 2 != 0) {
             return null;
