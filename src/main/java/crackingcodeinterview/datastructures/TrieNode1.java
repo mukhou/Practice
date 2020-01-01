@@ -13,6 +13,7 @@ public class TrieNode1 {
 
     private HashMap<Character, TrieNode1> children;
     private ArrayList<Integer> indexes;
+    private boolean terminates = false;
 
     public TrieNode1(HashMap<Character, TrieNode1> children, ArrayList<Integer> indexes) {
         this.children = new HashMap<>();
@@ -23,25 +24,32 @@ public class TrieNode1 {
     }
 
     public void insertString(String s, int index){
+
+        if (s == null || s.isEmpty()) {
+            return;
+        }
         if(s == null){
             return;
         }
         indexes.add(index);
-        if(s.length() > 0){
-            char c = s.charAt(0);
-            TrieNode1 child = null;
-            if(children.containsKey(c)){
-                //get refernce to child
-                 child = children.get(c);
-            }else {
-                //create child and put it in map
-                child =  new TrieNode1();
-                children.put(c, child);
-            }
 
-            String remainder = s.substring(1);
-            child.insertString(remainder, index + 1);
+        char first = s.charAt(0);
+        TrieNode1 child= children.get(first);
+        if (child == null) {
+            child = new TrieNode1();
+            children.put(first, child);
         }
+
+        if (s.length() > 1) {
+            child.insertString(s.substring(1), index + 1);
+        } else {
+            child.setTerminates(true);
+        }
+    }
+
+    /* Set whether this node is the end of a complete word.*/
+    public void setTerminates(boolean t) {
+        terminates = t;
     }
 
     public ArrayList<Integer> search(String s){

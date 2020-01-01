@@ -36,12 +36,14 @@ public class ValidWords {
             }
         }
 
-        char digit = number.charAt(index);
-        char[] letters = getLettersForDigit(digit);
+        //get first digit
+        char firstDigit = number.charAt(index);
+        //get letters corresponding to the digit
+        char[] letters = getLettersForDigit(firstDigit);
         for(char c : letters){
             TrieNode child = root.getChild(c);
             if(child != null){
-                //add the new letter to prefix
+                //recurse
                 getValidT9Words(number, index + 1, prefix + c, child, result);
             }
         }
