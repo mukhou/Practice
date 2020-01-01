@@ -17,8 +17,7 @@ public class LongestUniformSubstring {
     public static int[] LongestUniformSubstring(String str){
 
         //initialize
-        int longestStart = -1;
-        int longestLength = 0;
+        int longestStart = -1, longestLength = 0;
         int index = 1;
         //need this variable to keep track of the longest string
         StringBuilder sb = null;
