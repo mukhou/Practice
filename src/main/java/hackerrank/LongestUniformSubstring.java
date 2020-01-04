@@ -28,6 +28,7 @@ public class LongestUniformSubstring {
             int start = index - 1;//initialize start to the previous index
             int lengthSoFar = 1;// initialize lengthSoFar = 1(as we are starting from the 1st character
 
+            //create string builder every time
             sb = new StringBuilder(Character.toString(str.charAt(start)));
 
             while(index < str.length() && str.charAt(index) == str.charAt(index - 1)){// LENGTH CHECK 2
