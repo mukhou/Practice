@@ -43,6 +43,7 @@ public class LongestUniformSubstring {
                 //new start
                 longestStart = start;
             }
+            //increment index anyway
             index ++;
         }
         System.out.println(sb.toString());

@@ -6,10 +6,9 @@ public class ReverseArray {
 
     static private void reverse(int[] arr){
         for(int i = 0; i < arr.length / 2; i++){
-            int other = arr.length - i - 1;
-            int temp = arr[i];
-            arr[i] = arr[other];
-            arr[other] = temp;
+           int temp = arr[arr.length - i - 1];
+           arr[arr.length - i - 1] = arr[i];
+           arr[i] = temp;
         }
         System.out.println(Arrays.toString(arr));
     }

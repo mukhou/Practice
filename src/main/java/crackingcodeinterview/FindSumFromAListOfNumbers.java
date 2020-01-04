@@ -16,6 +16,7 @@ public class FindSumFromAListOfNumbers {
     // Preferred approach
     //time complexity: 0(N log N) time to sort and 0(N) time to find the pairs.
     public static void findSumUsingHashMap(int[] arr, int sum) {
+        //sort the array
         Arrays.sort(arr);
         //define starting and ending index
         int first = 0, last = arr.length - 1;
@@ -37,7 +38,7 @@ public class FindSumFromAListOfNumbers {
     }
         //THIS WORKS, ALTHOUGH BAD APPROACH
         public static void findSum (List <Integer> numList,int sum){
-            for (int i = 0; i <= numList.size() - 1; i++) {
+            for (int i = 0; i < numList.size(); i++) {
                 for (int j = i + 1; j < numList.size(); j++) {
                     if ((numList.get(i) + numList.get(j)) == sum) {
                         System.out.println(numList.get(i) + ", " + numList.get(j));

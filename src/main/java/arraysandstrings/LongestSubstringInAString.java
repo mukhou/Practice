@@ -35,6 +35,7 @@ public class LongestSubstringInAString {
 
         for (int i = 0; i < s.length(); i++) {
             sb.append(s.charAt(i));
+
             if (!map.containsKey(s.charAt(i))) {
                 map.put(s.charAt(i), i);
             } else {
