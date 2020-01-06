@@ -10,11 +10,11 @@ public class TestDeadLock {
         Shared s2 = new Shared();
 
         // creating first thread and starting it
-        Thread1 t1 = new Thread1(s1, s2);
+        Thread t1 = new Thread(new Thread1(s1, s2));
         t1.start();
 
         // creating second thread and starting it
-        Thread2 t2 = new Thread2(s1, s2);
+        Thread t2 = new Thread(new Thread2(s1, s2));
         t2.start();
 
         // sleeping main thread
@@ -67,7 +67,7 @@ class Shared
 }
 
 
-class Thread1 extends Thread
+class Thread1 implements Runnable
 {
     private Shared s1;
     private Shared s2;
@@ -90,7 +90,7 @@ class Thread1 extends Thread
 }
 
 
-class Thread2 extends Thread
+class Thread2 implements Runnable
 {
     private Shared s1;
     private Shared s2;

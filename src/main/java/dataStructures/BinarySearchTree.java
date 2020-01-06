@@ -314,31 +314,25 @@ public class BinarySearchTree {
      * 3. if yes, return true
 	 */
 
-	public static boolean isBST(BinaryNode rootNode, int max, int min) {
-		// Base case
-		if (rootNode == null)
-			return true;
-		if (rootNode.left == null && rootNode.right == null)
-			return false;
-		boolean leftOk = false;
-		boolean rightOk = false;
-		boolean centerOk = false;
-		// check left subtree
-		if (rootNode.left != null)
-			leftOk = isBST(rootNode.left, rootNode.data - 1, min);
-		// check root
-		if (rootNode.data >= min && rootNode.data <= max)
-			centerOk = true;
-		else
-			centerOk = false;
-		// check right subtree
-		if (rootNode.right != null)
-			rightOk = isBST(rootNode.right, max, rootNode.data + 1);
-		return leftOk && centerOk && rightOk;
-	}
-	
+    public static boolean isBST(BinaryNode node, int min, int max)
+    {
+        // base case
+        if (node == null)
+            return true;
 
-	/**
+        // if node's value fall outside valid range
+        if (node.data < min || node.data > max) {
+            return false;
+        }
+
+        // recursively check left and right subtrees with updated range
+        return isBST(node.left, min, node.data) &&
+                isBST(node.right, node.data, max);
+    }
+
+
+
+    /**
 	 * IMPORTANT:
 	 * Given a Binary Tree, check if all leaves are at same level or not.
 	 * ALGORITHM:
@@ -439,7 +433,8 @@ public class BinarySearchTree {
 	 * we can find out all elements on left side of "A" are in left subtree and
 	 * elements on right are in right subtree.
 	 * 3.We recursively follow above steps and get the following tree. 
-	 */	
+	 */
+	//ATM: create from preOrder, search inOrder
 	public BinaryNode buildTreeFromPreIn(char[] inOrder, char[] preOrder, int inOrderStart, int inOrderEnd, int preIndex){		
 		if(inOrderStart > inOrderEnd) return null;
 		// create the root node from the first node of Pre-Order sequence
@@ -473,7 +468,7 @@ public class BinarySearchTree {
      * postIndex is the last index of the postorder array
 	 * http://www.geeksforgeeks.org/forums/topic/given-inorder-and-postorder-traversals-construct-a-binary-tree-2/
 	 */
-	
+	//ATM: create from postOrder, search inOrder
 	public BinaryNode buildTreeFromPostIn(char[] inOrder, char[] postOrder, int inOrderStart, int inOrderEnd, int postIndex){
 		if(inOrderStart > inOrderEnd) return null;
 		// create the root node from the first node of Pre-Order sequence
@@ -505,6 +500,7 @@ public class BinarySearchTree {
 	 * 5. Recurse the process.
 	 *    http://www.geeksforgeeks.org/full-and-complete-binary-tree-from-given-preorder-and-postorder-traversals/
 	 */
+	//ATM: create from preOrder, search in postOrder
 	public BinaryNode buildTreeFromPrePost(char[] preOrder, char[] postOrder, int postOrderStart, int postOrderEnd, int preIndex){
 		if(postOrderStart > postOrderEnd) return null;
 		// create the root node from the first node of Pre-Order sequence
@@ -518,14 +514,23 @@ public class BinarySearchTree {
 		}*/
         //IMP: we are passing preOrder[preIndex] to the search function which is the index of left subtree
 		/// and not the root.data
-		int indexOfLeftSubtree = searchInOrder(postOrder, postOrderStart, postOrderEnd, preOrder[preIndex]);
+		int indexOfLeftSubtree = searchPostOrder(postOrder, postOrderStart, postOrderEnd, preOrder[preIndex]);
 
 		rootNode.left = buildTreeFromPreIn(preOrder, postOrder, postOrderStart, indexOfLeftSubtree, preIndex);
 		rootNode.right = buildTreeFromPrePost(preOrder, postOrder, indexOfLeftSubtree + 1, postOrderEnd, preIndex);
 		
 		return rootNode;
 	}
-	
+
+	private int searchPostOrder(char[] postOrder, int postOrderStart, int postOrderEnd, char data) {
+		for(int i = postOrderStart; i <= postOrderEnd; i++){
+			if(postOrder[i] == data){
+				return i;
+			}
+		}
+		return -1;
+	}
+
 	/**
 	 * Given a sorted (increasing order) array, write an algorithm to create a
 	 * binary tree with minimal height.
@@ -681,7 +686,7 @@ public class BinarySearchTree {
 			// Queue that holds the nodes on the current level
 			Queue<BinaryNode> currentLevelQueue = new java.util.LinkedList<BinaryNode>();
 			 // Queue the stores the nodes for the next level
-			Queue<BinaryNode> nextLevel = new java.util.LinkedList<BinaryNode>();
+			Queue<BinaryNode> nextLevelQueue = new java.util.LinkedList<BinaryNode>();
 			// Stores the height of the current tree
 			int treeHeight = findTreeHeight_recursive(rootNode); 
 			// keeps track of the total levels printed so we don't pass the height and print a billion "null"s 
@@ -707,23 +712,23 @@ public class BinarySearchTree {
 					BinaryNode tempLeft = currentLevelQueue.peek().left;
 					if (tempLeft != null)
 						// keep adding to next level queue
-						nextLevel.add(tempLeft);
+						nextLevelQueue.add(tempLeft);
 
 					// If there is a right child, put the node on the
 					// nextLevel's stack.
 					BinaryNode tempRight = currentLevelQueue.remove().right;
 					if (tempRight != null)
 						//keep adding to next level queue
-						nextLevel.add(tempRight);
+						nextLevelQueue.add(tempRight);
 
 				}// end inner while
 
 				// populate the currentLevel queue with items from the next
 				// level
-				while (!nextLevel.isEmpty()) {
+				while (!nextLevelQueue.isEmpty()) {
 					// strip each node out of next level and add it to current
 					// level queue
-					currentLevelQueue.add(nextLevel.remove());
+					currentLevelQueue.add(nextLevelQueue.remove());
 				}
 
 				// Print a blank line to show height
@@ -790,6 +795,7 @@ public class BinarySearchTree {
 		BinaryNode current = root;
 		while(current != null){
 			// if no left subtree, print the root and then right subtree
+            //trivial
 			if(current.left == null){
 				System.out.println(current.data);
 				current = current.right;
@@ -847,42 +853,46 @@ public class BinarySearchTree {
 	 * Check this for explanation:
 	 * http://www.geeksforgeeks.org/convert-a-given-binary-tree-to-doubly-linked-list-set-2/
 	 */
-	
-	// Changes left pointers to work as previous pointers in converted DLL
+    BinaryNode BinaryTreetoDLL(BinaryNode root){
+        BinaryNode prev = null;
+        // Set the previous pointer
+        fixLeftPointer(root);
+        // Set the next pointer and return head of DLL
+        return fixRightPointer(root);
+    }
+
+    // Changes left pointers to work as previous pointers in converted DLL
 	// The function simply does in-order traversal of Binary Tree and updates
 	// left pointer using previously visited node
-	public void fixLeftPointer(BinaryNode rootNode){
-		BinaryNode pre = null;
-		if(rootNode != null){
-			// traverse till the left most node
-			fixLeftPointer(rootNode.left);
-			// set its left to null, for the left most node 
-			rootNode.left = pre;
-			pre = rootNode;
-			fixLeftPointer(rootNode.right);
-		}
+    public void fixLeftPointer(BinaryNode rootNode) {
+        if (rootNode == null) {
+            return;
+        }
+        BinaryNode pre = null;
+
+        // traverse till the left most node
+        fixLeftPointer(rootNode.left);
+        // set its left to null, for the left most node
+        rootNode.left = pre;
+        pre = rootNode;
+        fixLeftPointer(rootNode.right);
 	}
+
 	// Changes right pointers to work as next pointers in converted DLL
 	public BinaryNode fixRightPointer(BinaryNode rootNode){
-		BinaryNode prev = null;
-		
 		// Find the right most node in BT or last node in DLL
 		rootNode = rightMostNode(rootNode);
 
 	    // Start from the rightmost node, traverse back using left pointers.
 	    // While traversing, change right pointer of nodes.
-	    while (rootNode != null && rootNode.left != null)
-	    {
-	        prev = rootNode;
+	    while (rootNode != null && rootNode.left != null){
+	        BinaryNode left = rootNode.left;
+	        left.right = rootNode;
 	        rootNode = rootNode.left;
-	        rootNode.right = prev;
 	    }
-	 
 	    // The leftmost node is head of linked list, return it
 	    return rootNode;
-		
 	}
-	
 
 	/**
 	 * Write a function to create an mirror image of binary tree
@@ -982,10 +992,8 @@ public class BinarySearchTree {
 		// queue at the next level
 		Queue<BinaryNode> nextlevelQueue;
 
-
 		// level of maximum nodes
 		int maxNodeslevel = 0, maxNodes = 0;
-
 		// no. of nodes at the previous and current level
 		int prevLevelCount_Nodes = 0, currentlevelCount_Nodes = 0;
 
@@ -1008,20 +1016,18 @@ public class BinarySearchTree {
 					nextlevelQueue.add(temp.right);
 				}
 			}
-
 			// set count of nodes in current level as length of nextlevelQueue
 			currentlevelCount_Nodes = nextlevelQueue.size();
 			// Update max_nodes_in_level and level_number, with no. of nodes in
 			// current level and current level number.
 			// update maxNodes
-			maxNodes = prevLevelCount_Nodes > currentlevelCount_Nodes ? prevLevelCount_Nodes
-					: currentlevelCount_Nodes;
+			maxNodes = Math.max(prevLevelCount_Nodes, currentlevelCount_Nodes);
 			// increase maxNodeslevel or keep it same
 			maxNodeslevel += (maxNodes == currentlevelCount_Nodes) ? 1 : 0;
 			// start with new max/nodes, set previous count as maxNodes(till
 			// now), for next iteration
 			prevLevelCount_Nodes = maxNodes;
-			// set currentQueue as nextlevelQueue for next iteration
+			// reset currentQueue as nextlevelQueue for next iteration
 			currentQueue = nextlevelQueue;
 		}
 		return maxNodeslevel;
@@ -1068,44 +1074,60 @@ public class BinarySearchTree {
         return false;
     }
 
-
     /**
      * Given a binary tree, find the largest subtree which is a Binary Search Tree (BST),
      * where largest means subtree with largest number of nodes in it.
-     * Algorithm: bottom up approach
-     * Link: http://articles.leetcode.com/2010/11/largest-binary-search-tree-bst-in.html
+     * Link: https://www.techiedelight.com/find-size-largest-bst-in-binary-tree/
      */
-    public BinaryNode findLargestBSTSubtree(BinaryNode node){
-        BinaryNode largestBST = null;
-        int min = 0, max = 0;
-        int maxNodes = Integer.MIN_VALUE;
-        findLargestBSTSubtree(root, min, max, maxNodes, largestBST);
-        return largestBST;
-    }
-
-    private int findLargestBSTSubtree(BinaryNode root, int min, int max, int maxNodes, BinaryNode largestBST) {
-        boolean isBST = true;
-        int leftNodes = findLargestBSTSubtree(root.left, min, max, maxNodes, largestBST);
-        int currMin = (leftNodes == 0) ? root.data : min;
-        if (leftNodes == -1 || (leftNodes != 0 && root.data <= max))
-        isBST = false;
-        int rightNodes = findLargestBSTSubtree(root.right, min, max, maxNodes, largestBST);
-        int currMax = (rightNodes == 0) ? root.data : max;
-        if (rightNodes == -1 || (rightNodes != 0 && root.data >= min))
-        isBST = false;
-        if (isBST) {
-            min = currMin;
-            max = currMax;
-            int totalNodes = leftNodes + rightNodes + 1;
-            if (totalNodes > maxNodes) {
-                maxNodes = totalNodes;
-                largestBST = root;
-            }
-            return totalNodes;
-        } else {
-            return -1;   // This subtree is not a BST
+    public  SubTreeInfo findLargestBST(BinaryNode root)    {
+        // Base case: empty tree
+        if (root == null) {
+            return new SubTreeInfo(Integer.MAX_VALUE, Integer.MIN_VALUE, 0, true);
         }
 
+        // Recur for left subtree and right subtrees
+        SubTreeInfo left = findLargestBST(root.left);
+        SubTreeInfo right = findLargestBST(root.right);
+
+        SubTreeInfo info = null;
+
+        // Check if binary tree rooted under the current root is a BST
+
+        // 1. Left and right subtree are also BST
+        // 2. The value of the root node should be more than the largest value in the left subtree
+        // 3. The value of the root node should be less than the smallest value in the right subtree
+        if (left.isBST && right.isBST &&
+                (root.data > left.max && root.data < right.min)){
+            info = new SubTreeInfo(Math.min(root.data, Math.min(left.min, right.min)),
+                    Math.max(root.data, Math.max(left.max, right.max)),
+                    left.size + 1 + right.size,
+                    true);
+        }
+        else{
+            // If binary tree rooted under the current root is not a BST
+            // return the size of largest BST in its left and right subtree
+            info = new SubTreeInfo(0, 0, Math.max(left.size, right.size), false);
+        }
+        return info;
+    }
+
+
+    class SubTreeInfo{
+        // stores the min and the max value in the binary tree rooted under the current node
+        // min, max fields are relevant only if isBST flag is true
+        int min, max;
+        // stores the size of largest BST in binary tree rooted under the current node
+        int size;
+        // true if binary tree rooted under the current node is a BST
+        boolean isBST;
+        // Constructor
+        SubTreeInfo(int min, int max, int size, boolean isBST)
+        {
+            this.min = min;
+            this.max = max;
+            this.size = size;
+            this.isBST = isBST;
+        }
     }
 
     /**

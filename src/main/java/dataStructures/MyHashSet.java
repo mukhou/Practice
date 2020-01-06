@@ -5,7 +5,7 @@ Time: 9:04 AM
 */
 
 //https://www.geeksforgeeks.org/internal-working-of-sethashset-in-java/
-package bloomberg;
+package dataStructures;
 
 public class MyHashSet<K> {
 
