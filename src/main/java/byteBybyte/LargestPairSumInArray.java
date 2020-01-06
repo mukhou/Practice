@@ -41,9 +41,36 @@ public class LargestPairSumInArray {
         System.out.println(firstLargest + " " + secondLargest);
     }
 
+    //modification: first and last elements should also not be taken together
+    public static void largestPairSum1(int[] arr){
+        int start, end;
+        if(arr[0] > arr[arr.length - 1]){
+            start = 0;
+            end = arr.length - 1;
+        }else {
+            start = 1;
+            end = arr.length;
+        }
+        int firstLargest, secondLargest;
+        firstLargest = Math.max(arr[start], arr[start + 1]);
+        secondLargest = Math.min(arr[start], arr[start + 1]);
+        for(int i = start; i < end; i++){
+            int curr = arr[i];
+            if(curr > firstLargest){
+                secondLargest = firstLargest;
+                firstLargest = curr;
+            }
+            else if(curr > secondLargest && curr < firstLargest){
+                secondLargest = curr;
+            }
+        }
+        System.out.println(firstLargest + " " + secondLargest);
+    }
+
     public static void main(String[] args){
-        largestPairSumConsecutive(new int[]{1, 3, 2, 4});
+        //largestPairSumConsecutive(new int[]{1, 3, 2, 4});
         largestPairSum(new int[]{1, 3, 2, 4});
+        largestPairSum1(new int[]{3, 1, 2, 4});
 
     }
 }

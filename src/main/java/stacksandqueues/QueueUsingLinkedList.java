@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 public class QueueUsingLinkedList {
 	
-	// head is at the head (left end) (LRU)
+	// head is at the front (left end) (LRU)
 	// back is at the back(right end)
 	ListNode front, back;
 

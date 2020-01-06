@@ -22,7 +22,7 @@ public class PrintMatrixDiagonally {
         int rowCount = matrix.length, columnCount = matrix[0].length;
 
         //print rowCount diagonals(row = 0 -> rowCount - 1)
-        // col remains same for every iteration(starting with 0), tempCol keeps increasinf
+        // col remains same for every iteration(starting with 0), tempCol keeps increasing
         for(int row = 0, col = 0; row < rowCount ; row ++ ){
             int tempRow = row, tempCol = col;
             System.out.print(matrix[tempRow][tempCol]+ " ");

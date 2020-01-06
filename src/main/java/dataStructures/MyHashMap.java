@@ -65,7 +65,6 @@ public class MyHashMap<K, V> {
         for (Entry<K, V> e = table[index]; e != null; e = e.next) {
             //overwrite old value
             if (e.hash == key.hashCode() && e.key.equals(key)) {
-                V temp = e.value;
                 e.value = value;
                 return value;
             }

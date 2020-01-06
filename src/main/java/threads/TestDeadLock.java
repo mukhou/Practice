@@ -11,10 +11,17 @@ public class TestDeadLock {
 
         // creating first thread and starting it
         Thread t1 = new Thread(new Thread1(s1, s2));
+        t1.setName("thread-1");
         t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // creating second thread and starting it
         Thread t2 = new Thread(new Thread2(s1, s2));
+        t2.setName("thread-2");
         t2.start();
 
         // sleeping main thread
@@ -45,6 +52,7 @@ class Shared
     synchronized void test1(Shared s2)
     {
         System.out.println("test1-begin");
+        System.out.println(Thread.currentThread().getName());
         Util.sleep(1000);
 
         // taking object lock of s2 enters
@@ -57,6 +65,7 @@ class Shared
     synchronized void test2(Shared s1)
     {
         System.out.println("test2-begin");
+        System.out.println(Thread.currentThread().getName());
         Util.sleep(1000);
 
         // taking object lock of s1 enters
@@ -85,6 +94,7 @@ class Thread1 implements Runnable
     {
         // taking object lock of s1 enters
         // into test1 method
+        System.out.println(Thread.currentThread() + " has acquired lock on s1 and waiting on s2");
         s1.test1(s2);
     }
 }
@@ -108,6 +118,7 @@ class Thread2 implements Runnable
     {
         // taking object lock of s2
         // enters into test2 method
+        System.out.println(Thread.currentThread() + " has acquired lock on s2 and waiting on s1");
         s2.test2(s1);
     }
 }

@@ -1,12 +1,14 @@
 package sortandsearch;
 
+import java.util.Arrays;
+
 public class MergeSort {
 
-    void merge(int arr[], int l, int m, int r){
+    void merge(int arr[], int left, int mid, int right){
 
         // Find sizes of two subarrays to be merged
-        int n1 = m - l + 1;
-        int n2 = r - m;
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
 
         /* Create temp arrays */
         int L[] = new int [n1];
@@ -14,9 +16,9 @@ public class MergeSort {
 
         /*Copy data to temp arrays*/
         for (int i=0; i<n1; ++i)
-            L[i] = arr[l + i];
+            L[i] = arr[left + i];
         for (int j=0; j<n2; ++j)
-            R[j] = arr[m + 1+ j];
+            R[j] = arr[mid + 1 + j];
 
 
         /* Merge the temp arrays */
@@ -25,7 +27,7 @@ public class MergeSort {
         int i = 0, j = 0;
 
         // Initial index of merged subarry array
-        int k = l;
+        int k = left;
         while (i < n1 && j < n2)
         {
             if (L[i] <= R[j])
@@ -64,14 +66,14 @@ public class MergeSort {
         if (l < r)
         {
             // Find the middle point
-            int m = (l+r)/2;
+            int mid = (l+r)/2;
 
             // Sort first and second halves
-            sort(arr, l, m);
-            sort(arr , m+1, r);
+            sort(arr, l, mid);
+            sort(arr , mid+1, r);
 
             // Merge the sorted halves
-            merge(arr, l, m, r);
+            merge(arr, l, mid, r);
         }
     }
 
@@ -84,7 +86,7 @@ public class MergeSort {
         MergeSort ob = new MergeSort();
         ob.sort(arr, 0, arr.length-1);
 
-        System.out.println("\nSorted array");
+        System.out.println("\nSorted array" + Arrays.toString(arr));
 
     }
 

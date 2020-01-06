@@ -225,22 +225,19 @@ public class LinkedList {
 
 		/* If last node mark it head*/
         if (curr.next == null) {
-            head = curr;//C
+            head = curr;
 
 			/* Update next to prev node */
-            curr.next = prev;//B
+            curr.next = prev;
             return null;
         }
 
-         //values of curr: A, B
-
 		/* Save curr->next node for recursive call */
-        Node temp = curr.next;//B, C
+        Node temp = curr.next;
 
 		/* Update next to prev node */
-        curr.next = prev;//null, A
-
-         reverseListRecursive(temp, curr);//(B, A), (C, B)
+        curr.next = prev;
+         reverseListRecursive(temp, curr);
         return head;
     }
 
