@@ -13,6 +13,7 @@ import java.util.Arrays;
 //2. FIND KTH LARGEST INTEGER IN ARRAY which can be done in the following two ways:
 // a) run Heapsort and return arr[k - 1] : O(n log n)
 // b) run buildminheap and run extractMin k times: O(n) + O(log n) -- BETTER COMPLEXITY
+//https://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array/
 public class HeapSortWithMinHeapify {
     public void sort(int[] arr)
     {
@@ -74,7 +75,6 @@ public class HeapSortWithMinHeapify {
         if(heapSize == 0){
             return -1;
         }
-
         //get min
         int root = arr[0];
         if(heapSize > 1){
