@@ -6,9 +6,13 @@ Time: 6:09 PM
 
 package sortandsearch;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
+//THIS HAS LOGIC FOR THE FOLLOWING TWO THINGS:
+//1. HEAPSORT USING MIN HEAPS
+//2. FIND KTH LARGEST INTEGER IN ARRAY which can be done in the following two ways:
+// a) run Heapsort and return arr[k - 1] : O(n log n)
+// b) run buildminheap and run extractMin k times: O(n) + O(log n) -- BETTER COMPLEXITY
 public class HeapSortWithMinHeapify {
     public void sort(int[] arr)
     {
@@ -20,16 +24,16 @@ public class HeapSortWithMinHeapify {
 
         // One by one extract an element from heap
         //IMP: THIS LOOP SORTS THE ARRAY IN DESCENDING ORDER
-        /*for (int i = arr.length - 1; i >= 0; i--)
+        for (int heapSize = arr.length - 1; heapSize >= 0; heapSize--)
         {
             // Move current root to end
             int temp = arr[0];
-            arr[0] = arr[i];
-            arr[i] = temp;
+            arr[0] = arr[heapSize];
+            arr[heapSize] = temp;
 
-            // call max minHeapify on the reduced heap
-            minHeapify(arr, i, 0);
-        }*/
+            // call min minHeapify on the reduced heap with heapSize and 0
+            minHeapify(arr, heapSize, 0);
+        }
     }
 
     private void buildMinHeap(int[] arr, int n) {
@@ -39,11 +43,11 @@ public class HeapSortWithMinHeapify {
     }
 
 
-    // To maxHeapify a subtree rooted with node i which is
+    // To minHeapify a subtree rooted with node i which is
     // an index in arr[]. n is size of heap
     static void minHeapify(int[] arr, int n, int i)
     {
-        int smallest = i; // Initialize largest as root
+        int smallest = i; // Initialize smallest as root
         int l = 2*i; // left = 2*i
         int r = 2*i + 1; // right = 2*i + 1
 
@@ -56,8 +60,7 @@ public class HeapSortWithMinHeapify {
             smallest = r;
 
         // If largest is not root
-        if (smallest != i)
-        {
+        if (smallest != i){
             int swap = arr[i];
             arr[i] = arr[smallest];
             arr[smallest] = swap;
@@ -67,11 +70,27 @@ public class HeapSortWithMinHeapify {
         }
     }
 
+    static int extractMin(int[] arr, int heapSize){
+        if(heapSize == 0){
+            return -1;
+        }
+
+        //get min
+        int root = arr[0];
+        if(heapSize > 1){
+            //replace min with last
+            arr[0] = arr[heapSize - 1];
+            minHeapify(arr, heapSize, 0);
+        }
+        heapSize --;
+        return root;
+
+    }
+
 
 
     /* A utility function to print array of size n */
-    static void printArray(int arr[])
-    {
+    static void printArray(int arr[]){
         int n = arr.length;
         for (int i=0; i<n; ++i)
             System.out.print(arr[i]+" ");
@@ -81,12 +100,21 @@ public class HeapSortWithMinHeapify {
     // Driver program
     public static void main(String args[])
     {
-        int arr[] = {12, 11, 13, 5, 6, 7};
-        int n = arr.length;
-
+        int arr[] = {12, 11, 13, 5, 26, 47, 36};
         HeapSortWithMinHeapify ob = new HeapSortWithMinHeapify();
         ob.sort(arr);
+        int k = 3;
+        System.out.println("kth largest integer is " + arr[k - 1]);
 
+        //FIND KTH LARGEST NUMBER USING MINHEAP AND EXTRACTMIN
+        /*ob.buildMinHeap(arr, arr.length);
+        System.out.println(Arrays.toString(arr));
+        int value = 0;
+        while(k != 0){
+            value = extractMin(arr, arr.length);
+            k--;
+        }
+        System.out.println("kth smallest integer is " + value);*/
         System.out.println("Sorted array is");
         printArray(arr);
     }

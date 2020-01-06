@@ -1,7 +1,6 @@
 package dataStructures;
 
 import stacksandqueues.StackUsingArray;
-import threads.BankAccount;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -219,60 +218,80 @@ public class LinkedList {
 		return head;
 	}
 
-    //A -> B -> C -> NULL
-    //initial call: reverseListRecursive(head, null)
-     public Node reverseListRecursive(Node curr, Node prev) {
-
-		/* If last node mark it head*/
-        if (curr.next == null) {
-            head = curr;
-
-			/* Update next to prev node */
-            curr.next = prev;
-            return null;
-        }
-
-		/* Save curr->next node for recursive call */
-        Node temp = curr.next;
-
-		/* Update next to prev node */
-        curr.next = prev;
-         reverseListRecursive(temp, curr);
-        return head;
-    }
-
-
-    /**
-     * reverse a doubly linked list
+	/**
+	 * reverse a doubly linked list
 	 * A <=> B <=> C <=> null
 	 * C <=> B <=> A <=> null
-     */
-
-    //ATM: current and temp; temp = current.prev
-    public Node reverseDoublyLinkedList(Node head){
+	 */
+	//ATM: current and temp; temp = current.prev
+	public static Node reverseDoublyLinkedListIterative(Node head) {
 
 		Node current = head;
 		Node temp = null;
 
-     /* swap next and prev for all nodes of
-       doubly linked list */
-            while (current !=  null)
-            {
-                temp = current.prev;
-                current.prev = current.next;
-                current.next = temp;
-                current = current.prev;//seems travelling backward, but actually moving forward,
-				                       // as the prev is now the next of the original list
-            }
+		while (current != null) {
+			//swap prev and next of current
+			temp = current.prev;
+			current.prev = current.next;
+			current.next = temp;
+			//set current
+			current = current.prev;//seems travelling backward, but actually moving forward,
+			// as the prev is now the next of the original list
+		}
 
      /* Before changing head, check for the cases like empty
         list and list with only one node */
-     //#################IMPORTANT########################
-            if(temp != null ){
-				head = temp.prev;
-			}
-            return head;
-        }
+		//#################IMPORTANT########################
+		if (temp != null) {
+			head = temp.prev;
+		}
+		return head;
+	}
+
+    //A -> B -> C -> NULL
+    //initial call: reverseListRecursive(head, null)
+	public Node reverseListRecursive(Node curr, Node prev) {
+
+		/* If last node mark it head*/
+		//ATM: in a LL, next can NEVER be NULL, UNLESS IT'S LAST NODE
+		if (curr.next == null) {
+			head = curr;
+			/* Update next to prev node */
+			curr.next = prev;
+			return head;
+		}
+
+		/* Save curr->next node for recursive call */
+		Node temp = curr.next;
+		/* Update next to prev node */
+		curr.next = prev;
+		//recurse
+		reverseListRecursive(temp, curr);
+		return head;
+	}
+
+
+   	//https://www.geeksforgeeks.org/reverse-doubly-linked-list-using-recursion/
+	public static Node reverseDoublyLinkedListRecursive(Node node) {
+		// If empty list, return
+		if (node == null)
+			return null;
+
+		// Otherwise, swap the next and prev
+		Node temp = node.next;
+		node.next = node.prev;
+		node.prev = temp;
+
+		// If the prev is now null, the list
+		// has been fully reversed
+		if (node.prev == null) {
+			return node;
+		}
+
+		// Otherwise, keep going on node.prev
+		return reverseDoublyLinkedListRecursive(node.prev);
+
+	}
 
 	// FOLLOW THIS: Recursive
 	 void printReverseLinkedList(Node head){
@@ -562,8 +581,7 @@ public class LinkedList {
 	}
 	
 	// https://www.geeksforgeeks.org/write-a-function-to-get-the-intersection-point-of-two-linked-lists/
-	
-	public static int intersectionOfTwoinkedLists(Node headA, Node headB){
+	public static int intersectionOfTwoLinkedLists(Node headA, Node headB){
 
 		int len1 = getCount(headA);
 		int len2 = getCount(headB);
@@ -1014,15 +1032,27 @@ public class LinkedList {
 	}
 
 	public static void main(String[] args){
-		/*Node head = new Node(1);
-		Node second = new Node(1);
+		Node head = new Node(1);
+		Node second = new Node(2);
 		Node third = new Node(3);
 		Node fourth = new Node(4);
 		head.next = second;
+		head.prev = null;
 		second.next = third;
+		second.prev = head;
 		third.next = fourth;
+		third.prev = second;
+		fourth.prev = third;
 		printLinkedList(head);
-		printLinkedList(removeNodesWithValue(head, 1));*/
+		System.out.println("#########################");
+		System.out.println("#########################");
+		System.out.println("#########################");
+		System.out.println("#########################");
+		//printLinkedList(new LinkedList().reverseListRecursive(head, null));
+		Node newHead = reverseDoublyLinkedListRecursive(head);
+		printLinkedList(newHead);
+		//printLinkedList(reverseDoublyLinkedListIterative(head));
+		//printLinkedList(removeNodesWithValue(head, 1));
 
 		Node headA = new Node(3);
 		Node secA = new Node(1);
@@ -1042,7 +1072,7 @@ public class LinkedList {
 		Node res = addTwoLinkedLists(headA, headB, 0);
 		//printLinkedList(res);
 
-		Node head = new Node(1);
+		/*Node head = new Node(1);
 		Node second = new Node(2);
 		Node third = new Node(3);
 		Node fourth = new Node(4);
@@ -1050,7 +1080,7 @@ public class LinkedList {
 		second.next = third;
 		third.next = fourth;
 		fourth.next = null;
-		Node newHead= new LinkedList().reverseListIterative(head);
+		Node newHead= new LinkedList().reverseListIterative(head);*/
 		//printLinkedList(newHead);
 		//System.out.println(compareLists(null, headB));
 		//printLinkedList(headB);
@@ -1077,18 +1107,12 @@ public class LinkedList {
 	}
 
 	public static void printLinkedList(Node head){
-		if(head == null){
-			return;
-		}
-		Node current = head;
-		while(current != null){
-			System.out.println(current.data);
-			current = current.next;
+		while (head != null)
+		{
+			System.out.print( head.data + " ");
+			head = head.next;
 		}
 	}
 
 }
 
-
-
-// The Node class
