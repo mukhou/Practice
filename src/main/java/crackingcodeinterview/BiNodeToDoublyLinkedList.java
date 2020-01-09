@@ -6,8 +6,8 @@ Time: 10:06 AM
 
 /**
  * BiNode: Consider a simple data structure called BiNode, which has pointers to two other nodes. The
- * data structure BiNode could be used to represent both a binary tree (where nodel is the left node
- * and right is the right node) or a doubly linked list (where nodel is the previous node and right
+ * data structure BiNode could be used to represent both a binary tree (where left is the left node
+ * and right is the right node) or a doubly linked list (where left is the previous node and right
  * is the next node). Implement a method to convert a binary search tree (implemented with BiNode)
  * into a doubly linked list. The values should be kept in order and the operation should be performed
  * in place (that is, on the original data structure).

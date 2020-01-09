@@ -26,12 +26,11 @@ public class BinaryNode {
 	public BinaryNode right; // Right child
 	public BinaryNode parent;
 	public int data;
+	// this field is required for special BST with an additional random pointer
+	public BinaryNode random;
 
 	public int getData() {
 		return data;
 	}
 }
 
-class BinaryTree{
-    BinaryNode rootNode;
-}

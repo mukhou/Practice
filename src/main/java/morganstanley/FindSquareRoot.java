@@ -2,28 +2,8 @@ package morganstanley;
 
 public class FindSquareRoot {
 
-
     //Time complexity: O(log(num))
-    //https://www.geeksforgeeks.org/square-root-of-an-integer/
-    public static double Sqrt1(int x) {
-
-        // Base cases
-        if (x == 0 || x == 1)
-            return x;
-
-        // Staring from 1, try all numbers until
-        // i*i is greater than or equal to x.
-        int i = 1, result = 1;
-
-        while (result <= x) {
-            result = i * i;
-            i++;
-        }
-        return i - 1;
-
-    }
-
-    //Time complexity: O(log(num))
+    //FOLLOW THIS
     public static double Sqrt(int num) {
         //base case
         if (num == 0 || num == 1) {
@@ -31,16 +11,16 @@ public class FindSquareRoot {
         }
         int start = 1, end = num, ans = 0;
         while (start <= end) {
-            int guess = (start + end) / 2; //mid point
+            int mid = (start + end) / 2; //mid point
             //num is a perfect square
-            if (guess * guess == num) {
-                return guess;
+            if (mid * mid == num) {
+                return mid;
             } else {
-                if (guess * guess < num) { //too low
-                    start = guess + 1;
-                    ans = guess;
+                if (mid * mid < num) { //too low
+                    start = mid + 1;
+                    ans = mid;
                 } else {
-                    end = guess - 1;
+                    end = mid - 1;
                 }
             }
 
@@ -49,16 +29,32 @@ public class FindSquareRoot {
     }
 
 
+
+    //BAD APPROACH
+    //Time complexity: O(√ n).
+    //https://www.geeksforgeeks.org/square-root-of-an-integer/
+    public static double Sqrt1(int num) {
+
+        // Base cases
+        if (num == 0 || num == 1)
+            return num;
+
+        // Staring from 1, try all numbers until
+        // i*i is greater than or equal to x.
+        int i = 1, result = 1;
+
+        while (result <= num) {
+            result = i * i;
+            i++;
+        }
+        return i - 1;
+
+    }
+
     public static void main(String[] args) {
-		/*int num = 34;
-		int guess = 1;
-		while(0.0001 < Math.abs(guess * guess - num)){
-		    guess = (guess + num / guess) / 2;		    
-		}
-		System.out.println(Integer.toString(guess));*/
-        System.out.println(Sqrt(34));
-        System.out.println(Sqrt1(34));
-        System.out.println(Math.sqrt(34));
+        System.out.println(Sqrt(48));
+        System.out.println(Sqrt1(48));
+        System.out.println(Math.sqrt(48));
     }
 
 }

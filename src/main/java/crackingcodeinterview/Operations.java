@@ -24,10 +24,12 @@ public class Operations {
 
     }
 
+    //EXACTLY SAME AS Multiply class
     private static int multiplyPos(int smaller, int larger) {
         int res = 0;
-        for (int i = 0; i < smaller; i++) {
+        while(smaller > 0){
             res += larger;
+            smaller --;
         }
         return res;
     }

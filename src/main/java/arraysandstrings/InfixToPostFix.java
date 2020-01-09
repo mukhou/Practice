@@ -14,8 +14,7 @@ public class InfixToPostFix {
 
     // A utility function to return precedence of a given operator
     // Higher returned value means higher precedence
-    static int Prec(char ch)
-    {
+    static int Prec(char ch){
         switch (ch)
         {
             case '+':
@@ -42,8 +41,7 @@ public class InfixToPostFix {
         // initializing empty stack
         Stack<Character> stack = new Stack<>();
 
-        for (int i = 0; i<exp.length(); ++i)
-        {
+        for (int i = 0; i < exp.length(); ++i){
             char c = exp.charAt(i);
 
             // If the scanned character is an operand, add it to output.

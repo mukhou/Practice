@@ -8,7 +8,7 @@ package crackingcodeinterview;
 
 import java.util.ArrayList;
 
-//CTCI pg 376, Q8.12
+//CTCI pg 376, Q 8.12
 public class EightQueen {
     public static int GRID_SIZE = 8;
 

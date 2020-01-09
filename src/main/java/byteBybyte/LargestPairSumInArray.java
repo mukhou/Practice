@@ -9,11 +9,11 @@ package byteBybyte;
 //https://www.geeksforgeeks.org/find-the-largest-pair-sum-in-an-unsorted-array/
 public class LargestPairSumInArray {
 
-    //this is for consecutive pair
+    //this is for consecutive/adjacent pair
     public static void largestPairSumConsecutive(int[] arr){
-        int maxSum = 0, sumSoFar = 0,  start = 0, end = 0;
+        int maxSum = 0, start = 0, end = 0;
         for(int i = 0; i < arr.length - 1; i++){
-            sumSoFar = arr[i] + arr[i + 1];
+            int sumSoFar = arr[i] + arr[i + 1];
             if(sumSoFar > maxSum){
                 maxSum = sumSoFar;
                 start = arr[i];
@@ -68,7 +68,7 @@ public class LargestPairSumInArray {
     }
 
     public static void main(String[] args){
-        //largestPairSumConsecutive(new int[]{1, 3, 2, 4});
+        largestPairSumConsecutive(new int[]{1, 3, 2, 4});
         largestPairSum(new int[]{1, 3, 2, 4});
         largestPairSum1(new int[]{3, 1, 2, 4});
 

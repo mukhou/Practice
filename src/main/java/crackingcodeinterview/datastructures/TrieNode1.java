@@ -28,9 +28,7 @@ public class TrieNode1 {
         if (s == null || s.isEmpty()) {
             return;
         }
-        if(s == null){
-            return;
-        }
+
         indexes.add(index);
 
         char first = s.charAt(0);
@@ -61,7 +59,7 @@ public class TrieNode1 {
             if(children.containsKey(first)){
                 TrieNode1 child = children.get(first);
                 String remainder = s.substring(1);
-                return child.search(remainder);
+                    return child.search(remainder);
             }
         }
         return null;

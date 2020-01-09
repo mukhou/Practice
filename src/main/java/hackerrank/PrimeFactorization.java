@@ -19,6 +19,7 @@ public class PrimeFactorization {
         for(int i = 2; i <= x; i++){
             if(x % i == 0){
                 factors.add(i);
+                //IMP
                 x /=i;
                 i--;
             }

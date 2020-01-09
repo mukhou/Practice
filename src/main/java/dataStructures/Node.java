@@ -9,6 +9,9 @@ public class Node{
     // this field is required only for doubly linked list
     Node prev;
 
+    //this field is used for special linked lists with an additional random pointer
+    Node random;
+
     Node(Object _data){
         next = null;
         data = _data;

@@ -1,5 +1,6 @@
 package hackerrank;
 
+//time complexity: O(N log (log N))
 public class FindAllPrimeNumbersInRange {
 
     void sieveOfEratosthenes(int n){
@@ -7,17 +8,14 @@ public class FindAllPrimeNumbersInRange {
         // all entries it as true. A value in prime[i] will
         // finally be false if i is Not a prime, else true.
         boolean[] prime = new boolean[n + 1];
-        for(int i = 0; i < n; i++){
-            prime[i] = true;
-        }
 
-        //p starts fro 2 and terminates when p * p <= n
+        //p starts from 2 and terminates when p * p <= n
         for(int p = 2; p * p <= n; p++){
             // If prime[p] is not changed, then it is a prime
-            if(prime[p]){
+            if(!prime[p]){
                 // Update all multiples of p
                 for(int i = p * 2 ; i <= n; i += p){
-                    prime[i] = false;
+                    prime[i] = true;
                 }
             }
         }
@@ -25,7 +23,7 @@ public class FindAllPrimeNumbersInRange {
         // Print all prime numbers
         for(int i = 2; i <= n; i++)
         {
-            if(prime[i])
+            if(!prime[i])
                 System.out.print(i + " ");
         }
     }

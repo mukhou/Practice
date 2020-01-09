@@ -1,6 +1,7 @@
 package dataStructures;
 
 import java.util.*;
+import java.util.LinkedList;
 
 import stacksandqueues.StackUsingArray;
 
@@ -38,7 +39,7 @@ public class BinarySearchTree {
     public static ArrayList path;
 
 	// Find height of a binary tree == max depth
-	public int findTreeHeight_recursive(BinaryNode rootNode) {
+	public static int findTreeHeight_recursive(BinaryNode rootNode) {
 		if (rootNode == null)
 			return 0;
 		int leftHeight = findTreeHeight_recursive(rootNode.left);
@@ -47,26 +48,19 @@ public class BinarySearchTree {
 		return (1 + Math.max(leftHeight, rightHeight));
 
 	}
-	// max depth iterative == height of a binary tree
+	// height of a binary tree = max depth
 	// GS
 	public static int findTreeHeight_iterative(BinaryNode rootNode) {
 		if (rootNode == null) {
 			return 0;
 		}
 		Queue<BinaryNode> queue = new java.util.LinkedList<>();
+		int height = 0;
+
 		// ENQUEUE
 		queue.add(rootNode);
-		int height = 0;
-		while (true) {
-			// find node count for every level
+		while(!queue.isEmpty()){
 			int nodeCount = queue.size();
-			// for each iteration, after nodeCount is emptied,
-			// return the value of height
-			if (nodeCount == 0) {
-				return height;
-			}
-			// increase height for each new level
-			height++;
 			while (nodeCount > 0) {
 				// DEQUEUE
 				BinaryNode temp = queue.poll();
@@ -79,8 +73,39 @@ public class BinarySearchTree {
 				// decrease nodeCount
 				nodeCount--;
 			}
+			// there are elements at this level, so increase height
+			height++;
 		}
+		return height;
+	}
 
+	//Find maximum width of a binary tree
+	public static int maxWidth(BinaryNode root){
+		if(root == null){
+			return 0;
+		}
+		int maxWidth = 1;
+		Queue<BinaryNode> queue = new LinkedList<>();
+		queue.add(root);
+		while(!queue.isEmpty()){
+			int nodeCount = queue.size();
+			maxWidth = Math.max(maxWidth, nodeCount);
+			while (nodeCount > 0) {
+				// DEQUEUE
+				BinaryNode temp = queue.poll();
+				if (temp.left != null) {
+					queue.add(temp.left);
+				}
+				if (temp.right != null) {
+					queue.add(temp.right);
+				}
+				// decrease nodeCount
+				nodeCount--;
+			}
+			// there are elements at this level, so increase height
+
+		}
+		return maxWidth;
 	}
 	
 	
@@ -133,8 +158,8 @@ public class BinarySearchTree {
 	}
 
 	/**
-	 * given a binary tree in which each node contains an integer value, Ddsign an algorithm to count the number of paths that sum to a
-	 * given value.
+	 * IMP: Given a binary tree in which each node contains an integer value, Design an algorithm to count the number of paths
+	 * that sum to a given value.
 	 */
 	public int countPathsWithSum(BinaryNode root, int sum){
 		if(root == null){
@@ -147,7 +172,6 @@ public class BinarySearchTree {
 		int pathsFromRight = countPathsWithSum(root.right, sum);
 		
 		return pathsFromRoot + pathsFromLeft + pathsFromRight;
-
 
 	}
 
@@ -165,7 +189,6 @@ public class BinarySearchTree {
 		totalPaths += countPathsWithSumFromNode(node.right, targetSum, curr_sum);
 
 		return totalPaths;
-
 	}
 
 	/**
@@ -186,6 +209,59 @@ public class BinarySearchTree {
 
 		return distance;
 	}
+
+	/**
+	 * Clone a binary tree with random pointer
+	 * see details: https://www.techiedelight.com/clone-a-binary-tree-with-random-pointers/
+	 */
+	// Main function to clone a special binary tree with random pointers
+	public static BinaryNode cloneSpecialBinaryTree(BinaryNode root){
+
+		// create a map to store mappings from a node to its clone
+		Map<BinaryNode, BinaryNode> map = new HashMap<>();
+
+		// clone data, left and right pointers for each node of the original
+		// binary tree and put references into the map
+		cloneLeftRightPointers(root, map);
+
+		// update random pointers from the original binary tree into the map
+		updateRandomPointers(root, map);
+
+		// return the cloned root node
+		return map.get(root);
+	}
+
+	private static BinaryNode cloneLeftRightPointers(BinaryNode root,
+											   Map<BinaryNode,BinaryNode> map) {
+		if(root == null){
+			return null;
+		}
+
+		// create a new node with same data as root node
+		map.put(root, new BinaryNode(root.data));
+		// clone the left and right subtree
+		map.get(root).left = cloneLeftRightPointers(root.left, map);
+		map.get(root).right = cloneLeftRightPointers(root.right, map);
+
+		// return cloned root node
+		return map.get(root);
+	}
+
+	private static void updateRandomPointers(BinaryNode root,
+											 Map<BinaryNode,BinaryNode> map) {
+		if (map.get(root) == null) {
+			return;
+		}
+
+		// update the random pointer of cloned node
+		map.get(root).random = map.get(root.random);
+
+		// recur for left and right subtree
+		updateRandomPointers(root.left, map);
+		updateRandomPointers(root.right, map);
+	}
+
+
 
 	/**
 	 * Write a program to return a max BST within a given B-tree
@@ -789,7 +865,7 @@ public class BinarySearchTree {
                 b) Go to this left child, i.e., current = current->left
      * @param root
      */
-	public static void printInOrder(BinaryNode root){
+	public static void inOrderTraversalWthoutStack(BinaryNode root){
 		if(root == null)
 			return;		
 		BinaryNode current = root;
@@ -822,7 +898,7 @@ public class BinarySearchTree {
 		}		
 	}
 
-	public static void inorderTraversalUsingStack(BinaryNode root){
+	public static Stack<BinaryNode> inorderTraversalUsingStack(BinaryNode root){
 		Stack<BinaryNode> stack = new Stack<>();
 
 		// Start by adding left subtree to stack
@@ -837,6 +913,7 @@ public class BinarySearchTree {
 			addToStack(stack, current.right);
 
 		}
+		return stack;
 
 	}
 
@@ -1363,23 +1440,55 @@ public class BinarySearchTree {
 		right.left = new BinaryNode(26);
 		right.right = new BinaryNode(28);
 		binarySearchTree.insertIterative(19);
-		printInOrder(binarySearchTree.root);
+		//inOrderTraversalWthoutStack(binarySearchTree.root);
+		Stack stack = inorderTraversalUsingStack(binarySearchTree.root);
+		/*while(!stack.isEmpty()){
+			System.out.println(stack.pop());
+		}*/
+
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		inorderTraversalUsingStack(binarySearchTree.root);
+
+		//System.out.println(findTreeHeight_iterative(binarySearchTree.root));
+		//System.out.println(findTreeHeight_recursive(binarySearchTree.root));
+
+		//only for max width
+		BinaryNode left1 = new BinaryNode(8);
+		left.left.left = left1;
+		BinaryNode right1 = new BinaryNode(16);
+		left.left.right = right1;
+		BinaryNode left2 = new BinaryNode(20);
+		right.right.left  = left2;
+
+		//inOrderTraversalWthoutStack(binarySearchTree.root);
+
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+		///System.out.println(maxWidth(binarySearchTree.root));
+
+		/*System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		inorderTraversalUsingStack(binarySearchTree.root);*/
 		/*BinaryNode right2 = right.right;
 		right2.left = new BinaryNode(7);
 		right2.right = new BinaryNode(9);
 		BinaryNode left2 = left.right;
 		left.left = new BinaryNode(3);
 		*/
-		
+
 		 //printTreeByLevelOneLine(root);
 
-		 //printInOrder(root);
+		 //inOrderTraversalWthoutStack(root);
 		 System.out.println();
         //path = new ArrayList();
        // findPathFromRootToNode(root, right.right);
@@ -1395,5 +1504,51 @@ public class BinarySearchTree {
 		//System.out.println(bs.oddEvenNodesDifference(root));
 		//System.out.println(bs.findDeepestOddLevelNode(root, 1));
 
+		//###############################################
+		//Clone with random pointers
+		BinaryNode root = new BinaryNode(1);
+		root.left = new BinaryNode(2);
+		root.right = new BinaryNode(3);
+		root.left.left = new BinaryNode(4);
+		root.left.right = new BinaryNode(5);
+		root.right.left = new BinaryNode(6);
+		root.right.right = new BinaryNode(7);
+
+		root.random = root.right.left.random;
+		root.left.left.random = root.right;
+		root.left.right.random = root;
+		root.right.left.random = root.left.left;
+		root.random = root.left;
+
+		System.out.println("Preorder traversal of the original tree:");
+		preorder(root);
+
+		BinaryNode clone = cloneSpecialBinaryTree(root);
+
+		System.out.println("\nPreorder traversal of the cloned tree:");
+		preorder(clone);
+
+	}
+	public static void preorder(BinaryNode root)
+	{
+		if (root == null) {
+			return;
+		}
+
+		// print data
+		System.out.print(root.data + " -> (");
+
+		// print left child's data
+		System.out.print((root.left != null ? root.left.data : "X") + ", ");
+
+		// print right child's data
+		System.out.print((root.right != null ? root.right.data : "X") + ", ");
+
+		// print random child's data
+		System.out.println((root.random != null ? root.random.data : "X") + ")");
+
+		// recur for the left and right subtree
+		preorder(root.left);
+		preorder(root.right);
 	}
 }

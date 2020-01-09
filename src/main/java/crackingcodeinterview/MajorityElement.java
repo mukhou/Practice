@@ -18,12 +18,6 @@ package crackingcodeinterview;
 //it.
 public class MajorityElement {
 
-    public static void main(String[] args) {
-        int[] array = {0, 0, 1, 2, 2, 0, 1, 0, 1, 1, 1, 1, 1};
-        System.out.println(array.length);
-        System.out.println(findMajorityElement(array));
-    }
-
     private static int findMajorityElement(int[] array) {
         int element = getElement(array);
         return validate(array, element) ? element : -1;
@@ -33,7 +27,8 @@ public class MajorityElement {
     private static int getElement(int[] array) {
         int count = 0, majority = 0;
         for(int n : array){
-            if(count == 0){//No majority element in previous set.
+            if(count == 0){
+                //Initialize majority
                 majority = n;
             }
             if(n == majority){
@@ -42,6 +37,7 @@ public class MajorityElement {
                 count --;
             }
         }
+        //System.out.println(majority);
         return majority;
     }
 
@@ -52,9 +48,14 @@ public class MajorityElement {
                 count ++;
             }
         }
-        return count > array.length / 2;
+        return count >= array.length / 2;
     }
 
+    public static void main(String[] args) {
+        int[] array = {2, 1, 20, 2, 20, 2, 20, 2, 2, 20};//{0, 0, 1, 2, 2, 0, 1, 0, 1, 1, 1, 1, 1};
+        System.out.println(array.length);
+        System.out.println(findMajorityElement(array));
+    }
 
 
 

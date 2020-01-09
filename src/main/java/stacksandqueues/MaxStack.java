@@ -28,10 +28,10 @@ public class MaxStack extends StackUsingArray{
 
     public int pop(){
         int x = super.pop();
-        int y = max.pop();
+        int y = max.top;
 		/* Push the popped element y  back only if it is not equal to x */
-        if(x != y){
-            max.push(y);
+        if(x == y){
+            max.pop();
         }
         return x;
     }
@@ -39,9 +39,7 @@ public class MaxStack extends StackUsingArray{
     /* maxStack's member method to get maximum element from it. */
     int getMax()
     {
-        int x = max.pop();
-        max.push(x);
-        return x;
+        return max.top;
     }
 
 

@@ -3,7 +3,7 @@ package crackingcodeinterview;
 import java.util.HashSet;
 import java.util.Set;
 
-//also find all permutations of a string
+//time complexity: O(n!)
 public class PrintAllAnagramsOfAWord {
 
     public static Set<String> permute(String chars) {
@@ -16,7 +16,7 @@ public class PrintAllAnagramsOfAWord {
         // Termination condition: only 1 permutation for a string of length 1
         if (chars.length() == 1) {
             set.add(chars);
-        } else {
+        } else {//ELSE, NOT RETURN
             // Give each character a chance to be the first in the permuted string
             for (int i = 0; i < chars.length(); i++) {
                 // Remove the character at index i from the string
@@ -36,10 +36,10 @@ public class PrintAllAnagramsOfAWord {
         return set;
     }
 
-
     public static void main(String[] args) {
 
         System.out.println(permute("abc"));
+
 
 
     }

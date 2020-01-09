@@ -32,11 +32,11 @@ public class FindAllSubstringsOfAString {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Substrings of \"" + "abc" + "\" are :-");
+		System.out.println("Substrings of \"" + "zzzz" + "\" are :-");
 
-		printCombinations("abc", new StringBuilder(), 0);
-		System.out.println(printCombinationsInSet("abc", new StringBuilder(), 0));
-		
+		printCombinations("zzzyz", new StringBuilder(), 0);
+		System.out.println(printCombinationsInSet("zzzz", new StringBuilder(), 0));
+
 
 	}
 }

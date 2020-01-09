@@ -23,6 +23,7 @@ public class GenerateParenthesis {
     }
 
     private static void generateParens(List<String> list, int left, int right, char[] arr, int index) {
+        //IMP
         if (left < 0 || right < left) return; // invalid state
 
         if(left == 0 && right == 0){

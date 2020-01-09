@@ -9,8 +9,7 @@ Time: 6:39 PM
  * insert(x): Inserts an item x to the data structure if not already present.
  * remove(x): Removes an item x from the data structure if present.
  *search(x): Searches an item x in the data structure.
- * getRandom(): Returns a random element from current set of elements
- *
+ * getRandom(): Returns a random element from current set of elements *
  * ALGORITHM:
  * Use arraylist and map to achieve this.
  */
@@ -25,6 +24,7 @@ import java.util.Random;
 public class ConstantTimeDataStructure {
 
     private ArrayList<Integer> list;
+    //element and its index in list
     private Map<Integer, Integer> map;
 
     public ConstantTimeDataStructure(ArrayList<Integer> list, Map<Integer, Integer> map) {
@@ -54,12 +54,12 @@ public class ConstantTimeDataStructure {
      *    Swapping is done because the last element can be removed in O(1) time.
      * 4) Update index of the last element in a hash map.
      */
-    private void remove(Integer x){
-        Integer index = map.get(x);
+    private void remove(Integer elem){
+        Integer index = map.get(elem);
         if(index == null){
             return;
         }
-        map.remove(x);
+        map.remove(elem);
 
         // Swap element with last element so that remove from
         // arr[] can be done in O(1) time

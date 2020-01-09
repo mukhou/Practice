@@ -218,6 +218,28 @@ public class LinkedList {
 		return head;
 	}
 
+    //A -> B -> C -> NULL
+    //initial call: reverseListRecursive(head, null)
+	public Node reverseListRecursive(Node curr, Node prev) {
+
+		/* If last node mark it head*/
+		//ATM: in a LL, next can NEVER be NULL, UNLESS IT'S LAST NODE
+		if (curr.next == null) {
+			head = curr;
+			/* Update next to prev node */
+			curr.next = prev;
+			return head;
+		}
+
+		/* Save curr->next node for recursive call */
+		Node temp = curr.next;
+		/* Update next to prev node */
+		curr.next = prev;
+		//recurse
+		reverseListRecursive(temp, curr);
+		return head;
+	}
+
 	/**
 	 * reverse a doubly linked list
 	 * A <=> B <=> C <=> null
@@ -248,48 +270,49 @@ public class LinkedList {
 		return head;
 	}
 
-    //A -> B -> C -> NULL
-    //initial call: reverseListRecursive(head, null)
-	public Node reverseListRecursive(Node curr, Node prev) {
-
-		/* If last node mark it head*/
-		//ATM: in a LL, next can NEVER be NULL, UNLESS IT'S LAST NODE
-		if (curr.next == null) {
-			head = curr;
-			/* Update next to prev node */
-			curr.next = prev;
-			return head;
-		}
-
-		/* Save curr->next node for recursive call */
-		Node temp = curr.next;
-		/* Update next to prev node */
-		curr.next = prev;
-		//recurse
-		reverseListRecursive(temp, curr);
-		return head;
-	}
-
-
    	//https://www.geeksforgeeks.org/reverse-doubly-linked-list-using-recursion/
+	//ATM: THE ONLY REVERSE METHOD WHERE WE DO NULL CHECK ON THE HEAD/ROOT NODE
 	public static Node reverseDoublyLinkedListRecursive(Node node) {
 		// If empty list, return
 		if (node == null)
 			return null;
 
 		// Otherwise, swap the next and prev
-		Node temp = node.next;
-		node.next = node.prev;
-		node.prev = temp;
+		//EXACTLY SAME LIKE DLL ITERATIVE
+		Node temp = node.prev;
+		node.prev = node.next;
+		node.next = temp;
 
-		// If the prev is now null, the list
-		// has been fully reversed
+		// If the prev is now null, the list has been fully reversed
 		if (node.prev == null) {
 			return node;
 		}
 
-		// Otherwise, keep going on node.prev
+		// Otherwise, keep going on node.prev(similar to iterative version)
 		return reverseDoublyLinkedListRecursive(node.prev);
+	}
+
+	//Clone a linked list with next and random pointer
+	public static Node clone(Node head){
+
+		// Initialize two references, one with original list's head.
+		Node originalHead = head;
+		Map<Node, Node> map = new HashMap<>();
+		while(originalHead != null){
+			map.put(originalHead, new Node(originalHead.data));
+			originalHead = originalHead.next;
+		}
+
+		// Adjusting the original list reference again.
+		originalHead = head;
+		while(originalHead != null){
+			Node clone = map.get(originalHead);
+			clone.next = map.get(originalHead.next);
+			clone.random = map.get(originalHead.random);
+			originalHead = originalHead.next;
+		}
+
+		return map.get(head);
 
 	}
 
@@ -380,6 +403,12 @@ public class LinkedList {
 
 	/**
 	 * IMP: Convert Sorted Linked List to BST
+	 * Algorithm:
+	 * 1. We first count the number of nodes in the given Linked List. Let the count be n.
+	 * 2. After counting nodes, we take left n/2 nodes and recursively construct the left subtree.
+	 * 3. After left subtree is constructed, we allocate memory for root and link the left subtree with root.
+	 * 4. Finally, we recursively construct the right subtree and link it with root. While constructing the BST,
+	 *    we also keep moving the list head pointer to next so that we have the appropriate pointer in each recursive call.
 	 */
 	//https://www.geeksforgeeks.org/sorted-linked-list-to-balanced-bst/
 	BinaryNode sortedListToBST(Node head){
@@ -850,8 +879,6 @@ public class LinkedList {
 	 */
 	public static boolean hasLoop(Node headNode){
 		Node p1 = headNode, p2 = headNode;
-
-
         if(headNode == null){
             return false;
         }
@@ -907,7 +934,10 @@ public class LinkedList {
 
 	}
 
-	private Node findStartOfLoopInLinkedList(Node head){
+	/**
+	 * Find start of loop in a linked list
+	 */
+	private static void findStartOfLoopInLinkedList(Node head){
 		Node p1 = head, p2 = head;
 		while(p2.next != null){
 			p2 = p2.next;
@@ -925,8 +955,51 @@ public class LinkedList {
 			p1 = p1.next;
 			p2 = p2.next;
 		}
-		return p1;
+		System.out.println(p1.data);
 	}
+
+	/**
+	 * Detect and remove loop in a linked list, if found and removed, return true, return false if no loop found
+	 * Algorithm:
+	 * 1. Check if loop is present, if not return false
+	 * 2. Apply logic to find start of loop(like above) by resetting p1 to head and keeping p2 where it was
+	 *    and checking if p1 == p2. Additionally keep track of previous of p2, as when p1 meets p2, the loop begins.
+	 *    Hence we need to break that meeting point.
+	 *  3. Set previous pf p2 to null
+	 *
+	 */
+	private static boolean detectAndRemoveLoop(Node head){
+		Node p1 = head, p2 = head;
+		boolean hasLoop = false;
+		while(p2.next != null){
+			p2 = p2.next;
+			if(p2.next != null){
+				p1 = p1.next;
+				p2 = p2.next;
+			}
+			if(p1 == p2){
+				hasLoop = true;
+				break;
+			}
+		}
+
+		if(!hasLoop){
+			return false;
+		}
+		//initialize p1(slow) to head and keep p2 where it was
+		p1 = head;
+		Node prevOfP2 = null;
+		while(p1 != p2){
+			p1 = p1.next;
+			prevOfP2 = p2;
+			p2 = p2.next;
+		}
+		prevOfP2.next = null;
+		printLinkedList(head);
+		return true;
+	}
+
+
 
     /**
      * Determine if a given linked list is palindrome
@@ -961,8 +1034,34 @@ public class LinkedList {
         }
         return true;
     }
+	/**
+	 * Find median in a sorted linked list
+	 * Algorithm:
+	 * Use two pointers: fast and slow and find middle node
+	 * if the fast_ptr is Not NULL then it means linked list contain odd element
+	 * and we simply print the data of the slow_ptr.
+	 * else if fast_ptr reach to NULL its means linked list contain even elements
+	 * and we create backup of the previous node of slow_ptr and print (previous node of slow_ptr+ slow_ptr->data)/2
+	 */
 
-    /**
+	public static int findMedianOfLinkedList(Node head){
+		Node p1 = head, p2 = head, prevOfP1 = head;
+		while(p2 != null && p2.next != null){
+			//fast pointer
+			p2 = p2.next.next;
+			prevOfP1 = p1;
+			p1 = p1.next;
+		}
+
+		if(p2 != null){
+			return (int)p1.data;
+		}else {
+			return (int)prevOfP1.data;
+		}
+
+	}
+
+	/**
      * Return the node prior to the first node containing an item.
      * @param x the item to search for.
      * @return appropriate iterator if the item is found. Otherwise, the
@@ -1053,6 +1152,18 @@ public class LinkedList {
 		printLinkedList(newHead);
 		//printLinkedList(reverseDoublyLinkedListIterative(head));
 		//printLinkedList(removeNodesWithValue(head, 1));
+
+		//detect and remove loop
+		/*Node head = new Node(50);
+		head.next = new Node(20);
+		head.next.next = new Node(15);
+		head.next.next.next = new Node(4);
+		head.next.next.next.next = new Node(10);
+		// Creating a loop for testing
+		head.next.next.next.next.next = head.next.next;
+		findStartOfLoopInLinkedList(head);
+		System.out.println(detectAndRemoveLoop(head));
+*/
 
 		Node headA = new Node(3);
 		Node secA = new Node(1);

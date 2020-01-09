@@ -18,7 +18,7 @@ public class LongestUniformSubstring {
 
         //initialize
         int longestStart = -1, longestLength = 0;
-        int index = 1;
+        int index = 1;//we are comparing index with index -1
         //need this variable to keep track of the longest string
         StringBuilder sb = null;
 
@@ -52,7 +52,8 @@ public class LongestUniformSubstring {
     }
 
     public static void main(String[] args){
-        System.out.println(Arrays.toString(LongestUniformSubstring("abbccc")));
+        //System.out.println(Arrays.toString(LongestUniformSubstring("abbccc")));
+        System.out.println(Arrays.toString(LongestUniformSubstring("AABEBCDD")));
 
     }
 }

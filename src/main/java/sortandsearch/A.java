@@ -66,7 +66,7 @@ public class A {
     }
     public static void main(String args[]) {
 
-        int arr[] = {12, 11, 13, 5, 6, 7};
+        int arr[] = {12, 11, 13, 5, 26, 7};
         ArrayList<Integer> list = new ArrayList<>();
         for (Integer i : arr) {
             list.add(i);

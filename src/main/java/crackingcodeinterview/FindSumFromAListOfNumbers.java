@@ -17,21 +17,22 @@ public class FindSumFromAListOfNumbers {
     //time complexity: 0(N log N) time to sort and 0(N) time to find the pairs.
     public static void findSumUsingHashMap(int[] arr, int sum) {
         //sort the array
+        //n log(n)
         Arrays.sort(arr);
         //define starting and ending index
-        int first = 0, last = arr.length - 1;
-        while (first < last) {
-            int s = arr[first] + arr[last];
+        int start = 0, end = arr.length - 1;
+        while (start < end) {
+            int s = arr[start] + arr[end];
             if (s == sum) {
-                System.out.println(arr[first] + ", " + arr[last]);
+                System.out.println(arr[start] + ", " + arr[end]);
                 //keep moving on to find the next pair of numbers
-                first++;
-                last--;
+                start++;
+                end--;
             }else {
                 if (s < sum) {
-                    first++;
+                    start++;
                 } else {
-                    last--;
+                    end--;
                 }
             }
         }
