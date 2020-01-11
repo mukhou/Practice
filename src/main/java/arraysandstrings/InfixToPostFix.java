@@ -61,7 +61,10 @@ public class InfixToPostFix {
             }
             else // an operator is encountered
             {
-                while (!stack.isEmpty() && stack.peek() != '(' && Prec(c) <= Prec(stack.peek())){
+                while (!stack.isEmpty() && Prec(c) <= Prec(stack.peek())){
+                    if(stack.peek() == '('){
+                        return "Invalid Expression";
+                    }
                     result += stack.pop();
                 }
                 stack.push(c);

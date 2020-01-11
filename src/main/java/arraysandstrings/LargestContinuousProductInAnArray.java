@@ -42,7 +42,7 @@ public class LargestContinuousProductInAnArray {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{-2, 4, 2, 3, -12, 5, 9, -3, 4 };//new int[]{-4, -1, 2, 5, -9, 7, 10};
+        int[] arr = new int[]{2, 3, -2, 4 };//new int[]{-4, -1, 2, 5, -9, 7, 10};
         System.out.println(findContinuousProduct(arr));
 
     }

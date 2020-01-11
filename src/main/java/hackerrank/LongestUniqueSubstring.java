@@ -38,7 +38,7 @@ public class LongestUniqueSubstring {
 
         for (int i = 0; i < s.length(); i++) {
             if (!map.containsKey(s.charAt(i))) {
-                //add the character and the index to map
+                //IMP: value should be i, the index
                 map.put(s.charAt(i), i);
             } else {
                 lengthSoFar = Math.max(lengthSoFar, map.size());

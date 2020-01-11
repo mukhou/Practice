@@ -12,9 +12,9 @@ import java.util.Map;
  */
 public class FirstNonRepeating {
     public static void main (String args[]){
-        String[] inputs = {"apple", "racecars", "ababdc"};
-        char[] outputs = {'a', 'e', 'd'};
-        findFirst("racecar");
+        //findFirst("geeksforgeeks");
+        findFirst("who wants hot watermelon");
+        System.out.println(indexOfFirstNonRepeatingChar("aabbccc"));
 
     }
     public static char findFirst(String input){
@@ -25,12 +25,6 @@ public class FirstNonRepeating {
             map.merge(i, 1, Integer::sum);
         }
 
-        //old java way
-        /*for(char i : input.toCharArray()){
-            if(map.containsKey(i)){
-                map.put(i, map.get(i) + 1);
-            }else map.put(i, 1);
-        }*/
         for(Map.Entry<Character, Integer> entry: map.entrySet()){
             if(entry.getValue() == 1){
                 System.out.println(entry.getKey());
@@ -38,5 +32,20 @@ public class FirstNonRepeating {
             }
         }
         return 0;
+    }
+    public static long indexOfFirstNonRepeatingChar(String s) {
+        long index = 0;
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        for(char c : s.toCharArray()){
+            map.merge(c, 1, Integer::sum);
+        }
+        Character res = null;
+        for(Map.Entry<Character, Integer> entry: map.entrySet()){
+            if(entry.getValue() == 1){
+                res = entry.getKey();
+                break;
+            }
+        }
+        return res == null? -1 : s.indexOf(res);
     }
 }

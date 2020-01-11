@@ -24,17 +24,6 @@ public class SetRowColumnToZero {
 
 			}
 		}
-		for(int k : row){
-			System.out.print(k + "\t");
-		}
-		System.out.println();
-		for(int l : col){
-			System.out.print(l + "\t");
-		}
-		System.out.println();
-		System.out.println("####################");
-		
-
 		// Set arr[i][j] to 0 if either row i or column j has a 0
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
@@ -46,7 +35,10 @@ public class SetRowColumnToZero {
 	}
 
 	public static void main(String[] args) {
-		int[][] matrix =  { { 1, 2, 3 }, { 4, 0, 5 }, { 0, 7, 9 } };
+		int[][] matrix =  {
+				{ 1, 2, 3 },
+				{ 4, 0, 5 },
+				{ 0, 7, 9 } };
 		setZeroes(matrix);
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
