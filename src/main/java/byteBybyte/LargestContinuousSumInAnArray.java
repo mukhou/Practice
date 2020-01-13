@@ -3,8 +3,9 @@
  * Find the continuous sequence with the largest sum. Return the sum.
  */
 
-package arraysandstrings;
+package byteBybyte;
 
+// also Contiguous Max SubArray Sum problem
 public class LargestContinuousSumInAnArray {
 
 	// keep track of the current sum

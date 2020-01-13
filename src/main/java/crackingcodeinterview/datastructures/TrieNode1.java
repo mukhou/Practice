@@ -39,7 +39,7 @@ public class TrieNode1 {
         }
 
         if (s.length() > 1) {
-            child.insertString(s.substring(1), index + 1);
+             child.insertString(s.substring(1), index + 1);
         } else {
             child.setTerminates(true);
         }

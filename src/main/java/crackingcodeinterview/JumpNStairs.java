@@ -12,11 +12,14 @@ import java.util.Arrays;
 //CTCI pg 355, Q 8.1
 public class JumpNStairs {
 
+    public static void main(String[] args){
+        System.out.println(countStairs1(3));
+    }
+
     private static long countStairs1(long n){
         long[] arr = new long[(int) (n + 1)];
         Arrays.fill(arr, -1);
         return countStairs1(n, arr);
-
     }
 
     //For each recursive call(sub-problem), If we've seen this value of n before, return the cached value. Each time we compute a fresh value,
@@ -46,7 +49,4 @@ public class JumpNStairs {
         }
     }
 
-    public static void main(String[] args){
-        System.out.println(countStairs1(3));
-    }
 }

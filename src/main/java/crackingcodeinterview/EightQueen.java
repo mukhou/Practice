@@ -10,15 +10,8 @@ import java.util.ArrayList;
 
 //CTCI pg 376, Q 8.12
 public class EightQueen {
-    public static int GRID_SIZE = 8;
 
-    public static void main(String[] args) {
-        ArrayList<Integer[]> results = new ArrayList<Integer[]>();
-        Integer[] columns = new Integer[GRID_SIZE];
-        clear(columns);
-        placeQueens(0, columns, results);
-        System.out.println(results.size());
-    }
+    public static int GRID_SIZE = 8;
 
     private static void placeQueens(int row, Integer[] columns, ArrayList<Integer[]> results) {
         if(row == GRID_SIZE){ // Found valid placement
@@ -64,6 +57,15 @@ public class EightQueen {
         for(int i = 0; i < GRID_SIZE; i ++){
             columns[i] = -1;
         }
+    }
+
+
+    public static void main(String[] args) {
+        ArrayList<Integer[]> results = new ArrayList<Integer[]>();
+        Integer[] columns = new Integer[GRID_SIZE];
+        clear(columns);
+        placeQueens(0, columns, results);
+        System.out.println(results.size());
     }
 
 }

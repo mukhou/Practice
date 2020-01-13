@@ -44,7 +44,8 @@ public class SmallestDifference {
         int indexA = 0, indexB = 0;
         int smallestDiff = Integer.MAX_VALUE;
         while(indexA < a.length && indexB < b.length){
-            smallestDiff = Math.min(smallestDiff, Math.abs(a[indexA] - b[indexB]));
+            int diff = Math.abs(a[indexA] - b[indexB]);
+            smallestDiff = Math.min(smallestDiff, diff);
             //move pointers
             if(a[indexA] < b[indexB]){
                 indexA++;

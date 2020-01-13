@@ -12,6 +12,7 @@ public class StringCompress {
             if((i + 1) >= str.length() || str.charAt(i) != str.charAt(i + 1)){
                 sb.append(str.charAt(i));
                 sb.append(count);
+                //reset count for next new letter
                 count = 0;
             }
         }

@@ -12,6 +12,7 @@ import java.util.List;
 
 public class FindDifferenceFromAListOfNumbers {
 
+    //BAD APPROACH
     public static void findDiff (List<Integer> numList, int diff){
         for(int i = 0; i < numList.size(); i++){
             for(int j = i + 1; j < numList.size(); j++){
@@ -37,7 +38,7 @@ public class FindDifferenceFromAListOfNumbers {
             }else if(d > diff){//increase starting point
                 start ++;
             }else {
-                end ++;//increase endping point
+                end ++;//increase ending point
             }
         }
     }

@@ -4,7 +4,7 @@ Date: 1/5/2020
 Time: 8:07 PM
 */
 
-package com.careercup.matrix;
+package matrix;
 
 public class MatrixInZigzag {
 

@@ -8,7 +8,7 @@ package byteBybyte;
 
 import java.util.HashMap;
 import java.util.HashSet;
-
+//papa, kiki
 public class IsomorphicString {
 
 
@@ -51,6 +51,7 @@ public class IsomorphicString {
             char c1 = s.charAt(i);
             char c2 = t.charAt(i);
 
+            //same as other method
             if (map.containsKey(c1)) {
                 if (map.get(c1) != c2) {
                     return false;

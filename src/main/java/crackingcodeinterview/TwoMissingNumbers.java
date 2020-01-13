@@ -11,8 +11,6 @@ import java.util.Arrays;
 //https://www.geeksforgeeks.org/find-two-missing-numbers-set-1-an-interesting-linear-time-solution/
 public class TwoMissingNumbers {
 
-
-
     public static void main(String[] args)
     {
         int arr[] = {1, 3, 5, 6};

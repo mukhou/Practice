@@ -25,6 +25,7 @@ public class PrintAllAnagramsOfAWord {
                 String remaining = first + rest;
 
                 // Recursive call: to find all the permutations of the remaining chars
+                //permute() returns a Set, so iterating over the set
                 for (String permutation : permute(remaining)) {
                     //Concatenate the first character from original string with the permutations
                     //of the remaining chars

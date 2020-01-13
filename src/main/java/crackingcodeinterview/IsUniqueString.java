@@ -15,6 +15,20 @@ public class IsUniqueString {
         System.out.println(isUniqueChars1("urmu"));
     }
 
+
+    private static boolean isUnqueString(String str) {
+        Map<Character, Integer> map = new HashMap<>();
+        for(int i = 0; i < str.length(); i++){
+            char c = str.charAt(i);
+            map.merge(c, 1, Integer::sum);
+            if(map.get(c) > 1){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     //O(N) complexity
     //create an array of boolean values, where the flag at index i indicates whether character
     //i in the alphabet is contained in the string. The second time you see this character you can immediately
@@ -34,6 +48,7 @@ public class IsUniqueString {
         return true;
     }
 
+    //No additional structures - nested for loop
     static boolean isUniqueChars1(String str ) {
         for(int i = 0; i < str.length(); i++){
             for(int j = i + 1; j < str.length(); j++){
@@ -45,18 +60,6 @@ public class IsUniqueString {
         return true;
     }
 
-
-    private static boolean isUnqueString(String str) {
-        Map<Character, Integer> map = new HashMap<>();
-        for(int i = 0; i < str.length(); i++){
-            char c = str.charAt(i);
-            map.merge(c, 1, Integer::sum);
-            if(map.get(c) > 1){
-                return false;
-            }
-        }
-        return true;
-    }
 
 
 

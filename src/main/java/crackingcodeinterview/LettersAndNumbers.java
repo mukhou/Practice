@@ -5,9 +5,10 @@ Time: 1:20 PM
 */
 
 /**
- * Letters and Numbers; Given an array filled with letters and numbers, find the longest subarray with
+ * Given an array filled with letters and numbers, find the longest subarray with
  * an equal number of letters and numbers.
  */
+//CTCI pg 549, Q 17.5
 package crackingcodeinterview;
 
 public class LettersAndNumbers {
@@ -15,7 +16,7 @@ public class LettersAndNumbers {
     public static char[] findLongestSubarray(char[] array){
         for(int len = array.length; len > 0; len --){
             //IMP: i goes upto array.length - len
-            for(int i = 0; i < array.length - len; i++){
+            for(int i = 0; i <= array.length - len; i++){
                 if(hasEqualLettersNumbers(array, i, i + len - 1)){
                     return extractSubarray(array, i, i + len - 1);
                 }
@@ -37,11 +38,11 @@ public class LettersAndNumbers {
     }
 
 
-    private static char[] extractSubarray(char[] array, int start, int end) {
+    private static char[] extractSubarray(char[] arr, int start, int end) {
         if (start > end) return null;
         char[] sub = new char[end - start + 1];
         for(int i = start; i <= end; i++){
-            sub[i - start] = array[i];
+            sub[i - start] = arr[i];
         }
         return sub;
     }

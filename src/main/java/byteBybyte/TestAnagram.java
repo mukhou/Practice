@@ -1,4 +1,4 @@
-package arraysandstrings;
+package byteBybyte;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,6 +25,7 @@ public class TestAnagram {
 	
 	
 
+    //too many data structures
 	public static void CheckAnagram(String str1, String str2) {
 		if(str1.length() != str2.length())
 			return ;
@@ -49,15 +50,6 @@ public class TestAnagram {
 		else
 			System.out.println("Not same");
     }
-
-
-
-
-
-
-
-
-	
 	
 	public static void main(String[] args) {
 		

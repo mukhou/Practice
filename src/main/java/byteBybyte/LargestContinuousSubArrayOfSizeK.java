@@ -11,7 +11,7 @@ Time: 5:13 PM
  * of size k. Except first subarray of size k, for other subarrays, we compute sum by
  * removing first element of last window and adding last element of current window.
  */
-package arraysandstrings;
+package byteBybyte;
 
 //https://www.geeksforgeeks.org/find-maximum-minimum-sum-subarray-size-k/
 //Time Complexity : O(n)

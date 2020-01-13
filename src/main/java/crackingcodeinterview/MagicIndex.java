@@ -7,15 +7,29 @@
 package crackingcodeinterview;
 
 //CTCI pg 359
+//IMP CHECK BOTH METHODS FOR duplicates and unique
+//NOTE: ARRAY IS SORTED
 public class MagicIndex {
 
-   public int magic(int[] array){
+    //brute force solution
+    public int magic1(int[] arr){
+        for(int i = 0; i < arr.length; i ++){
+            if(arr[i] == i){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int magic(int[] array){
+        //return magicWithUniqueElements(array, 0, array.length - 1);
         return magicWithDuplicates(array, 0, array.length - 1);
     }
 
 
     //time complexity: O(n log n)
     //ASSUMPTION: all elements are distinct
+    //initial call: (arr, 0, arr.length - 1)
     public static int magicWithUniqueElements(int[] array, int start, int end) {
         if (end < start) {
             return -1;

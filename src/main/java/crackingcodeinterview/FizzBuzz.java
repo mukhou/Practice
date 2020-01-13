@@ -14,9 +14,9 @@ public class  FizzBuzz implements Runnable{
     private Predicate<Integer> validate;
     private Function<Integer, String> printer;
     private int max;
-    //static lock used by all threads
+
+    //IMP: static fields
     private static Object lock = new Object();
-    //static counter initialized to 1, used by all threads
     private static int current = 1;
 
 

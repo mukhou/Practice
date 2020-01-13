@@ -20,7 +20,7 @@ public class PeaksAndValleys {
 
     public static int[] arrange(int[] arr){
         Arrays.sort(arr);
-        for(int i = 1; i < arr.length; i +=2){
+        for(int i = 1; i < arr.length; i += 2){
             swap(arr, i - 1, i);
         }
 

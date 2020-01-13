@@ -20,6 +20,7 @@ import java.util.Arrays;
 public class MaxPeopleAlive {
 
     public static int maxAlive(Person[] people, int min, int max) {
+        //IMP sort the arrays
         int[] birthYears = getSortedYears(people, true);
         int[] deathYears = getSortedYears(people, false);
 

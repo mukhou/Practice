@@ -7,7 +7,7 @@ Time: 9:14 PM
 /**
  * Given two strings ‘X’ and ‘Y’, find the length of the longest common substring.
  */
-package arraysandstrings;
+package byteBybyte;
 
 //https://www.geeksforgeeks.org/longest-common-substring-dp-29/
 //time complexity: O(m * n)

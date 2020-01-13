@@ -5,7 +5,24 @@ package crackingcodeinterview;
  * To implement this algorithm, we simply iterate through this code, counting how many times each character appears.
  * Then, afterwards, we compare the two arrays.
  */
+//Alternate question: check if two strings are anagrams
 public class StringsWithIdenticalChars {
+
+    //PREFERRED APPROACH - use StringBuilder
+    public static boolean checkAnagram1(String first, String second) {
+        char[] firstChars = first.toCharArray();
+        StringBuilder sbSecond = new StringBuilder(second);
+        for (char ch : firstChars) {
+            int index = sbSecond.indexOf("" + ch);
+            if (index != -1) {
+                sbSecond.deleteCharAt(index);
+            } else {
+                return false;
+            }
+        }
+        System.out.println(sbSecond.length() == 0 ? true : false);
+        return sbSecond.length() == 0 ? true : false;
+    }
 
     private static boolean identicalChars(String s1, String s2){
         if(s1.length() != s2.length()){

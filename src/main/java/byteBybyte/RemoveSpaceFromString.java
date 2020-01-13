@@ -4,7 +4,7 @@ Date: 1/8/2020
 Time: 6:32 PM
 */
 
-package arraysandstrings;
+package byteBybyte;
 
 //https://www.geeksforgeeks.org/remove-spaces-from-a-given-string/
 public class RemoveSpaceFromString {

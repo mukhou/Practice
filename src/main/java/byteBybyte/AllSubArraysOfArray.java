@@ -5,7 +5,7 @@ Time: 5:45 PM
 */
 
 //https://www.geeksforgeeks.org/generating-subarrays-using-recursion/
-package bloomberg;
+package byteBybyte;
 
 public class AllSubArraysOfArray {
 

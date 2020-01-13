@@ -16,6 +16,7 @@ package crackingcodeinterview;
 //SEE EXPLANATION FROM CTCI, PG 567
 //algorithm can now be run in two passes: one to find the possible majority element and another to validate
 //it.
+//Also HighestOccurringArrayElement
 public class MajorityElement {
 
     private static int findMajorityElement(int[] array) {

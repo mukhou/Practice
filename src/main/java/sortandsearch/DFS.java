@@ -1,4 +1,4 @@
-package bloomberg;
+package sortandsearch;
 
 import java.util.Iterator;
 import java.util.LinkedList;

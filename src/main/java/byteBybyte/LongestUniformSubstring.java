@@ -1,4 +1,4 @@
-package hackerrank;
+package byteBybyte;
 
 import java.util.Arrays;
 
@@ -19,8 +19,6 @@ public class LongestUniformSubstring {
         //initialize
         int longestStart = -1, longestLength = 0;
         int index = 1;//we are comparing index with index -1
-        //need this variable to keep track of the longest string
-        StringBuilder sb = null;
 
         //ATM: 2 while loops BOTH ON LENGTH CHECK CONDITION
         while(index < str.length()){// LENGTH CHECK 1
@@ -28,12 +26,7 @@ public class LongestUniformSubstring {
             int start = index - 1;//initialize start to the previous index
             int lengthSoFar = 1;// initialize lengthSoFar = 1(as we are starting from the 1st character
 
-            //create string builder every time
-            sb = new StringBuilder(Character.toString(str.charAt(start)));
-
             while(index < str.length() && str.charAt(index) == str.charAt(index - 1)){// LENGTH CHECK 2
-                sb.append(str.charAt(index));
-
                 index ++;
                 lengthSoFar ++;
             }
@@ -47,13 +40,27 @@ public class LongestUniformSubstring {
             //increment index anyway
             index ++;
         }
-        System.out.println(sb.toString());
+
         return new int[]{longestLength, longestStart};
     }
 
     public static void main(String[] args){
         //System.out.println(Arrays.toString(LongestUniformSubstring("abbccc")));
-        System.out.println(Arrays.toString(LongestUniformSubstring("AABEBCDD")));
+        String str = "abbccc";
+        System.out.println(str);
+        int[] arr = LongestUniformSubstring("abbccc");
+        System.out.println("longest length: " + arr[0]);
+        System.out.println("longest starting index: " + arr[1]);
+        //to print the longest uniform substring
+        //printing the longest substring
+        int temp = arr[0], temp1 = arr[1];
+        System.out.println("longest substring is: ");
+        while(temp > 0){
+            System.out.print(str.charAt(temp1++));
+            temp --;
+        }
+        System.out.println();
 
     }
+
 }
