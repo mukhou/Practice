@@ -14,7 +14,7 @@ import java.util.Map;
 public class LongestUniqueSubstringInAString {
 
     public static void main(String[] args) {
-        String s = "abcdabc";
+        String s = "GEEKSFORGEEKS";
         //System.out.println(longestUniqueSubstring(s));
         System.out.println(getUniqueCharacterSubstring(s));
     }
@@ -32,7 +32,8 @@ public class LongestUniqueSubstringInAString {
         for (int start = 0, end = 0; end < str.length(); end++) {
             char c = str.charAt(end);
             if (map.containsKey(c)) {
-                start = Math.max(map.get(c) + 1, start);
+                //fix max start and length
+                start = Math.max(start, map.get(c) + 1);
                 lengthSoFar = Math.max(lengthSoFar, map.size());
             }
             if (result.length() < end - start + 1) {

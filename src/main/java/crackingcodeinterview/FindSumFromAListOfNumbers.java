@@ -7,19 +7,17 @@ package crackingcodeinterview;
 
 import com.google.common.collect.Lists;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class FindSumFromAListOfNumbers {
 
     // Preferred approach
     //time complexity: 0(N log N) time to sort and 0(N) time to find the pairs.
-    public static void findSumUsingHashMap(int[] arr, int sum) {
+    public static void findSum1(int[] arr, int sum) {
         //sort the array
         //n log(n)
         Arrays.sort(arr);
-        //define starting and ending index
+        //define starting and ending index(same as left and right for SubArraySumOfSize3 and SubArraySumOfSize4
         int start = 0, end = arr.length - 1;
         while (start < end) {
             int s = arr[start] + arr[end];
@@ -28,7 +26,7 @@ public class FindSumFromAListOfNumbers {
                 //keep moving on to find the next pair of numbers
                 start++;
                 end--;
-            }else {
+            } else {
                 if (s < sum) {
                     start++;
                 } else {
@@ -37,36 +35,36 @@ public class FindSumFromAListOfNumbers {
             }
         }
     }
-        //THIS WORKS, ALTHOUGH BAD APPROACH
-        public static void findSum (List <Integer> numList,int sum){
-            for (int i = 0; i < numList.size(); i++) {
-                for (int j = i + 1; j < numList.size(); j++) {
-                    if ((numList.get(i) + numList.get(j)) == sum) {
-                        System.out.println(numList.get(i) + ", " + numList.get(j));
-                    }
+
+    //THIS WORKS, ALTHOUGH BAD APPROACH
+    public static void findSum(List<Integer> numList, int sum) {
+        for (int i = 0; i < numList.size(); i++) {
+            for (int j = i + 1; j < numList.size(); j++) {
+                if ((numList.get(i) + numList.get(j)) == sum) {
+                    System.out.println(numList.get(i) + ", " + numList.get(j));
                 }
             }
-
-        }
-
-
-        public static void main (String[]args){
-            List<Integer> myList = new ArrayList<Integer>();
-            myList.add(1);
-            myList.add(2);
-            myList.add(3);
-            myList.add(4);
-            myList.add(5);
-            myList.add(4);
-            myList.add(3);
-
-            int[] test = {9, 3, 6, 5, 5, 7, -1, 13, 14, -2, 12, 0};
-            List l = Lists.newArrayList(9, 3, 6, 5, 5, 7, -1, 13, 14, -2, 12, 0);
-            //findSum(l, 12);
-            findSumUsingHashMap(test, 12);
-            //findSum(myList, 6);
-
-
         }
 
     }
+
+
+    public static void main(String[] args) {
+        List<Integer> myList = new ArrayList<Integer>();
+        myList.add(1);
+        myList.add(2);
+        myList.add(3);
+        myList.add(4);
+        myList.add(5);
+        myList.add(4);
+        myList.add(3);
+
+        int[] test = {9, 3, 6, 5, 5, 7, -1, 13, 14, -2, 12, 0};
+        List l = Lists.newArrayList(9, 3, 6, 5, 5, 7, -1, 13, 14, -2, 12, 0);
+        //findSum(l, 12);
+        findSum1(new int[]{3, 2, 4}, 6);
+
+
+    }
+
+}

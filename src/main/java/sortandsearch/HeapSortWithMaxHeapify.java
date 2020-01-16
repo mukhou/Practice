@@ -7,8 +7,10 @@ package sortandsearch;
 /**
  * We can find k’th smallest element using heaps.
  * A simple optimization is to create a Min Heap of the given n elements and call extractMin() k times.
- * Time complexity of this solution is O(n + k Log n).
+ * NOTE: in a max heap, root it the largest and that becomes the last element of the array
  */
+//https://www.geeksforgeeks.org/k-largestor-smallest-elements-in-an-array/
+//Time complexity of this solution is O(n + k Log n).
 public class HeapSortWithMaxHeapify {
     public void sort(int arr[])
     {
@@ -35,6 +37,7 @@ public class HeapSortWithMaxHeapify {
         }
     }
 
+    //time complexity: O(n)
     private void buildMaxHeap(int[] arr, int n) {
         for(int i = n / 2 - 1; i >= 0; i --){
             maxHeapify(arr, n, i);
@@ -43,6 +46,7 @@ public class HeapSortWithMaxHeapify {
 
     // To maxHeapify a subtree rooted with node i which is
     // an index in arr[]. n is size of heap
+    //time complexity: O(h): h is height of tree
    static void maxHeapify(int arr[], int n, int i)
     {
         int largest = i; // Initialize largest as root
@@ -69,20 +73,22 @@ public class HeapSortWithMaxHeapify {
         }
     }
 
+    //time complexity: O(log n), since it performs only a
+    //constant amount of work on top of the O.lg n/ time for MAX-HEAPIFY.
     private static int extractMax(int[] arr, int heapSize){
         if(heapSize == 0){
             return -1;
         }
 
         //get max
-        int root = arr[0];
+        int root_data = arr[0];
         if(heapSize > 1){
             //replace max with last
             arr[0] = arr[heapSize - 1];
             maxHeapify(arr, heapSize, 0);
         }
         heapSize --;
-        return root;
+        return root_data;
     }
 
 

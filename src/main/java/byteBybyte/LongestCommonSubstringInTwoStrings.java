@@ -21,21 +21,21 @@ public class LongestCommonSubstringInTwoStrings {
         // for simplicity of program
         int matrix[][] = new int[m + 1][n + 1];
 
-        int result = 0;
+        int longestLength = 0;
         for(int i = 0; i <= m; i++){
             for(int j = 0; j <= n; j++){
                 if(i == 0 || j == 0){
                     matrix[i][j] = 0;
                 }else if(arr1[i - 1] == arr2[j - 1]){
                     matrix[i][j] = matrix[i - 1][j - 1] + 1;
-                    result = Math.max(result, matrix[i][j]);
+                    longestLength = Math.max(longestLength, matrix[i][j]);
 
                 }else {
                     matrix[i][j] = 0;
                 }
             }
         }
-        return result;
+        return longestLength;
     }
 
     public static void main(String[] args)

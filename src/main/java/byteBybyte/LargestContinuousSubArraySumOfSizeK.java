@@ -15,7 +15,7 @@ package byteBybyte;
 
 //https://www.geeksforgeeks.org/find-maximum-minimum-sum-subarray-size-k/
 //Time Complexity : O(n)
-public class LargestContinuousSubArrayOfSizeK {
+public class LargestContinuousSubArraySumOfSizeK {
 
     // Returns maximum sum in a subarray of size k.
     public static int maximumSubarraySum(int[] arr, int k){
@@ -42,6 +42,7 @@ public class LargestContinuousSubArrayOfSizeK {
         }
         return max_sum;
     }
+
 
     /* Driver program to test above function */
     public static void main(String[] args)

@@ -15,8 +15,7 @@ public class InfixToPostFix {
     // A utility function to return precedence of a given operator
     // Higher returned value means higher precedence
     static int Prec(char ch){
-        switch (ch)
-        {
+        switch (ch){
             case '+':
             case '-':
                 return 1;
@@ -33,8 +32,7 @@ public class InfixToPostFix {
 
     // The main method that converts given infix expression
     // to postfix expression.
-    static String infixToPostfix(String exp)
-    {
+    static String infixToPostfix(String exp){
         // initializing empty String for result
         String result = new String("");
 

@@ -28,7 +28,7 @@ public class LargestContinuousProductInAnArray {
                 minVal = temp;
             }
             // maxVal and minVal stores the product of subarray ending at arr[i].
-            //simiar to LargestContinuousSumInAnArray: curr_max = Math.max(arr[i], curr_max + arr[i]);
+            //simiar to LargestContinuousSubArraySum: curr_max = Math.max(arr[i], curr_max + arr[i]);
             maxVal = Math.max(arr[i], maxVal * arr[i]);
             minVal = Math.min(arr[i], minVal * arr[i]);
 

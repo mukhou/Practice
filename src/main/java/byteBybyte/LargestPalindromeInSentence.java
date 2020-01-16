@@ -1,4 +1,4 @@
-package interview.qsns;
+package byteBybyte;
 
 public class LargestPalindromeInSentence {
 
@@ -8,23 +8,19 @@ public class LargestPalindromeInSentence {
         String[] words = sentence.split(" ");
         // use two variables
         for(int l = 0; l <= words.length - 1; l++){
-            int temp = 0;
             String word = words[l];
             System.out.println(word);
-            for(int i = word.length()-1, j=0; i>=0; i--, j++){
-                if(Character.toString(word.charAt(i)).
-                        equals(Character.toString(word.charAt(j)))){
-                    temp++;
-                    if(i==j){
-                        b = true;
-                        break;
-                    }
-                    //continue;
-                }else{
+            int i = 0, n = word.length() - 1;
+            int temp = n + 1;
+            while (i < n){
+                if(word.charAt(i) != word.charAt(n)){
                     b = false;
                     break;
                 }
+                i ++;
+                n --;
             }
+            b = true;
             length = length > temp ? length : temp;
         }
 

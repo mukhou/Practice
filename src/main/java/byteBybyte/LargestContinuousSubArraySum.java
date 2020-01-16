@@ -6,7 +6,7 @@
 package byteBybyte;
 
 // also Contiguous Max SubArray Sum problem
-public class LargestContinuousSumInAnArray {
+public class LargestContinuousSubArraySum {
 
 	// keep track of the current sum
     //https://en.wikipedia.org/wiki/Maximum_subarray_problem#Kadane's_algorithm_(Algorithm_3:_Dynamic_Programming)

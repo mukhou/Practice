@@ -4,6 +4,8 @@ import stacksandqueues.StackUsingArray;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Stack;
 
 
 public class LinkedList {
@@ -184,18 +186,43 @@ public class LinkedList {
      * 6. Return main pointer.
 	 * 
 	 */
-	public Node findNodeFromEnd(Node head, int n){
+	public static Node findNodeFromEnd(Node head, int n){
         Node p1 = head;
         Node p2 = head;
 
-        while(n -- != 0){
+        while(n - 1 > 0){
         	p2 = p2.next;
+        	n --;
 		}
+
+
 		while(p2.next != null){
         	p1 = p1.next;
         	p2 = p2.next;
 		}
 		return p1;
+	}
+
+
+	private static Node removeFromEnd(Node head, int n){
+		Node p1 = head;
+		Node p2 = head;
+
+		while(n -- > 0){
+			p2 = p2.next;
+		}
+
+		//IMP: p2 null, means need to remove the first or head node, so return head.next
+		if(p2 == null){
+			return head.next;
+		}
+
+		while (p2.next != null){
+			p1 = p1.next;
+			p2 = p2.next;
+		}
+		p1.next = p1.next.next;
+		return head;
 	}
 	
 	
@@ -204,7 +231,7 @@ public class LinkedList {
 	 * to reverse a Single LinkedList(shorter method, preferred)
 	 * A -> B -> C -> NULL
 	 */	
-	public Node reverseListIterative(Node head){
+	public static Node reverseListIterative(Node head){
 		// A -> B -> C
 		Node current = head;// current = A
 		head = null;
@@ -224,6 +251,7 @@ public class LinkedList {
 
 		/* If last node mark it head*/
 		//ATM: in a LL, next can NEVER be NULL, UNLESS IT'S LAST NODE
+		//So if next of head(curr) is null, it means we have fully reversed the LL
 		if (curr.next == null) {
 			head = curr;
 			/* Update next to prev node */
@@ -293,7 +321,7 @@ public class LinkedList {
 	}
 
 	//Clone a linked list with next and random pointer
-	public static Node clone(Node head){
+	public static Node cloneLLWithRandomPointers(Node head){
 
 		// Initialize two references, one with original list's head.
 		Node originalHead = head;
@@ -400,6 +428,45 @@ public class LinkedList {
 
 		return newHead.next;
 	}
+
+	//https://www.techiedelight.com/efficiently-merge-k-sorted-linked-lists/
+    //IDEA: This problem can be solved in by min heap. The idea is to construct a min heap
+    // of size k and insert first node of each list in it. Then we pop the root node(extract min) and
+    // insert next node of "same" list as popped node. Repeat this process until heap is exhausted.
+    // time compelxity:  O(N log(K))
+	static Node mergeKSortedLists(Node[] list, int k){
+        PriorityQueue<Node> queue = new PriorityQueue<>((a, b) -> (int)a.data - (int)b.data);
+
+        // push first node of each list into the min-heap
+        for(int i = 0; i < k; i++){
+            queue.add(list[i]);
+        }
+
+        // take two pointers head and tail where head points to the first node
+        // of the output list and tail points to its last node
+        Node head = null, tail = null;
+
+        // run till min-heap is not empty
+        while (!queue.isEmpty()){
+            // extract minimum node from the min-heap
+            Node min =  queue.poll();
+            // add the minimum node to the output list
+            if(head == null){
+                head = tail = min;
+            }else {
+                //insert at tail
+                tail.next = min;
+                tail = min;
+            }
+            // take next node from "same" list and insert it into the min-heap
+            if(min.next != null){
+                queue.add(min.next);
+            }
+        }
+
+        return head;
+
+    }
 
 	/**
 	 * IMP: Convert Sorted Linked List to BST
@@ -1004,36 +1071,35 @@ public class LinkedList {
     /**
      * Determine if a given linked list is palindrome
      * Algorithm:
-     * 1. Use two pointers: slow and fast
-     * 2. While traversing the slow pointer, keep pushing its values into a stack
-     * 3. Once the slow reaches the mid, move the slow pointer forward and pop the elements of the stack, while
-     *   comparing it with the slow pointer value
-     * 4. If everything matches, the linked list is a palindrome
+     * 1. Use two pointers: slow and fast to get to the middle of the list
+     * 2. then reverse the second list and compare two sublists.
      */
-    public boolean isPalindrome(Node n){
-        Node p1 = head, p2 = head;
-        StackUsingArray myStack = new StackUsingArray();
-        while(p2.next != null){
-            p2 = p2.next;
-            if(p2.next != null){
-                p1 = p1.next;
-                myStack.push((Integer) p1.data);
-                p2 = p2.next;
+    //time complexity:  O(n) and space complexity: O(1).
+    public  static boolean isPalindrome(Node head){
+        Node slow = head, fast = head;
+
+        if (head != null && head.next != null) {
+            /* Get the PRIOR TO THE  middle of the list. */
+            while (fast.next != null && fast.next.next != null) {
+                fast = fast.next.next;
+                slow = slow.next;
             }
-        }
-        // odd number of elements
-        if (p2 != null) {
-            p1 = p1.next;
-        }
-        while(p1 != null){
-            int value = myStack.pop();
-            if((Integer)p1.data != value){
-                return false;
+            // IMP: second half should be next of slow, as at this point, we the in the previous node of middle node
+            Node second_half = slow.next;
+            slow.next = null; // NULL terminate first half
+            Node reversed = reverseListIterative(second_half);
+            Node temp = head;
+            while(reversed != null){
+                if(reversed.data != temp.data){
+                    return false;
+                }
+                temp = temp.next;
+                reversed = reversed.next;
             }
-            p1 = p1.next;
         }
         return true;
     }
+
 	/**
 	 * Find median in a sorted linked list
 	 * Algorithm:
@@ -1056,7 +1122,7 @@ public class LinkedList {
 		if(p2 != null){
 			return (int)p1.data;
 		}else {
-			return (int)prevOfP1.data;
+			return ((int)prevOfP1.data + (int)prevOfP1.data )/ 2;
 		}
 
 	}
@@ -1093,6 +1159,7 @@ public class LinkedList {
 			prev.setNext(temp);
 		}
 	}
+
 	
 	/**
 	 * Flatten a linked list
@@ -1147,9 +1214,16 @@ public class LinkedList {
 		System.out.println("#########################");
 		System.out.println("#########################");
 		System.out.println("#########################");
+		System.out.println(findNodeFromEnd(head, 2).data);
+		System.out.println("#########################");
+		System.out.println("#########################");
+		System.out.println("#########################");
+		System.out.println("#########################");
 		//printLinkedList(new LinkedList().reverseListRecursive(head, null));
-		Node newHead = reverseDoublyLinkedListRecursive(head);
-		printLinkedList(newHead);
+		/*Node newHead = reverseDoublyLinkedListRecursive(head);
+		printLinkedList(newHead);*/
+		Node head1 = new Node(1);
+		printLinkedList(removeFromEnd(head1, 1));
 		//printLinkedList(reverseDoublyLinkedListIterative(head));
 		//printLinkedList(removeNodesWithValue(head, 1));
 
@@ -1183,6 +1257,17 @@ public class LinkedList {
 		Node res = addTwoLinkedLists(headA, headB, 0);
 		//printLinkedList(res);
 
+        //palindrome check
+        System.out.println("#########################");
+        System.out.println("#########################");
+        System.out.println("#########################");
+        System.out.println("#########################");
+        Node pHead = new Node(1);
+        pHead.next = new Node(2);
+        pHead.next.next = new Node(3);
+        pHead.next.next.next = new Node(2);
+        pHead.next.next.next.next = new Node(2);
+        System.out.println(isPalindrome(pHead));
 		/*Node head = new Node(1);
 		Node second = new Node(2);
 		Node third = new Node(3);

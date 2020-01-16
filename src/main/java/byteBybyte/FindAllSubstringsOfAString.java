@@ -13,6 +13,7 @@ public class FindAllSubstringsOfAString {
 			outstr.append(instr.charAt(i));
 			System.out.println(outstr);
 			printCombinations(instr, outstr, i + 1);
+			//delete
 			outstr.deleteCharAt(outstr.length() - 1);
 		}
 	}
@@ -34,7 +35,7 @@ public class FindAllSubstringsOfAString {
 	public static void main(String[] args) {
 		System.out.println("Substrings of \"" + "zzzz" + "\" are :-");
 
-		printCombinations("zzzyz", new StringBuilder(), 0);
+		printCombinations("abc", new StringBuilder(), 0);
 		System.out.println(printCombinationsInSet("zzzz", new StringBuilder(), 0));
 
 

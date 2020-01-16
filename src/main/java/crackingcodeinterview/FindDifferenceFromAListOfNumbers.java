@@ -12,21 +12,13 @@ import java.util.List;
 
 public class FindDifferenceFromAListOfNumbers {
 
-    //BAD APPROACH
-    public static void findDiff (List<Integer> numList, int diff){
-        for(int i = 0; i < numList.size(); i++){
-            for(int j = i + 1; j < numList.size(); j++){
-                if(Math.abs(numList.get(i) - numList.get(j)) == diff){
-                    System.out.println(numList.get(i) + " " + numList.get(j));
-                }
-            }
-        }
-    }
-
     //FOLLOW THIS
     //Time Complexity: O(nlogn)
-    public static void findDiffUsingHashMap(int[] arr, int diff){
+    public static void findDiff1(int[] arr, int diff){
+        //sort the array
+        //n log(n)
         Arrays.sort(arr);
+
         int start = 0, end = 0;
 
         while(end < arr.length){
@@ -43,6 +35,18 @@ public class FindDifferenceFromAListOfNumbers {
         }
     }
 
+
+    //BAD APPROACH
+    public static void findDiff (List<Integer> numList, int diff){
+        for(int i = 0; i < numList.size(); i++){
+            for(int j = i + 1; j < numList.size(); j++){
+                if(Math.abs(numList.get(i) - numList.get(j)) == diff){
+                    System.out.println(numList.get(i) + " " + numList.get(j));
+                }
+            }
+        }
+    }
+
     public static void main (String[]args){
         int arr[] =  {1, 5, 3, 4, 2};
         int k = 3;
@@ -51,6 +55,6 @@ public class FindDifferenceFromAListOfNumbers {
             list.add(n);
         }
         findDiff(list, k);
-        findDiffUsingHashMap(arr, k);
+        findDiff1(arr, k);
     }
 }

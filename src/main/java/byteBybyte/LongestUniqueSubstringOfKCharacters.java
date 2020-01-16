@@ -32,8 +32,11 @@ public class LongestUniqueSubstringOfKCharacters {
             if (map.size() > k) {
                 //get longest
                 longestLength = Math.max(longestLength, i - longestStart);
+                //keep removing leftmost character of string from map
+                // until map size becomes equal to k
                 while (map.size() > k) {
-                    char t = s.charAt(longestStart ++);
+                    //IMP: starting chars of string, similar to ContinuousSubArraySumN
+                    char t = s.charAt(longestStart);
                     int count = map.get(t);
                     if (count > 1) {
                         map.put(t, count - 1);
@@ -41,6 +44,7 @@ public class LongestUniqueSubstringOfKCharacters {
                         //frequency of leftmost character, so remove it from map
                         map.remove(t);
                     }
+                    longestLength ++;
                 }
             }
         }

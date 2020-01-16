@@ -24,7 +24,7 @@ public class LargestPairSumInArray {
         System.out.println(start + " " + end);
     }
 
-    //if asked to find second lasrgest, return secondLargest
+    //if asked to find second largest, return secondLargest
     public static void largestPairSum(int[] arr){
         int firstLargest, secondLargest;
         firstLargest = Math.max(arr[0], arr[1]);

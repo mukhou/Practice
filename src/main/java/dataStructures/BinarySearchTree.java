@@ -84,8 +84,10 @@ public class BinarySearchTree {
 		if(root == null){
 			return 0;
 		}
-		int maxWidth = 1;
 		Queue<BinaryNode> queue = new LinkedList<>();
+		int maxWidth = 1;
+
+		// ENQUEUE
 		queue.add(root);
 		while(!queue.isEmpty()){
 			int nodeCount = queue.size();
@@ -215,7 +217,7 @@ public class BinarySearchTree {
 	 * see details: https://www.techiedelight.com/clone-a-binary-tree-with-random-pointers/
 	 */
 	// Main function to clone a special binary tree with random pointers
-	public static BinaryNode cloneSpecialBinaryTree(BinaryNode root){
+	public static BinaryNode cloneBinaryTreeWithRandomPointers(BinaryNode root){
 
 		// create a map to store mappings from a node to its clone
 		Map<BinaryNode, BinaryNode> map = new HashMap<>();
@@ -254,7 +256,8 @@ public class BinarySearchTree {
 		}
 
 		// update the random pointer of cloned node
-		map.get(root).random = map.get(root.random);
+		BinaryNode clone = map.get(root);
+		clone.random = map.get(root.random);
 
 		// recur for left and right subtree
 		updateRandomPointers(root.left, map);
@@ -865,7 +868,7 @@ public class BinarySearchTree {
                 b) Go to this left child, i.e., current = current->left
      * @param root
      */
-	public static void inOrderTraversalWthoutStack(BinaryNode root){
+	public static void inOrderTraversalWithoutStack(BinaryNode root){
 		if(root == null)
 			return;		
 		BinaryNode current = root;
@@ -899,6 +902,7 @@ public class BinarySearchTree {
 	}
 
 	public static Stack<BinaryNode> inorderTraversalUsingStack(BinaryNode root){
+
 		Stack<BinaryNode> stack = new Stack<>();
 
 		// Start by adding left subtree to stack
@@ -914,7 +918,6 @@ public class BinarySearchTree {
 
 		}
 		return stack;
-
 	}
 
 	private static void addToStack(Stack<BinaryNode> stack, BinaryNode root) {
@@ -923,13 +926,59 @@ public class BinarySearchTree {
 			root = root.left;
 		}
 	}
-
-
 	/**
-	 * Convert a given Binary Tree to Doubly Linked List.
-	 * Check this for explanation:
-	 * http://www.geeksforgeeks.org/convert-a-given-binary-tree-to-doubly-linked-list-set-2/
+	 * IMP: Find kth largest element in a BST
+	 * Algorithm:
+	 * Logic is to do reverse inorder traversal and while doing reverse inorder traversal simply keep a count of number of Nodes visited.
+	 * When the count becomes equal to k, we stop the traversal and print the data.
+	 * It uses the fact that reverse inorder traversal will give us a list sorted in descending order.
 	 */
+	//https://www.geeksforgeeks.org/kth-largest-element-bst-using-constant-extra-space/
+	private static BinaryNode KthLargestNode(BinaryNode root, int k) {
+
+		BinaryNode current = root;
+		BinaryNode kthLargest = null;
+		int count = 0;
+		while (current != null) {
+			// if right child is NULL
+			if (current.right == null) {
+				if (++count == k) {
+					kthLargest = current;
+				}
+				// otherwise move to the left child
+				current = current.left;
+			} else {
+				// find inorder successor of current Node
+				BinaryNode successor = current.right;
+				while (successor.left != null && successor.left != current) {
+					successor = successor.left;
+				}
+				if (successor.left == null) {
+					// set left child of successor to the
+					// current Node
+					successor.left = current;
+					current = current.right;
+				} else {
+					// restoring the tree back to original binary
+					// search tree removing threaded links
+					successor.left = null;
+					if (++count == k) {
+						kthLargest = current;
+					}
+					current = current.left;
+				}
+			}
+		}
+		return kthLargest;
+	}
+
+		/**
+         * Convert a given Binary Tree to Doubly Linked List.
+         * Check this for explanation:
+         * http://www.geeksforgeeks.org/convert-a-given-binary-tree-to-doubly-linked-list-set-2/
+         */
+	//CHECK CLASS BiNodeToDoublyLinkedList
+	//IGNORE BELOW IMPLEMENTATION - TOO COMPLEX
     BinaryNode BinaryTreetoDLL(BinaryNode root){
         BinaryNode prev = null;
         // Set the previous pointer
@@ -983,6 +1032,22 @@ public class BinarySearchTree {
 			rootNode.right = temp;
 		}
 		return rootNode;
+	}
+
+	//Given a binary tree, check whether it is a mirror of itself.
+	public static boolean isSymmetric(BinaryNode node){
+		return isSymmetric(node, node);
+
+	}
+
+	private static boolean isSymmetric(BinaryNode root1, BinaryNode root2) {
+		if(root1 == null && root2 == null){
+			return true;
+		}
+		if(root1 != null && root2 != null && root1.data == root2.data){
+			return isSymmetric(root1.left, root2.left) && isSymmetric(root1.right, root2.right);
+		}
+		return false;
 	}
 
 	/**
@@ -1441,10 +1506,19 @@ public class BinarySearchTree {
 		right.right = new BinaryNode(28);
 		binarySearchTree.insertIterative(19);
 		//inOrderTraversalWthoutStack(binarySearchTree.root);
-		Stack stack = inorderTraversalUsingStack(binarySearchTree.root);
-		/*while(!stack.isEmpty()){
+		/*Stack stack = inorderTraversalUsingStack(binarySearchTree.root);
+		while(!stack.isEmpty()){
 			System.out.println(stack.pop());
 		}*/
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+		//kth largest element in BST
+		System.out.println("kth largest element is: ");
+		System.out.println(KthLargestNode(binarySearchTree.root, 3).data);
 
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
@@ -1463,13 +1537,14 @@ public class BinarySearchTree {
 		BinaryNode left2 = new BinaryNode(20);
 		right.right.left  = left2;
 
-		//inOrderTraversalWthoutStack(binarySearchTree.root);
+		inOrderTraversalWithoutStack(binarySearchTree.root);
 
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
 
 		///System.out.println(maxWidth(binarySearchTree.root));
 
@@ -1523,7 +1598,7 @@ public class BinarySearchTree {
 		System.out.println("Preorder traversal of the original tree:");
 		preorder(root);
 
-		BinaryNode clone = cloneSpecialBinaryTree(root);
+		BinaryNode clone = cloneBinaryTreeWithRandomPointers(root);
 
 		System.out.println("\nPreorder traversal of the cloned tree:");
 		preorder(clone);

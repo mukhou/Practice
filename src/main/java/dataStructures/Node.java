@@ -39,6 +39,9 @@ public class Node{
     public Object getData(){
         return data;
     }
+    public Integer getData1(){
+        return (Integer) data;
+    }
 
     public void setData(Object _data){
         data = _data;
