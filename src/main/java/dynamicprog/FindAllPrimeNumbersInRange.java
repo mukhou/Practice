@@ -1,4 +1,4 @@
-package hackerrank;
+package dynamicprog;
 
 //time complexity: O(N log (log N))
 public class FindAllPrimeNumbersInRange {

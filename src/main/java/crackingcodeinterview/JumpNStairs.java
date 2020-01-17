@@ -17,24 +17,25 @@ public class JumpNStairs {
     }
 
     private static int countStairs1(int n){
-        int[] arr = new int[n + 1];
-        Arrays.fill(arr, -1);
-        return countStairs1(n, arr);
+        int[] jumps = new int[n + 1];
+        Arrays.fill(jumps, -1);
+        return countStairs1(n, jumps);
     }
 
     //For each recursive call(sub-problem), If we've seen this value of n before, return the cached value.
     // Each time we compute a fresh value,
     //add it to the cache.
-    private static int countStairs1(int n, int[] arr) {
+    private static int countStairs1(int n, int[] jumps) {
         if(n < 0){
             return 0;
         }else if( n == 0){
             return 1;
-        }else if(arr[n] > -1){
-            return arr[n];
+        }else if(jumps[n] > -1){
+            return jumps[n];
         }else {
-            arr[n] = countStairs1(n - 1, arr) + countStairs1(n - 2, arr) + countStairs1(n - 3, arr);
-            return arr[ n];
+            //recursively calculate sub problems
+            jumps[n] = countStairs1(n - 1, jumps) + countStairs1(n - 2, jumps) + countStairs1(n - 3, jumps);
+            return jumps[ n];
         }
     }
 

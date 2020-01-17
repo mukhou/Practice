@@ -8,10 +8,10 @@ Time: 3:57 PM
  * Write a function to return the minimum number of jumps to reach the end of the array (starting from the first element).
  * If an element is 0, then cannot move through that element.
  */
-package byteBybyte;
+package dynamicprog;
 
 //https://www.geeksforgeeks.org/minimum-number-of-jumps-to-reach-end-of-a-given-array/
-public class MinJumpsInArray {
+public class MinJumpsToArrayEnd {
 
     //In this method, we build a jumps[] array from left to right such that jumps[i] indicates
     // the minimum number of jumps needed to reach arr[i] from arr[0]. Finally, we return jumps[n-1].
@@ -23,16 +23,18 @@ public class MinJumpsInArray {
             return Integer.MAX_VALUE;
         }
 
-        // jumps[arr.length - 1] will hold the
+        // jumps[arr.length - 1] will hold the final result
         int[] jumps = new int[arr.length];
         jumps[0] = 0;
 
-        // Find the minimum number of jumps to reach arr[i]
-        // from arr[0], and assign this value to jumps[i]
+        // IMP: Find the minimum number of jumps to reach arr[i] from arr[0]
+        // and assign this value to jumps[i]
         for (int i = 1; i < arr.length; i++) {
             jumps[i] = Integer.MAX_VALUE;
             for (int j = 0; j < i; j++) {
-                if (i <= j + arr[j] && jumps[j] != Integer.MAX_VALUE) {
+                //IMP: i <= j + arr[j] is to check if within array bounds
+                if (jumps[j] != Integer.MAX_VALUE && i <= j + arr[j]) {
+                    //take minimum
                     jumps[i] = Math.min(jumps[i], jumps[j] + 1);
                     break;
                 }
@@ -45,6 +47,9 @@ public class MinJumpsInArray {
     }
 
     //time complexity: O(n^n)
+    private static int minJumps(int[] arr){
+        return minJumps(arr, 0, arr.length - 1);
+    }
     private static int minJumps(int[] arr, int start, int end) {
         // Base case: when source and destination are same
         if(start == end){
@@ -57,6 +62,7 @@ public class MinJumpsInArray {
         // Traverse through all the points.
         // Recursively get the minimum number of jumps needed to reach arr[h] from these reachable points.
         int min = Integer.MAX_VALUE;
+        //IMP i begins with start + 1, assumtpion is we'll always have at least one jump
         for(int i = start + 1; i <= end && i <= start + arr[start]; i++){
             int jumps = minJumps(arr, i, end);
             if(jumps != Integer.MAX_VALUE && jumps + 1 < min){
@@ -72,7 +78,7 @@ public class MinJumpsInArray {
         int arr[] = { 3, 2, 1, 0, 4 };
         int n = arr.length;
         System.out.println("Minimum number of jumps to reach end is "
-                + minJumps(arr, 0, n - 1));
+                + minJumps(arr));
         System.out.println(minJumpsDynamic(arr));
     }
 

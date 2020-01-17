@@ -18,6 +18,7 @@ package byteBybyte;
 public class LargestContinuousSubArraySumOfSizeK {
 
     // Returns maximum sum in a subarray of size k.
+    //sliding window principle
     public static int maximumSubarraySum(int[] arr, int k){
 
         if(k > arr.length){

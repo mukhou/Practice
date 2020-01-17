@@ -12,7 +12,7 @@ Time: 9:51 PM
  * Replace
  * All of the above operations are of equal cost.
  */
-package crackingcodeinterview;
+package dynamicprog;
 
 //https://www.geeksforgeeks.org/edit-distance-dp-5/
 public class EditDistanceString {
@@ -92,6 +92,6 @@ public class EditDistanceString {
         String str1 = "sunday";
         String str2 = "saturday";
 
-        System.out.println(editBrute(str1, str2, str1.length(), str2.length()));
+        System.out.println(editDyn(str1, str2, str1.length(), str2.length()));
     }
 }

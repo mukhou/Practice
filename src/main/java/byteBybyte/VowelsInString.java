@@ -18,10 +18,10 @@ public class VowelsInString {
         Set<String> result = new HashSet<>();
         Set<Character> allVowels = createVowels();
 
-        // Outer loop picks starting character and
-        // inner loop picks ending character.
         int n = str.length();
+        // Outer loop picks starting character an
         for (int i = 0; i < n; i++) {
+            // inner loop picks ending character.
             for (int j = i; j < n; j++) {
                 // If current character is not vowel,
                 // then no more result substrings

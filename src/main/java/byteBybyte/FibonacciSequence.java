@@ -11,7 +11,18 @@ public class FibonacciSequence {
 	private static int fibo_dyn_top_down_recurse(int n){
 		int lookup[] = new int[n + 1];
 
-		Arrays.fill(lookup, -1);
+		if(n <= 1){
+		    return n;
+        }
+        if(lookup[n] != 0){
+		    return lookup[n];
+        }else {
+		    //compute subproblems
+		    lookup[n] = fibo_dyn_top_down_recurse(n - 1) + fibo_dyn_top_down_recurse((n - 2));
+		    return lookup[n];
+        }
+
+	/*	Arrays.fill(lookup, -1);
 
 		if(lookup[n] == -1){
 			if(n <= 1){
@@ -20,20 +31,18 @@ public class FibonacciSequence {
 				lookup[n] = fibo_dyn_top_down_recurse(n - 1) + fibo_dyn_top_down_recurse(n - 2);
 			}
 		}
-		return lookup[n];
+		return lookup[n];*/
 	}
 
 	private static int fibo_dyn_bottom_up_iterative(int n){
-		int[] arr = new int[n + 1];
-		arr[0] = 0;
-		arr[1] = 1;
+		int[] lookup = new int[n + 1];
+        lookup[0] = 0;
+        lookup[1] = 1;
 		for(int i = 2; i <= n; i ++){
-			arr[i] = arr[i - 1] + arr[i - 2];
+            lookup[i] = lookup[i - 1] + lookup[i - 2];
 		}
-		System.out.println(Arrays.toString(arr));
-		//we need to add the last and second last as in this method, we are not traversing till "n",
-		// but "n - 1"(due to array index overflowing), unlike in the other two approaches.
-		return arr[n];
+		System.out.println(Arrays.toString(lookup));
+		return lookup[n];
 	}
 
 
@@ -73,5 +82,6 @@ public class FibonacciSequence {
 		System.out.println(fibonacci_recursive(7));
 		System.out.println(fibonacci_iterative(7));
 		System.out.println(fibo_dyn_bottom_up_iterative(7));
+        System.out.println(fibo_dyn_top_down_recurse(7));
 
 }}

@@ -2,7 +2,7 @@
  * You are given an array of numbers. Find out the array index or position
  * where sum of numbers preceding the index is equals to
  * sum of numbers succeeding the index.
- * Algotirhm:
+ * Algorithm:
  * We calculate the sum of the whole array except the first element in right_sum, considering it to be the partitioning element.
  * Now, we traverse the array from left to right, subtracting an element from right_sum and adding an element to left_sum.
  * The point where right_sum equals left_sum, we get the partition.

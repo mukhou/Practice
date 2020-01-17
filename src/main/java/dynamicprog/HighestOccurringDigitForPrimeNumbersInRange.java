@@ -4,7 +4,7 @@ Date: 1/8/2020
 Time: 2:25 PM
 */
 
-package hackerrank;
+package dynamicprog;
 
 /**
  * The computational complexity of this algorithm is the same as the one of sieve of Eratosthenes for the
@@ -29,7 +29,7 @@ public class HighestOccurringDigitForPrimeNumbersInRange {
 
         sieve(prime, right);
 
-        // Initialse frequency of all digit to 0.
+        // Initialize frequency of all digit to 0.
         int[] frequency = new int[10];
 
         //start from left, go till right, as prime[] was built from left to right
