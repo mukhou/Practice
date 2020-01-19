@@ -24,26 +24,27 @@ public class LongestUniqueSubstringInAString {
     //ATM: TWO CONSECUTIVE IF BLOCKS, start = 0, end = 0
     private static String getUniqueCharacterSubstring(String str) {
 
-        int lengthSoFar = 0;
+        int longestLength = 0;
         String result = "";
 
         Map<Character, Integer> map = new HashMap<>();
 
         for (int start = 0, end = 0; end < str.length(); end++) {
+            //IMP: get the character with index "end"
             char c = str.charAt(end);
             if (map.containsKey(c)) {
                 //fix max start and length
                 start = Math.max(start, map.get(c) + 1);
-                lengthSoFar = Math.max(lengthSoFar, map.size());
+                longestLength = Math.max(longestLength, map.size());
             }
             if (result.length() < end - start + 1) {
-                result = str.substring(start, end + 1);
+                result = str.substring(start, end + 1);//IMP: end + 1, as second index is 1 based
             }
             map.put(c, end);
         }
 
         //similar to previous approach like below
-        int longestLength = Math.max(lengthSoFar, map.size());
+        longestLength = Math.max(longestLength, map.size());
         System.out.println("longest length is: " + longestLength);
         return result;
     }

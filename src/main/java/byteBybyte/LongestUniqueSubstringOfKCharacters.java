@@ -30,7 +30,7 @@ public class LongestUniqueSubstringOfKCharacters {
             map.merge(c, 1, Integer::sum);
 
             if (map.size() > k) {
-                //get longest
+                //IMP: i - longestStart
                 longestLength = Math.max(longestLength, i - longestStart);
                 //keep removing leftmost character of string from map
                 // until map size becomes equal to k
