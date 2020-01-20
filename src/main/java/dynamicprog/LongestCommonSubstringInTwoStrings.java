@@ -39,11 +39,6 @@ public class LongestCommonSubstringInTwoStrings {
                 }
             }
         }
-
-
-        for(int p = 0; p < longestLengthTable.length; p++){
-            System.out.println(Arrays.toString(longestLengthTable[p]));
-        }
         return longestLength;
     }
 

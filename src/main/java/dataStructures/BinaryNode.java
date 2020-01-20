@@ -5,6 +5,16 @@ package dataStructures;
 // of package DataStructures
 
 public class BinaryNode {
+
+	// Friendly data; accessible by other package routines
+	Comparable element; // The data in the node
+	public BinaryNode left; // Left child
+	public BinaryNode right; // Right child
+	public BinaryNode parent;
+	public int data;
+	// this field is required for special BST with an additional random pointer
+	public BinaryNode random;
+
 	// Constructors
 	BinaryNode(Comparable theElement) {
 		this(theElement, null, null);
@@ -20,14 +30,7 @@ public class BinaryNode {
 		data = i;
 	}
 
-	// Friendly data; accessible by other package routines
-	Comparable element; // The data in the node
-	public BinaryNode left; // Left child
-	public BinaryNode right; // Right child
-	public BinaryNode parent;
-	public int data;
-	// this field is required for special BST with an additional random pointer
-	public BinaryNode random;
+
 
 	public int getData() {
 		return data;

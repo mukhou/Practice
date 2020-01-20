@@ -20,7 +20,6 @@ import java.util.Arrays;
 public class LongestIncreasingSubsequenceInArray {
 
     private static int longestIncreasingSubsequence(int[] arr) {
-
         if (arr.length == 0) {
             return 0;
         }
@@ -59,14 +58,6 @@ public class LongestIncreasingSubsequenceInArray {
 
         }
 
-        //number
-        int count = 0;
-        for(int k = 0; k < maxLengthTable.length; k++) {
-            if(maxLengthTable[k] == maximumSoFar - 1){
-                count++;
-            }
-        }
-        System.out.println("Number of longest subsequences are: " + count);
         return maximumSoFar;
     }
 

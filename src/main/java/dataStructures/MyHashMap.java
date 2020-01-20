@@ -10,6 +10,7 @@ public class MyHashMap<K, V> {
         private final K key;
         V value;
         MyHashMap.Entry<K, V> next;
+        //this field is required only for LinkedHashMap
         MyHashMap.Entry<K, V> prev;
         int hash;
 
@@ -39,6 +40,7 @@ public class MyHashMap<K, V> {
 
     }
 
+    //IMP: array of Entry objcts
     private Entry<K, V>[] table;
 
     //adding object
@@ -71,6 +73,7 @@ public class MyHashMap<K, V> {
         }
 
         // new entry, i.e. this key not exist in map
+        //key, value, hashcode, next
         Entry<K, V> e = new Entry(key, value, key.hashCode(), first);
         //set the index of the entry in the entry array
         table[index] = e;

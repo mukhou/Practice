@@ -23,6 +23,7 @@ public class LRUCache {
 
     private int capacity;
     HashMap<Integer, Node> map = null;
+    //start and end pointers of cache
     Node head = null;
     Node tail = null;
 
@@ -52,9 +53,9 @@ public class LRUCache {
             //create node
             Node created = new Node(key, value);
             if(map.size() >= capacity){
-                //remove LRU, which is the tail node
-                map.remove(tail.key);
-                remove(tail);
+                //IMP: remove LRU, which is the head node
+                map.remove(head.key);
+                remove(head);
                 setTail(created);
             }else {
                 setTail(created);
@@ -80,7 +81,9 @@ public class LRUCache {
         }
     }
 
-
+    //ATM: at this stage, the remove(n) method has already been called
+    //so the next and prev pointers of the nodes previous and next of n are already set
+    //now you only need to update next and prev pointers of n so that it becomes the new tail
     private void setTail(Node n) {
         if(tail != null){
             tail.next = n;

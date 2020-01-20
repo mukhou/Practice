@@ -45,7 +45,7 @@ public class VowelsInString {
         return result.size();
     }
 
-    private static Set<Character> createVowels() {
+    public static Set<Character> createVowels() {
         Set<Character> allVowels = new HashSet<>();
         allVowels.add('a');
         allVowels.add('e');

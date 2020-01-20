@@ -51,10 +51,7 @@ public class BiNodeToDoublyLinkedList {
     }
 
     private static BiNode getTail(BiNode node) {
-        if(node == null){
-            return null;
-        }
-        while(node.right != null){
+        while(node != null && node.right != null){
             node = node.right;
         }
         return node;

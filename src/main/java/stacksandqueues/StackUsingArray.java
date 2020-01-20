@@ -38,6 +38,11 @@ public class StackUsingArray {
 		stack[++top] = item;
 	}
 
+
+	public int getSize(){
+		return top + 1;
+	}
+
 	/**
 	 * IMP: Sort a stack such that the smallest elements are on top.
 	 * Can use additional stack
@@ -56,8 +61,5 @@ public class StackUsingArray {
 		return s2;
 	}
 
-    public int getSize(){
-        return top + 1;
-    }
 
 }
