@@ -22,10 +22,8 @@ public class LinkedList {
 
 	/**
 	 * IMPORTANT: BLOOMBERG INTERVIEW QUESTION
-	 * Given head of a linked list and a data value, remove all those nodes from the list
-	 * whose data matches the given value.
+	 * Given head of a linked list and a data value, remove all those nodes from the list whose data matches the given value.
 	 */
-
 	public static Node removeNodesWithValue(Node head, int data){
 		if(head == null){
 			return null;
@@ -33,7 +31,6 @@ public class LinkedList {
 		while((int)head.data == data){
 			head = head.next;
 		}
-
 		Node prev = head;
 		Node temp = head.next;
 		while(temp != null){
@@ -49,9 +46,36 @@ public class LinkedList {
 		return head;
 	}
 
-    /**
-     *
-     */
+	/**
+	 * IMPORTANT: Remove duplicates from a linked list
+	 * A -> B -> A -> C
+	 * ALGORITHM:
+	 * 1. For each node(starting from head, keep track of previous and next
+	 * 2. Remove if the dups
+	 */
+	public static Node removeDuplicates(Node head){
+		if(head == null){
+			return null;
+		}
+		//two pointers to track prev and next
+		//EXACTLY LIKE removeNodesWithValue()
+		Node prev = head;
+		Node temp = head.next;
+		while(temp != null){
+			if(prev.data == temp.data){
+				prev.next = temp.next;
+				temp.next = null;
+				//IMP: move temp forward by setting prev.next
+				temp = prev.next;
+			}else {
+				prev = temp;
+				temp = temp.next;
+			}
+		}
+		return head;
+	}
+
+
     public static void printLL(Node n) {
         Node temp;
         boolean isInSequence = false;
@@ -129,7 +153,6 @@ public class LinkedList {
 	 */
 	public Node addNodeAtIndex(Object data, int index){
 		// inserts the specified element at the specified position in this list.
-
 		Node temp = new Node(data);
         temp.next = null;
 
@@ -143,7 +166,7 @@ public class LinkedList {
             return head;
         }
         else{
-            //find the node which is at (index -1)
+            //find the node which is at the previous index (index -1)
             Node current = head;//5
             while((index - 1) > 0 && current.next != null){
                 current = current.next;//6, 12
@@ -161,13 +184,16 @@ public class LinkedList {
 	 * Retrieves the data at the current node	 
 	 */
 	public Object getObjectAtIndex(int index){
-		
-		if(index<=0){
+		if(index < 0){
 			return null;
 		}
-		Node current = head.getNext();
-		for(int i=1; i < index && current.getNext() != null; i++){
-			current = current.getNext();
+		if(index == 0){
+			return head;
+		}
+
+		Node current = head.next;
+		for(int i = 1; i < index && current.next != null; i++){
+			current = current.next;
 		}
 		// return the data of the traversed node
 		return current.getData();
@@ -189,13 +215,11 @@ public class LinkedList {
 	public static Node findNodeFromEnd(Node head, int n){
         Node p1 = head;
         Node p2 = head;
-
         while(n - 1 > 0){
         	p2 = p2.next;
         	n --;
 		}
-
-
+		//EXACTLY SAME AS removeFromEnd()
 		while(p2.next != null){
         	p1 = p1.next;
         	p2 = p2.next;
@@ -203,24 +227,25 @@ public class LinkedList {
 		return p1;
 	}
 
-
 	private static Node removeFromEnd(Node head, int n){
 		Node p1 = head;
 		Node p2 = head;
 
-		while(n -- > 0){
+		while(n > 0){
 			p2 = p2.next;
+			n --;
 		}
 
 		//IMP: p2 null, means need to remove the first or head node, so return head.next
 		if(p2 == null){
 			return head.next;
 		}
-
+		//IMP: check on p2.next
 		while (p2.next != null){
 			p1 = p1.next;
 			p2 = p2.next;
 		}
+		//IMP: at this point, p2 will be on the last node pointing to null, if n was 1
 		p1.next = p1.next.next;
 		return head;
 	}
@@ -288,9 +313,6 @@ public class LinkedList {
 			current = current.prev;//seems travelling backward, but actually moving forward,
 			// as the prev is now the next of the original list
 		}
-
-     /* Before changing head, check for the cases like empty
-        list and list with only one node */
 		//#################IMPORTANT########################
 		if (temp != null) {
 			head = temp.prev;
@@ -316,7 +338,7 @@ public class LinkedList {
 			return node;
 		}
 
-		// Otherwise, keep going on node.prev(similar to iterative version)
+		// RECURSE ON "node.prev", EXACTLY SAME LIKE DLL ITERATIVE
 		return reverseDoublyLinkedListRecursive(node.prev);
 	}
 
@@ -339,9 +361,8 @@ public class LinkedList {
 			clone.random = map.get(originalHead.random);
 			originalHead = originalHead.next;
 		}
-
+		//IMP: return start of cloned head
 		return map.get(head);
-
 	}
 
 	// FOLLOW THIS: Recursive
@@ -394,7 +415,6 @@ public class LinkedList {
 		return newHead;
 	}
 
-
 	//EXACTLY SIMILAR LIKE a) mergesort b) merge two sorted arrays
 	static Node mergeListsIter(Node headA, Node headB) {
 
@@ -430,8 +450,8 @@ public class LinkedList {
 	}
 
 	//https://www.techiedelight.com/efficiently-merge-k-sorted-linked-lists/
-    //IDEA: This problem can be solved in by min heap. The idea is to construct a min heap
-    // of size k and insert first node of each list in it. Then we pop the root node(extract min) and
+    //IDEA: This problem can be solved in by min heap. The idea is to construct a min heap of size k
+    // and insert first node of each list in it. Then we pop the root node(extract min) and
     // insert next node of "same" list as popped node. Repeat this process until heap is exhausted.
     // time compelxity:  O(N log(K))
 	static Node mergeKSortedLists(Node[] list, int k){
@@ -441,7 +461,6 @@ public class LinkedList {
         for(int i = 0; i < k; i++){
             queue.add(list[i]);
         }
-
         // take two pointers head and tail where head points to the first node
         // of the output list and tail points to its last node
         Node head = null, tail = null;
@@ -463,9 +482,7 @@ public class LinkedList {
                 queue.add(min.next);
             }
         }
-
         return head;
-
     }
 
 	/**
@@ -474,12 +491,12 @@ public class LinkedList {
 	 * 1. We first count the number of nodes in the given Linked List. Let the count be n.
 	 * 2. After counting nodes, we take left n/2 nodes and recursively construct the left subtree.
 	 * 3. After left subtree is constructed, we allocate memory for root and link the left subtree with root.
-	 * 4. Finally, we recursively construct the right subtree and link it with root. While constructing the BST,
-	 *    we also keep moving the list head pointer to next so that we have the appropriate pointer in each recursive call.
+	 * 4. Finally, we recursively construct the right subtree and link it with root.
+	 * While constructing the BST, we also keep moving the list head pointer to next so that we have the appropriate pointer in each recursive call.
 	 */
 	//https://www.geeksforgeeks.org/sorted-linked-list-to-balanced-bst/
 	BinaryNode sortedListToBST(Node head){
-		int count = countNodes(head);
+		int count = getCount(head);
 		return sortedListToBSTRecur(head, count);
 	}
 
@@ -509,23 +526,12 @@ public class LinkedList {
 		return root;
 	}
 
-	private int countNodes(Node head) {
-		int count = 0;
-		Node temp = head;
-		while(temp != null){
-			temp = temp.next;
-			count ++;
-		}
-		return count;
-	}
-
-
 	/*
       Find merge point of two linked lists
       head pointer input could be NULL as well for empty list
       ALGORITHM: compare each node of one head with all heads of other
-
     */
+	//BAD APPROACH DUE TO TIME COMPLEXITY, CHECK intersectionOfTwoLinkedLists() method
     int findMergeNode(Node headA, Node headB) {
         // ATM: two while loops
         while(headA != null){
@@ -580,8 +586,8 @@ public class LinkedList {
 
 	/**
 	 * Given a singly linked list, rotate the linked list counter-clockwise by k nodes, where k is a given positive integer.
-	 * For example, if the given linked list is 10->20->30->40->50->60 and k is 4, 
-	 * the list should be modified to 50->60->10->20->30->40. 
+	 * For example, if the given linked list is 10->20->30->40->50->60->NULL and k is 4,
+	 * the list should be modified to 50->60->10->20->30->40->NULL
 	 * Assume that k is smaller than the count of nodes in linked list.
 	 * Link: http://www.geeksforgeeks.org/rotate-a-linked-list/
 	 * Idea: To rotate the linked list, we need to do this IN REVERSE ORDER:
@@ -595,20 +601,18 @@ public class LinkedList {
 	 * 3. Keep traversing till end and store pointer to last node also.
 	 * 4. Finally, change pointers as stated above.
 	 */
-	
-	public void rotateLinkedList(Node head, int k){
-		if(k == 0) return;
+	public Node rotateLinkedList(Node head, int k){
+		if(k == 0) return head;
 		Node current = head;
-		int counter = 0;
 		// traverse till the kth node
 	   //  current will point to node 40 in the above example
-		while(counter < k && current.next != null){
+		while(k > 0 && current.next != null){
 			current = current.next;
-			counter ++;
+			k --;
 		}
 		 // If current is NULL, k is greater than or equal to count
 	    // of nodes in linked list. Don't change the list in this case
-	    if (current == null) return;
+	    if (current == null) return head;
         // got kth node
 	    Node k_th_Node = current;
 	    
@@ -620,7 +624,6 @@ public class LinkedList {
 	    while(current.next != null){
 	    	current = current.next;
 	    }
-	    
 	    // Change next of last node to previous head
 	    // Next of 60 is now changed to node 10
 	    current.next = head;
@@ -630,7 +633,8 @@ public class LinkedList {
 	    // change next of kth node to NULL
 	    // next of 40 is now NULL
 	    k_th_Node.next = null;
-	    
+
+	    return head;
 	}
 	
 	/**
@@ -678,7 +682,7 @@ public class LinkedList {
 	
 	// https://www.geeksforgeeks.org/write-a-function-to-get-the-intersection-point-of-two-linked-lists/
 	public static int intersectionOfTwoLinkedLists(Node headA, Node headB){
-
+		//add null checks
 		int len1 = getCount(headA);
 		int len2 = getCount(headB);
 		return len1 > len2 ? getIntesectionNode(len1 - len2, headA, headB) : getIntesectionNode(len2 - len1,  headB, headA);
@@ -731,13 +735,12 @@ public class LinkedList {
 	 * 2. if left + right > 10, then carry a 1 to the next addition.
 	 * 3. add the tails of the two nodes, passing along the carry.
 	 */
-
 	//first call, carry is 0
 	public static Node addTwoLinkedLists(Node n1, Node n2, int carry){
 		if(n1 == null && n2 == null){
 			return null;
 		}
-		Node result = new Node(carry);
+		Node result = new Node(carry);//0 initially
 		int value = carry;
 		if(n1 != null){
 			value += ((Integer)n1.data).intValue();
@@ -747,11 +750,9 @@ public class LinkedList {
 		}
 		result.data = value % 10;
 		//RECURSIVE CALL
-		Node temp = addTwoLinkedLists(n1 == null ? null : n1.next,
+		result.next = addTwoLinkedLists(n1 == null ? null : n1.next,
 									  n2 == null ? null : n2.next,
 									 value >= 10 ? 1 : 0);
-		//set next
-		result.setNext(temp);
 		return result;
 		
 	}
@@ -837,17 +838,16 @@ public class LinkedList {
         if(head==null)
             return null;
 
-        //need two pointers here: prev and current(initialized to head)
-        // 1. prev to keep track
-        // 2. current to be the one deleted
-        Node current = head;
-        Node prev = null;
-
         if(index == 0){
             head = head.next;
-            current.next = null;
             return head;
         }
+
+		//need two pointers here: prev and current(initialized to head)
+		// 1. prev to keep track
+		// 2. current to be the one deleted
+		Node current = head;
+		Node prev = null;
 
         //ATM: only check on index and nothing else
         //prev should land at (index - 1), current should be at index
@@ -880,38 +880,6 @@ public class LinkedList {
 		return current;
 	}
 
-	
-	/**
-	 * IMPORTANT: Remove duplicates from a linked list
-	 * A -> B -> A -> C
-	 * ALGORITHM:
-	 * 1. For each node(starting from head, keep track of previous and next
-	 * 2. Remove if the dups
-	 */
-	public static Node removeDuplicates(Node head){
-
-		if(head == null){
-			return null;
-		}
-
-		//two pointers to track prev and next
-		Node prev = head;
-		Node temp = head.next;
-
-		while(temp != null){
-			if(prev.data == temp.data){
-				prev.next = temp.next;
-				temp.next = null;
-				//IMP: move temp forward by setting prev.next
-				temp = prev.next;
-			}else {
-				prev = temp;
-				temp = temp.next;
-			}
-		}
-		return head;
-	}
-	
 	/** 
 	 * Find the middle of a linked list.
 	 * Algorithm:
@@ -961,68 +929,55 @@ public class LinkedList {
         }
         return false;
 	}
-	
-	/**
-	 * Find the meeting node of two pointers if there is a loop in a list.
-	 * 
-	 */
-	public Node meetingNodeInLoop(Node headNode){
-		Node p1 = head, p2 = head;
-		while(p2.next != null){
-			p2 = p2.next;
-			if(p2.next != null){
-				p1 = p1.next;
-				p2 = p2.next;
-			}
-			if(p1 == p2){
-				return p1;
-			}
-		}
-		return null;
-	}
-	
+
 	/**
 	 * IMPORTANT: Find the number of nodes in a loop of a list, and the entry node of loop. 
 	 */
-	public void numberOfNodesInLoop(Node headNode){
+	public int numberOfNodesInLoop(Node headNode){
+		Node slow = headNode, fast = headNode;
+		while (slow != null && fast != null && fast.next != null){
+			fast = fast.next.next;
+			slow = slow.next;
 
-		// find meeting point of nodes
-		Node meetPoint = meetingNodeInLoop(headNode);
-		if(meetPoint == null){
-			return;
+			if(slow == fast){
+				return countLoopNodes(slow);
+			}
 		}
-		// get the number of nodes in loop
-		int nodeCountInLoop = 1;
-		Node temp1 = meetPoint;
-		while(temp1.next != meetPoint){
-			++nodeCountInLoop;
-		}
-		System.out.println(nodeCountInLoop);
+		return 0;
+	}
 
+	private int countLoopNodes(Node slow) {
+		int count = 1;
+		Node temp = slow;
+		while (temp.next != slow){
+			slow = slow.next;
+			++count;
+		}
+		return count;
 	}
 
 	/**
 	 * Find start of loop in a linked list
 	 */
 	private static void findStartOfLoopInLinkedList(Node head){
-		Node p1 = head, p2 = head;
-		while(p2.next != null){
-			p2 = p2.next;
-			if(p2.next != null){
-				p1 = p1.next;
-				p2 = p2.next;
+		Node slow = head, fast = head;
+		while(fast.next != null){
+			fast = fast.next;
+			if(fast.next != null){
+				slow = slow.next;
+				fast = fast.next;
 			}
-			if(p1 == p2){
+			if(slow == fast){
 				break;
 			}
 		}
 		//initialize p1(slow) to head and keep p2 where it was
-		p1 = head;
-		while(p1 != p2){
-			p1 = p1.next;
-			p2 = p2.next;
+		slow = head;
+		while(slow != fast){
+			slow = slow.next;
+			fast = fast.next;
 		}
-		System.out.println(p1.data);
+		System.out.println(slow.data);
 	}
 
 	/**
@@ -1033,18 +988,17 @@ public class LinkedList {
 	 *    and checking if p1 == p2. Additionally keep track of previous of p2, as when p1 meets p2, the loop begins.
 	 *    Hence we need to break that meeting point.
 	 *  3. Set previous pf p2 to null
-	 *
 	 */
 	private static boolean detectAndRemoveLoop(Node head){
-		Node p1 = head, p2 = head;
+		Node slow = head, fast = head;
 		boolean hasLoop = false;
-		while(p2.next != null){
-			p2 = p2.next;
-			if(p2.next != null){
-				p1 = p1.next;
-				p2 = p2.next;
+		while(fast.next != null){
+			fast = fast.next;
+			if(fast.next != null){
+				slow = slow.next;
+				fast = fast.next;
 			}
-			if(p1 == p2){
+			if(slow == fast){
 				hasLoop = true;
 				break;
 			}
@@ -1054,19 +1008,17 @@ public class LinkedList {
 			return false;
 		}
 		//initialize p1(slow) to head and keep p2 where it was
-		p1 = head;
-		Node prevOfP2 = null;
-		while(p1 != p2){
-			p1 = p1.next;
-			prevOfP2 = p2;
-			p2 = p2.next;
+		slow = head;
+		Node prevOfFast = null;
+		while(slow != fast){
+			slow = slow.next;
+			prevOfFast = fast;
+			fast = fast.next;
 		}
-		prevOfP2.next = null;
+		prevOfFast.next = null;
 		printLinkedList(head);
 		return true;
 	}
-
-
 
     /**
      * Determine if a given linked list is palindrome
@@ -1075,16 +1027,16 @@ public class LinkedList {
      * 2. then reverse the second list and compare two sublists.
      */
     //time complexity:  O(n) and space complexity: O(1).
-    public  static boolean isPalindrome(Node head){
+	//ATM: check on fast for next and next.next
+    public static boolean isPalindrome(Node head){
         Node slow = head, fast = head;
-
         if (head != null && head.next != null) {
             /* Get the PRIOR TO THE  middle of the list. */
             while (fast.next != null && fast.next.next != null) {
                 fast = fast.next.next;
                 slow = slow.next;
             }
-            // IMP: second half should be next of slow, as at this point, we the in the previous node of middle node
+            //IMP: second half should be next of slow, as at this point, we the in the previous node of middle node
             Node second_half = slow.next;
             slow.next = null; // NULL terminate first half
             Node reversed = reverseListIterative(second_half);
@@ -1093,6 +1045,7 @@ public class LinkedList {
                 if(reversed.data != temp.data){
                     return false;
                 }
+                //move both nodes forward
                 temp = temp.next;
                 reversed = reversed.next;
             }
@@ -1111,18 +1064,18 @@ public class LinkedList {
 	 */
 
 	public static int findMedianOfLinkedList(Node head){
-		Node p1 = head, p2 = head, prevOfP1 = head;
-		while(p2 != null && p2.next != null){
+		Node slow = head, fast = head, prevOfSlow = head;
+		while(fast != null && fast.next != null){
 			//fast pointer
-			p2 = p2.next.next;
-			prevOfP1 = p1;
-			p1 = p1.next;
+			fast = fast.next.next;
+			prevOfSlow = slow;
+			slow = slow.next;
 		}
 
-		if(p2 != null){
-			return (int)p1.data;
+		if(fast != null){
+			return (int)slow.data;
 		}else {
-			return ((int)prevOfP1.data + (int)prevOfP1.data )/ 2;
+			return ((int)prevOfSlow.data + (int)slow.data )/ 2;
 		}
 
 	}
@@ -1139,8 +1092,8 @@ public class LinkedList {
      */
 	public Node findPreviousNode(Node x){
 		Node current = head;
-		while(current.getNext() != null && !(current.getNext().equals(x))){
-			current = current.getNext();
+		while(current.next != null && !(current.next.equals(x))){
+			current = current.next;
 		}
 		return current;
 	}
@@ -1151,19 +1104,15 @@ public class LinkedList {
 	 * 2. Set the next of this node as next of next.
 	 */
 	public void remove(Node x){
-		Node prev = findPreviousNode(x);		
-		if(prev.getNext().getNext() != null){
-			Node temp = prev.getNext().getNext();
-			remove(x);
-			// Bypass deleted node
-			prev.setNext(temp);
+		Node prev = findPreviousNode(x);
+		Node next = x.next;
+		if(prev != null && next != null){
+			prev.setNext(next);
 		}
 	}
-
 	
 	/**
-	 * Flatten a linked list
-	 * 
+	 * Flatten a linked list.
 	 */
 	public void flatten(Node node) {
 		 while (node != null) {
@@ -1198,6 +1147,7 @@ public class LinkedList {
 	}
 
 	public static void main(String[] args){
+		LinkedList ll = new LinkedList();
 		Node head = new Node(1);
 		Node second = new Node(2);
 		Node third = new Node(3);
@@ -1218,12 +1168,37 @@ public class LinkedList {
 		System.out.println("#########################");
 		System.out.println("#########################");
 		System.out.println("#########################");
-		System.out.println("#########################");
 		//printLinkedList(new LinkedList().reverseListRecursive(head, null));
 		/*Node newHead = reverseDoublyLinkedListRecursive(head);
 		printLinkedList(newHead);*/
-		Node head1 = new Node(1);
-		printLinkedList(removeFromEnd(head1, 1));
+		Node headr = new Node(1);
+		Node secondr = new Node(2);
+		Node thirdr = new Node(3);
+		Node fourthr = new Node(4);
+		Node fifthr = new Node(5);
+		headr.next = secondr;
+		secondr.next = thirdr;
+		thirdr.next = fourthr;
+		fourthr.next = fifthr;
+		System.out.println("remove from end $$$$$$$$$$$$$$");
+		printLinkedList(removeFromEnd(headr, 1));
+		System.out.println("#########################");
+		System.out.println("#########################");
+		System.out.println("#########################");
+
+		//numberOfNodesInLoop
+		Node headL = new Node(1);
+		Node secondL = new Node(2);
+		Node thirdL = new Node(3);
+		Node fourthL = new Node(4);
+		headL.next = secondL;
+		secondL.next = thirdL;
+		thirdL.next = fourthL;
+		fourthL.next = secondL;
+		System.out.println("&&&&&&&&&&&&& number of loop nodes");
+		System.out.println(ll.numberOfNodesInLoop(headL));
+
+
 		//printLinkedList(reverseDoublyLinkedListIterative(head));
 		//printLinkedList(removeNodesWithValue(head, 1));
 
@@ -1266,7 +1241,7 @@ public class LinkedList {
         pHead.next = new Node(2);
         pHead.next.next = new Node(3);
         pHead.next.next.next = new Node(2);
-        pHead.next.next.next.next = new Node(2);
+        pHead.next.next.next.next = new Node(1);
         System.out.println(isPalindrome(pHead));
 		/*Node head = new Node(1);
 		Node second = new Node(2);
@@ -1286,7 +1261,6 @@ public class LinkedList {
 		Node newHead = mergeListsIter(headA, headB);
 		*/
 
-
         /*Node headA = new Node(0);
         Node secA = new Node(1);
         Node thrA = new Node(1);
@@ -1303,8 +1277,7 @@ public class LinkedList {
 	}
 
 	public static void printLinkedList(Node head){
-		while (head != null)
-		{
+		while (head != null)		{
 			System.out.print( head.data + " ");
 			head = head.next;
 		}

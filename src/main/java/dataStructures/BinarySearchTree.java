@@ -1470,6 +1470,33 @@ public class BinarySearchTree {
 			return t; // Match
 	}
 
+	private static void printPreOrder(BinaryNode root){
+		if(root == null){
+			return;
+		}
+		System.out.println(root.data);
+		printPreOrder(root.left);
+		printPreOrder(root.right);
+	}
+
+	private static void printInOrder(BinaryNode root){
+		if(root == null){
+			return;
+		}
+		printInOrder(root.left);
+		System.out.println(root.data);
+		printInOrder(root.right);
+	}
+
+	private static void printPostOrder(BinaryNode root){
+		if(root == null){
+			return;
+		}
+		printPostOrder(root.left);
+		printPostOrder(root.right);
+		System.out.println(root.data);
+	}
+
 	public static void main(String[] args) {
 		// BinarySearchTree t = new BinarySearchTree();
 		// final int NUMS = 4000;
@@ -1498,12 +1525,25 @@ public class BinarySearchTree {
 			System.out.println(stack.pop());
 		}*/
 
+		//print preorder
+		System.out.println("$$$$$$$$$$$$ Printing pre order");
+		printPreOrder(binarySearchTree.root);
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+		System.out.println("$$$$$$$$$$$$ Printing in order");
+		printInOrder(binarySearchTree.root);
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+		System.out.println("$$$$$$$$$$$$ Printing psot order");
+		printPostOrder(binarySearchTree.root);
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
 		//find path from root to node
 		System.out.println("%%%%%%%%%%%%%%%%%%%%%%   findPathFromRootToNode" );
 		findPathFromRootToNode(binarySearchTree.root, right.right);
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 
@@ -1511,9 +1551,6 @@ public class BinarySearchTree {
 		System.out.println("kth largest element is: ");
 		System.out.println(KthLargestNode(binarySearchTree.root, 3).data);
 
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 
@@ -1532,18 +1569,13 @@ public class BinarySearchTree {
 
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-
 
 		///System.out.println(maxWidth(binarySearchTree.root));
 
 		/*System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
 		inorderTraversalUsingStack(binarySearchTree.root);*/
 		/*BinaryNode right2 = right.right;
 		right2.left = new BinaryNode(7);
@@ -1600,7 +1632,6 @@ public class BinarySearchTree {
 		if (root == null) {
 			return;
 		}
-
 		// print data
 		System.out.print(root.data + " -> (");
 
