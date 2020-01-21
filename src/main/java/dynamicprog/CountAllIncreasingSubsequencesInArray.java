@@ -27,19 +27,17 @@ public class CountAllIncreasingSubsequencesInArray {
     //Time Complexity : O(n2)
     //Auxiliary Space : O(n)
     private static int countAllIncreasingSubsequences(int[] arr){
-
         if (arr.length == 0) {
             return 0;
         }
-
         int[] countTable = new int[arr.length];
-        Arrays.fill(countTable, 1);
+        Arrays.fill(countTable, 1);//SAME AS longest increasing subsequenc
 
         for(int i = 1; i < arr.length; i++){
             for(int j = 0; j < i; j++){
                 if(arr[i] > arr[j]){
                     //Similar to LIS, only NO NEED TO FIND MAX, JUST INCREASE COUNT
-                    countTable[i]+= countTable[j];
+                    countTable[i] += countTable[j];
                 }
             }
         }

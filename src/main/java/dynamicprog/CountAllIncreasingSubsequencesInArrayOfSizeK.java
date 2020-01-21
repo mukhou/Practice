@@ -14,15 +14,12 @@ Time: 11:19 AM
  */
 package dynamicprog;
 
-import java.util.Arrays;
-
 //https://www.geeksforgeeks.org/count-number-increasing-subsequences-size-k/
 public class CountAllIncreasingSubsequencesInArrayOfSizeK {
 
     //Time Complexity: O(kn2).
     //Auxiliary Space: O(kn).
     private static int countAllIncreasingSubsequencesOfSizeK(int[] arr, int k){
-
         if (arr.length == 0) {
             return 0;
         }
@@ -30,19 +27,14 @@ public class CountAllIncreasingSubsequencesInArrayOfSizeK {
         int[][] countTable = new int[k][arr.length];
         //The idea is to use stored precomputed results in a dp table.
         // countTable[i][j] stores the count of increasing subsequences of size i ending with element arr[j].
-        // So countTable[i][j] can be defined as:
-        //countTable[i][j] = 1, where i = 1 and 1 <= j <= n
-        //countTable[i][j] = countTable(countTable[i-1][j]), where 1 < i <= k, i <= j <= n and arr[m] < arr[j] for (i-1) <= m < j.
         for(int i = 0; i < arr.length; i++){
             // default value count of increasing subsequences of size 1 ending at each arr[i]
-            countTable[0][i] = 1;
+            countTable[0][i] = 1;//A single item for siza k = 0 is neither increasing or decreasing
         }
 
 
         // building up the matrix dp[][]. Here 'l' signifies the size of increasing subsequence of size (l+1).
-        //len starts from 1, as we check backwards
         //ATM: THE OUTERMOST LOOP IS JUST FOR CONTROLLING SIZE OF SUBESQUENCE,
-        //REST OF THE LOGIC IS EXACTLY SAME AS CountAllIncreasingSubsequencesInArray
         for(int len = 1; len < k; len++){
             // for each increasing subsequence of size 'l' ending with element arr[i]
             for(int i = len; i < arr.length; i ++){
@@ -51,7 +43,7 @@ public class CountAllIncreasingSubsequencesInArrayOfSizeK {
                 countTable[len][i] = 0;
                 for(int j = len - 1; j < i; j++){
                     if(arr[i] > arr[j]){
-                        //EXACTLY LIKE CountAllIncreasingSubsequencesInArray logic: countTable[i]+= countTable[j];
+                        //EXACTLY LIKE CountAllIncreasingSubsequencesInArray logic: countTable[i] += countTable[j];
                         countTable[len][i] += countTable[len - 1][j];
                     }
                 }

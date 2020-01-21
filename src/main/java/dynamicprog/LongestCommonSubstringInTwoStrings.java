@@ -22,7 +22,7 @@ public class LongestCommonSubstringInTwoStrings {
         // common suffix of X[0..i-1] and Y[0..j-1].
         // IMP: The first row and first column entries have no logical meaning, they are used only
         // for simplicity of program
-        int longestLengthTable[][] = new int[m + 1][n + 1];
+        int maxLengthTable[][] = new int[m + 1][n + 1];
         int longestLength = 0;
 
         /* IMP: s2 will be on the rows(i iteration), s1(j iteration) will be on the columns.
@@ -30,12 +30,12 @@ public class LongestCommonSubstringInTwoStrings {
         for(int i = 0; i <= m; i++){
             for(int j = 0; j <= n; j++){
                 if(i == 0 || j == 0){
-                    longestLengthTable[i][j] = 0;
+                    maxLengthTable[i][j] = 0;
                 }else if(s1.charAt(i - 1) == s2.charAt(j - 1)){//IMP: check equality of chars at prev index
-                    longestLengthTable[i][j] = longestLengthTable[i - 1][j - 1] + 1;
-                    longestLength = Math.max(longestLength, longestLengthTable[i][j]);
+                    maxLengthTable[i][j] = maxLengthTable[i - 1][j - 1] + 1;
+                    longestLength = Math.max(longestLength, maxLengthTable[i][j]);
                 }else {
-                    longestLengthTable[i][j] = 0;
+                    maxLengthTable[i][j] = 0;
                 }
             }
         }
@@ -43,11 +43,11 @@ public class LongestCommonSubstringInTwoStrings {
     }
 
     public static void main(String[] args){
-        /*String X = "GeeksforGeeks";
-        String Y = "GeeksQuiz";*/
+        String X = "GeeksforGeeks";
+        String Y = "GeeksQuiz";
 
-        String X = "OldSite:GeeksforGeeks.org";
-        String Y = "NewSite:GeeksQuiz.com";
+        /*String X = "OldSite:GeeksforGeeks.org";
+        String Y = "NewSite:GeeksQuiz.com";*/
 
         int m = X.length();
         int n = Y.length();

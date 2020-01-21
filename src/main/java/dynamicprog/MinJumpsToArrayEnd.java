@@ -19,7 +19,7 @@ public class MinJumpsToArrayEnd {
     private static int minJumpsDynamic(int[] arr){
 
         //if first element is 0, no further jumps
-        if(arr[0] == 0){
+        if(arr[0] == 0 || arr.length == 0){
             return Integer.MAX_VALUE;
         }
 
@@ -27,8 +27,7 @@ public class MinJumpsToArrayEnd {
         int[] jumps = new int[arr.length];
         jumps[0] = 0;
 
-        // IMP: Find the minimum number of jumps to reach arr[i] from arr[0]
-        // and assign this value to jumps[i]
+        //find min no. of jumps from 0 -> i(arr[0] to arr[i]) and assign the value to arr[i]
         for (int i = 1; i < arr.length; i++) {
             jumps[i] = Integer.MAX_VALUE;
             for (int j = 0; j < i; j++) {
@@ -75,7 +74,7 @@ public class MinJumpsToArrayEnd {
 
     // Driver code
     public static void main(String args[]){
-        int arr[] = { 3, 2, 1, 0, 4 };
+        int arr[] = { 3, 2, 1, 1, 4 };
         int n = arr.length;
         System.out.println("Minimum number of jumps to reach end is "
                 + minJumps(arr));

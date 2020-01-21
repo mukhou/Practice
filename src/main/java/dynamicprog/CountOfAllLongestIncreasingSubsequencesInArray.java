@@ -31,6 +31,8 @@ public class CountOfAllLongestIncreasingSubsequencesInArray {
             maximumSoFar = Math.max(maximumSoFar, countTable[i]);
         }
 
+        System.out.println(Arrays.toString(countTable));
+
         //count
         //IDEA: we know the maximum length of the subsequence, so any time we see a length
         //less than that, we increase the count.
@@ -41,6 +43,11 @@ public class CountOfAllLongestIncreasingSubsequencesInArray {
             }
         }
         return count;
+    }
+
+    public static void main(String[] args){
+        int[] arr2 = {5, 4, 0, 1};
+        System.out.println(countAllLongestIncreasingSubsequences(arr2));
     }
 
 }

@@ -20,6 +20,7 @@ import java.util.Arrays;
 //https://www.geeksforgeeks.org/min-cost-path-dp-6/
 public class MinimumCostPath {
 
+    //(m, n) is zero index based
     private static int minCostPath(int[][]matrix, int m, int n){
 
         int[][] costTable = new int[m + 1][n + 1];
@@ -27,24 +28,13 @@ public class MinimumCostPath {
          //Initialize first column of total cost(tc) array
         for(int i = 1; i <= m; i++){
             //making use of previous subproblems
-            costTable[i][0] = costTable[i - 1][0] + matrix[i][0];
-        }
-        for(int i = 0; i < costTable.length; i++){
-            System.out.println(Arrays.toString(costTable[i]));
+            costTable[i][0] = matrix[i][0] + costTable[i - 1][0];
         }
          //Initialize first row of tc array
         for(int j = 1; j <= n; j++){
             //making use of previous subproblems
-            costTable[0][j] = costTable[0][j - 1] + matrix[0][j];
+            costTable[0][j] = matrix[0][j] + costTable[0][j - 1];
         }
-
-        System.out.println("#####################");
-
-        for(int i = 0; i < costTable[0].length; i++){
-            System.out.println(Arrays.toString(costTable[i]));
-        }
-
-
         /* Construct rest of the tc array */
         for(int i = 1; i <= m; i++){
             for(int j = 1; j <= n; j++){

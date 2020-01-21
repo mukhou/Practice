@@ -24,17 +24,15 @@ public class CanJumpToArrayEnd {
             return false;
         }
 
-        // jumps[arr.length - 1] will hold the
+        /**jumps[] will store the result of every index, that is,
+         * if they are reachable or not, true indicates that there
+         * exists one or more jump combinations to reach that index,
+         * and no jump combination exist in case of a false*/
         boolean[] jumps = new boolean[arr.length];
         jumps[0] = true;/* first index is always reachable, as this is the position we start from*/
 
         for(int currPos = 0; currPos < arr.length; currPos++){
-            /* IMP: if the index we are currently at is not reachable from
-             * 0th index, then we obviously can not make further jumps
-             * from this position.
-             * Also, number of jumps possible from the current position
-             * needs to be greater than zero, as in case of zero, we can
-             * not move to any other position by making a jump*/
+            //IMP: check if 1) curr_pos has > 0 value and 2) is true
             if(jumps[currPos] && arr[currPos] > 0){
                 int maxJumps = arr[currPos];
                 /* IMP: mark all the reachable positions from current position to true

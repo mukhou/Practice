@@ -31,53 +31,11 @@ public class LongestCommonSubsequenceInTwoStrings {
                      * without either final character. That is the answer to this subproblem.*/
                     maxLengthTable[i][j] = maxLengthTable[i - 1][j - 1] + 1;
                 }else {
-                    /**
-                     * Character mismatch. No +1 happens, we can't lengthen the lcs. But we do need
+                    /**Character mismatch. No +1 happens, we can't lengthen the lcs. But we do need
                      * compete subproblems to find the answer to this one.*/
                     maxLengthTable[i][j] = Math.max(maxLengthTable[i - 1][j], maxLengthTable[i][j - 1]);
                 }
             }
-        }
-
-        //PRINT THE LONGEST COMMON SUBSEQUENCE
-        //https://www.geeksforgeeks.org/printing-longest-common-subsequence/
-        int index = maxLengthTable[m][n];
-        int temp = index;
-
-        // Create a character array to store the lcs string
-        char[] lcs = new char[index + 1];
-
-        // Start from the right-most-bottom-most corner and
-        // one by one store characters in lcs[]
-        int i = m, j = n;
-        while (i > 0 && j > 0){
-            // If current character in both strings are same, then
-            // current character is part of LCS
-            if(s1.charAt(i - 1) == s2.charAt(j - 1)){
-                // Put current character in result
-                lcs[index - 1] = s1.charAt(i - 1);
-                //keep going backwards
-                i --;
-                j --;
-                index--;
-            }
-            // If not same, then find the larger of two and
-            // go in the direction of larger value
-            else if(maxLengthTable[i - 1][j] > maxLengthTable[i][j - 1]){
-                i --;
-            }else {
-                j --;
-            }
-        }
-
-        StringBuilder sb = new StringBuilder();
-        for(int k=0;k<=temp;k++) {
-            sb.append(lcs[k]);
-        }
-        System.out.println("LCS of two strings are " + sb.toString());
-
-        for(int p = 0; p <= m; p++){
-            System.out.println(Arrays.toString(maxLengthTable[p]));
         }
 
         return maxLengthTable[m][n];

@@ -85,11 +85,11 @@ public class LRUCache {
     //so the next and prev pointers of the nodes previous and next of n are already set
     //now you only need to update next and prev pointers of n so that it becomes the new tail
     private void setTail(Node n) {
+        n.prev = tail;
+        n.next = null;
         if(tail != null){
             tail.next = n;
         }
-        n.prev = tail;
-        n.next = null;
         tail = n;
 
         if(head == null){

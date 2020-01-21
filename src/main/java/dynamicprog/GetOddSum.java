@@ -20,28 +20,38 @@ Time: 9:57 PM
 package dynamicprog;
 
 //https://www.geeksforgeeks.org/count-number-of-ways-to-get-odd-sum/
+//IDEA: Count the number of odd and even numbers in both the arrays and the answer to the number of pairs will be
+// min(odd1, even2) + min(odd2, even1), because odd + even is only odd.
 public class GetOddSum {
 
-    private static int countOfOddSum(int[][] a, int n) {
-        int[] oddNums = new int[a.length];
-        int sum = 0;
-        for(int i = 0; i < a.length; i++){
-            int[] nums = a[i];
-            for(int k = 0; k < nums.length; k++){
-                if(nums[k] % 2 == 1){
-                    sum += nums[k];
-                    break;
-                }
+    private static int countOfOddSum(int[] a, int[] b) {
+        int odd1 = 0, even1 = 0, odd2 = 0, even2 = 0;
+
+        for(int i = 0; i < a.length; i ++){
+            if(a[i] % 2 == 1){
+                odd1 ++;
+            }else {
+                even1 ++;
             }
         }
-        return sum;
+
+        for(int i = 0; i < b.length; i ++){
+            if(b[i] % 2 == 1){
+                odd2 ++;
+            }else {
+                even2 ++;
+            }
+        }
+        int countOfPairs = Math.min(odd1, even2) + Math.min(odd2, even1);
+        return countOfPairs;
     }
 
     public static void main (String[] args){
-        int a[][] = {{ 1, 2 }, { 3, 6 }};
+        int a[] = { 1, 2 };
+        int[] b = {3, 6};
         int n = a.length;
 
-        int ans = countOfOddSum(a, n);
+        int ans = countOfOddSum(a, b);
 
         System.out.println(ans);
     }

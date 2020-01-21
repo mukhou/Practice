@@ -21,8 +21,7 @@ public class FindAllPrimeNumbersInRange {
         }
 
         // Print all prime numbers
-        for(int i = 2; i <= n; i++)
-        {
+        for(int i = 2; i <= n; i++){
             if(!prime[i])
                 System.out.print(i + " ");
         }

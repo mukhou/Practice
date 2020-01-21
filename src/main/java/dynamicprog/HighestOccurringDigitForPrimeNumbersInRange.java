@@ -26,7 +26,6 @@ public class HighestOccurringDigitForPrimeNumbersInRange {
 
     static int maxDigitInPrimes(int left, int right){
         boolean[] prime = new boolean[right + 1];
-
         sieve(prime, right);
 
         // Initialize frequency of all digit to 0.

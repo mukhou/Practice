@@ -52,7 +52,7 @@ public class PrintCommonSubstringInTwoStrings {
         String str = "";
         // traverse up diagonally form the (row, col) cell until LCSuff[row][col] != 0
         while (longestLengthTable[row][col] != 0){
-            str = s1.charAt(row - 1) + str; //or s2.charAt(col - s1
+            str = s1.charAt(row - 1) + str; //or s2.charAt(col - 1)
             row --;
             col --;
         }

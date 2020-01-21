@@ -35,7 +35,7 @@ public class EditDistanceString {
                 }
                 // If last characters are same, ignore last char
                 // and recur for remaining string
-                else if(str1.charAt(i) == str2.charAt(j)){
+                else if(str1.charAt(i - 1) == str2.charAt(j - 1)){
                     //both chars same, so at this stage, the no of operations will be same as the
                     //previous subproblem, i.e. at he previous set of chars in both strings
                     dp[i][j] = dp[i - 1][j - 1];
@@ -43,7 +43,7 @@ public class EditDistanceString {
                     // If the last character is different, consider all
                     // possibilities and find the minimum
                     //assumption: the sub problems at dp[i][j - 1], dp[i - 1][j] and dp[i - 1][j - 1]
-                    //are already calcuated, so just use them
+                    //are already calculated, so just use them
                     dp[i][j] = 1 + min(dp[i][j - 1],//insert
                             dp[i - 1][j], //remove
                             dp[i - 1][j - 1]);//replace
