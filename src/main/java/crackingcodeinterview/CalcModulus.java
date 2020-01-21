@@ -18,8 +18,8 @@ public class CalcModulus {
 	    if(b <= 0){
 	        return -1;
         }
-        int div = a / b;
-	    return a - (div * b);
+        int quotient = a / b;
+	    return a - (quotient * b);
     }
 
 }

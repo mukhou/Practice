@@ -79,8 +79,8 @@ public class FibonacciSequence {
 		
 		FibonacciSequence fb = new FibonacciSequence();
 		//System.out.println(fb.fibonacci_iterative(5));
-		System.out.println(fibonacci_recursive(7));
-		System.out.println(fibonacci_iterative(7));
+		/*System.out.println(fibonacci_recursive(7));
+		System.out.println(fibonacci_iterative(7));*/
 		System.out.println(fibo_dyn_bottom_up_iterative(7));
         System.out.println(fibo_dyn_top_down_recurse(7));
 

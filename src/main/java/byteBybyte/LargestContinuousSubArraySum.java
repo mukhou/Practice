@@ -14,8 +14,7 @@ public class LargestContinuousSubArraySum {
 
         int max_sum = arr[0], curr_max = arr[0];
 
-        for (int i = 1; i < arr.length; i++)
-        {
+        for (int i = 1; i < arr.length; i++)        {
             //IMP: MAX of arr[i] and curr_max + arr[i]
             curr_max = Math.max(arr[i], curr_max + arr[i]);
             max_sum = Math.max(max_sum, curr_max);

@@ -18,9 +18,7 @@ public class FindDifferenceFromAListOfNumbers {
         //sort the array
         //n log(n)
         Arrays.sort(arr);
-
         int start = 0, end = 0;
-
         while(end < arr.length){
             int d = Math.abs(arr[start] - arr[end]);
             if(d == diff){

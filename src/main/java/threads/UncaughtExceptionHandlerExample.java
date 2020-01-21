@@ -24,6 +24,7 @@ public class UncaughtExceptionHandlerExample {
         t1.setName("T1");
         t1.start();
 
+        //will use exception handler of type tr(ThreadGroup)
         Thread t2 = new Thread(tr, new WorkerThread());
         t2.setName("T2");
         t2.start();
@@ -36,6 +37,7 @@ public class UncaughtExceptionHandlerExample {
 
         t3.start();
 
+        //no exception handler set, hence will use the default one
         Thread t4 = new Thread(new WorkerThread());
         t4.setName("T4");
         t4.start();

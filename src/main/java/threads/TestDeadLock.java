@@ -1,8 +1,8 @@
 package threads;
 
+//CHECK CLASS DeadLickRisk, this logic is too complex
 public class TestDeadLock {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // creating one object
         Shared s1 = new Shared();
 
@@ -13,11 +13,11 @@ public class TestDeadLock {
         Thread t1 = new Thread(new Thread1(s1, s2));
         t1.setName("thread-1");
         t1.start();
-        try {
+      /*  try {
             t1.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
         // creating second thread and starting it
         Thread t2 = new Thread(new Thread2(s1, s2));
@@ -29,28 +29,21 @@ public class TestDeadLock {
     }
 }
 
-class Util
-{
+class Util {
     // Util class to sleep a thread
-    static void sleep(long millis)
-    {
-        try
-        {
+    static void sleep(long millis) {
+        try {
             Thread.sleep(millis);
-        }
-        catch (InterruptedException e)
-        {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 }
 
 // This class is shared by both threads
-class Shared
-{
+class Shared {
     // first synchronized method
-    synchronized void test1(Shared s2)
-    {
+    synchronized void test1(Shared s2) {
         System.out.println("test1-begin");
         System.out.println(Thread.currentThread().getName());
         Util.sleep(1000);
@@ -62,8 +55,7 @@ class Shared
     }
 
     // second synchronized method
-    synchronized void test2(Shared s1)
-    {
+    synchronized void test2(Shared s1) {
         System.out.println("test2-begin");
         System.out.println(Thread.currentThread().getName());
         Util.sleep(1000);
@@ -76,22 +68,19 @@ class Shared
 }
 
 
-class Thread1 implements Runnable
-{
+class Thread1 implements Runnable {
     private Shared s1;
     private Shared s2;
 
     // constructor to initialize fields
-    public Thread1(Shared s1, Shared s2)
-    {
+    public Thread1(Shared s1, Shared s2) {
         this.s1 = s1;
         this.s2 = s2;
     }
 
     // run method to start a thread
     @Override
-    public void run()
-    {
+    public void run() {
         // taking object lock of s1 enters
         // into test1 method
         System.out.println(Thread.currentThread() + " has acquired lock on s1 and waiting on s2");
@@ -100,22 +89,19 @@ class Thread1 implements Runnable
 }
 
 
-class Thread2 implements Runnable
-{
+class Thread2 implements Runnable {
     private Shared s1;
     private Shared s2;
 
     // constructor to initialize fields
-    public Thread2(Shared s1, Shared s2)
-    {
+    public Thread2(Shared s1, Shared s2) {
         this.s1 = s1;
         this.s2 = s2;
     }
 
     // run method to start a thread
     @Override
-    public void run()
-    {
+    public void run() {
         // taking object lock of s2
         // enters into test2 method
         System.out.println(Thread.currentThread() + " has acquired lock on s2 and waiting on s1");

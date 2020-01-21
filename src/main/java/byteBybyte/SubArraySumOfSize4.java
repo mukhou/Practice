@@ -13,7 +13,6 @@ import java.util.List;
 public class SubArraySumOfSize4 {
 
     private static List<List<Integer>> fourSum(int[] arr, int k) {
-
         List<List<Integer>> result = new ArrayList<>();
         //base case
         if(arr == null|| arr.length<4) {
@@ -22,13 +21,11 @@ public class SubArraySumOfSize4 {
         // IMP: sort the array
         Arrays.sort(arr);
         for (int i = 0; i < arr.length - 3; i++) {
-
             //IMP: this is the check which PREVENTS DUPLICATE ELEMENTS FROM BEING CONSIDERED IN NEXT ITERATION
             //when current element is same as element on the left
             if (i > 0 && arr[i] == arr[i - 1]) {
                 continue;
             }
-
             for(int j = i + 1; j < arr.length - 2; j++){
                 //IMP: this is the check which PREVENTS DUPLICATE ELEMENTS FROM BEING CONSIDERED IN NEXT ITERATION
                 //when current starting element is same as element on the left
@@ -39,7 +36,6 @@ public class SubArraySumOfSize4 {
                 //initialize left and right pointers
                 int left = j + 1;
                 int right = arr.length - 1;
-
                 while (left < right) {
                     //IMP: this is the check which PREVENTS DUPLICATE ELEMENTS FROM BEING CONSIDERED IN NEXT ITERATION
                     //when current element is same as element on the right

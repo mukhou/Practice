@@ -19,8 +19,7 @@ public class SubArraySumOfSize3 {
 
     //Time complexity is O(n^2).
     //THIS RETURNS ONLY UNIQUE ELEMENTS
-    private static List<List<Integer>> threeSum(int[] arr) {
-
+    private static List<List<Integer>> threeSum(int[] arr, int k) {
         // IMP: sort the array
         Arrays.sort(arr);
 
@@ -36,7 +35,6 @@ public class SubArraySumOfSize3 {
             if (i > 0 && arr[i] == arr[i - 1]) {
                 continue;
             }
-
             while (left < right) {
                 //IMP: this is the check which PREVENTS DUPLICATE ELEMENTS FROM BEING CONSIDERED IN NEXT ITERATION
                 //when current element is same as element on the right
@@ -44,8 +42,8 @@ public class SubArraySumOfSize3 {
                     right--;
                     continue;
                 }
-
-                if (arr[i] + arr[left] + arr[right] == 0) {
+                int sum = arr[i] + arr[left] + arr[right];
+                if (sum == k) {
                     ArrayList<Integer> list = new ArrayList<>();
                     list.add(arr[i]);
                     list.add(arr[left]);
@@ -53,7 +51,7 @@ public class SubArraySumOfSize3 {
                     result.add(list);
                     left++;
                     right--;
-                } else if (arr[i] + arr[left] + arr[right] < 0) {
+                } else if (sum < k) {
                     left++;
                 } else {
                     right --;
@@ -128,7 +126,7 @@ public class SubArraySumOfSize3 {
         int arr[] = {-2, 0, 1, 1, 2};
         int n = arr.length;
         //subarraySumOfSize3(arr);
-        System.out.println(threeSum(arr));
+        System.out.println(threeSum(arr, 0));
 
         int[] arr1 = {-2, 0, 0, 2, 2};
         //System.out.println(threeSum(arr1));

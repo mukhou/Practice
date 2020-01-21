@@ -15,13 +15,12 @@ public class RepresentCoins {
     //FOLLOW THIS
     //Time Complexity: O(mn)
     private static int countWaysDyn(int[] coins, int total){
-
-        int[][] ways = new int[coins.length + 1][total + 1];
+        int[][] ways = new int[coins.length + 1][total + 1];//coins on rows, amounts on cols
         //Max ways to make change for 0 will be 1, doing nothing.
         ways[0][0] = 1;
         //i starts from 1, because for the first row, it's an empty list of coins, []
         for(int i = 1; i <= coins.length; i++){
-            //for first column(valid coin value and 0 total, ways will ALWAYS BE 1, give nothing)
+            //for first column(make change for amount 0, ways will ALWAYS BE 1, give nothing)
             ways[i][0] = 1;
             //IMP: current coin is coins[i - 1] and not coins[i], as the coin array is still 0 index based
             int currentCoin = coins[i - 1];

@@ -15,8 +15,6 @@ public class ProducerConsumerVector {
     }
 }
 
-
-
     class ProducerVector implements Runnable{
         private final Vector sharedQueue;
         private final int SIZE;

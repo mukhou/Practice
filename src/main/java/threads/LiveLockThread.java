@@ -11,7 +11,6 @@ package threads;
 public class LiveLockThread {
 
     private static class Human {
-
         String gender;
         Human(String gender) {
             this.gender = gender;
@@ -34,28 +33,26 @@ public class LiveLockThread {
     }
 
     private static class HelloThread implements Runnable {
-        Human h;
+        Human human;
         Human stanger;
-
-        void setHuman(Human hu) {
-            this.h = hu;
-        }
-
-        void setStranger(Human hu) {
-            this.stanger = hu;
-        }
 
         @Override
         public void run() {
+            human.sayHello(this.stanger);
+        }
 
-            h.sayHello(this.stanger);
+        void setHuman(Human human) {
+            this.human = human;
+        }
+        void setStranger(Human stanger) {
+            this.stanger = stanger;
         }
     }
 
     public static void main(String[] args) {
 
-        final LiveLockThread.Human boy = new LiveLockThread.Human("boy");
-        final LiveLockThread.Human girl = new LiveLockThread.Human("girl");
+        LiveLockThread.Human boy = new LiveLockThread.Human("boy");
+        LiveLockThread.Human girl = new LiveLockThread.Human("girl");
 
         LiveLockThread.HelloThread ht1 = new LiveLockThread.HelloThread();
         ht1.setHuman(boy);

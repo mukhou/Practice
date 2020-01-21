@@ -37,7 +37,7 @@ public class EditDistanceString {
                 // and recur for remaining string
                 else if(str1.charAt(i - 1) == str2.charAt(j - 1)){
                     //both chars same, so at this stage, the no of operations will be same as the
-                    //previous subproblem, i.e. at he previous set of chars in both strings
+                    //previous subproblem, i.e. at the previous set of chars in both strings
                     dp[i][j] = dp[i - 1][j - 1];
                 }else {
                     // If the last character is different, consider all

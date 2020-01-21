@@ -13,6 +13,8 @@ Time: 5:13 PM
  */
 package byteBybyte;
 
+import java.util.Arrays;
+
 //https://www.geeksforgeeks.org/find-maximum-minimum-sum-subarray-size-k/
 //Time Complexity : O(n)
 public class LargestContinuousSubArraySumOfSizeK {
@@ -21,9 +23,12 @@ public class LargestContinuousSubArraySumOfSizeK {
     //sliding window principle
     public static int maximumSubarraySum(int[] arr, int k){
 
-        if(k > arr.length){
-            System.out.println("invalid");
+        if(arr == null || arr.length == 0){
             return -1;
+        }
+
+        if(k > arr.length){
+            return Arrays.stream(arr).reduce(Integer::sum).getAsInt();
         }
 
         // Compute sum of first window of size k(index k - 1)
@@ -39,7 +44,6 @@ public class LargestContinuousSubArraySumOfSizeK {
         for(int i = k; i < arr.length; i++){
             curr_sum += arr[i] - arr[i - k];
             max_sum = Math.max(curr_sum, max_sum);
-
         }
         return max_sum;
     }

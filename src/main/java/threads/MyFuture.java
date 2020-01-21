@@ -25,7 +25,7 @@ public class MyFuture<T> implements Future<T> {
     @Override
     public T get() throws InterruptedException, ExecutionException {
         //Causes the current thread to wait until the latch has counted down to zero
-        // unless the thread is
+        // unless the thread is interrupted
         countDownLatch.await();
         return result;
     }

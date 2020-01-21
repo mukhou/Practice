@@ -12,10 +12,6 @@ import java.util.Arrays;
 //CTCI pg 355, Q 8.1
 public class JumpNStairs {
 
-    public static void main(String[] args){
-        System.out.println(countStairs1(3));
-    }
-
     private static int countStairs1(int n){
         int[] jumps = new int[n + 1];
         Arrays.fill(jumps, -1);
@@ -35,7 +31,7 @@ public class JumpNStairs {
         }else {
             //recursively calculate sub problems
             jumps[n] = countStairs1(n - 1, jumps) + countStairs1(n - 2, jumps) + countStairs1(n - 3, jumps);
-            return jumps[ n];
+            return jumps[n];
         }
     }
 
@@ -49,6 +45,12 @@ public class JumpNStairs {
         }else {
             return countStairs(n - 1) + countStairs(n - 2) + countStairs(n - 3);
         }
+    }
+
+
+    public static void main(String[] args){
+        System.out.println(countStairs1(3));
+        System.out.println(countStairs(3));
     }
 
 }

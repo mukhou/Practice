@@ -1,16 +1,14 @@
 package threads;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class TicketBooking implements Runnable {
+
     int ticketsAvailable = 1;
-    AtomicInteger atomicInteger = new AtomicInteger(1);
 
     @Override
     public void run() {
         synchronized (this){
             if(ticketsAvailable > 0){
-                System.out.println("Booking ticket for : "+Thread.currentThread().getName());
+                System.out.println("Booking ticket for : " + Thread.currentThread().getName());
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {

@@ -14,12 +14,10 @@ public class FindEqualLeftRightSumForArray {
 	
 	public static int findMiddleIndex(int[] arr) {
 		int leftSum = 0, rightSum = 0;
-
 		//Computing right_sum
 		for(int i = 1; i < arr.length; i ++){
 			rightSum += arr[i];
 		}
-
 		// Checking the point of partition
 		// i.e. left_Sum == right_sum
 		for(int i = 0, j = 1; i < arr.length; i ++, j++){

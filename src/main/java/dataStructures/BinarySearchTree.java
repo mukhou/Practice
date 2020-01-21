@@ -286,13 +286,13 @@ public class BinarySearchTree {
 	}
 
 	//FOLLOW THIS
-	private BinaryNode findInorderRecursive(BinaryNode root, BinaryNode n) {
+	private BinaryNode inorderSuccessor(BinaryNode root, BinaryNode n) {
 		if(root == null){
 			return null;
 		}
 		BinaryNode temp = null;
-		if (root == n || (temp = findInorderRecursive(root.left, n)) != null ||
-				(temp = findInorderRecursive(root.right, n)) != null){
+		if (root == n || (temp = inorderSuccessor(root.left, n)) != null ||
+				(temp = inorderSuccessor(root.right, n)) != null){
 			if (temp!=null){
 				if (root.left == temp){
 					System.out.print( "Inorder Successor is "+ root.data + "\n");
