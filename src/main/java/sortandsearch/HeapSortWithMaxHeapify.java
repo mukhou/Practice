@@ -12,8 +12,7 @@ package sortandsearch;
 //https://www.geeksforgeeks.org/k-largestor-smallest-elements-in-an-array/
 //Time complexity of this solution is O(n + k Log n).
 public class HeapSortWithMaxHeapify {
-    public void sort(int arr[])
-    {
+    public void sort(int arr[]){
         int n = arr.length;
 
         // Build heap (rearrange array)
@@ -25,8 +24,7 @@ public class HeapSortWithMaxHeapify {
          * Since the maximum element of the array is stored at the root A[1],
          * we can put it into its correct final position by exchanging it with A[n]
          */
-        for (int heapSize = n-1; heapSize >= 0; heapSize --)
-        {
+        for (int heapSize = n - 1; heapSize >= 0; heapSize --){
             // Move current root to end
             int temp = arr[0];
             arr[0] = arr[heapSize];
@@ -47,8 +45,7 @@ public class HeapSortWithMaxHeapify {
     // To maxHeapify a subtree rooted with node i which is
     // an index in arr[]. n is size of heap
     //time complexity: O(h): h is height of tree
-   static void maxHeapify(int arr[], int n, int i)
-    {
+   static void maxHeapify(int arr[], int n, int i){
         int largest = i; // Initialize largest as root
         int l = 2*i;
         int r = 2*i + 1;
@@ -62,8 +59,7 @@ public class HeapSortWithMaxHeapify {
             largest = r;
 
         // If largest is not root
-        if (largest != i)
-        {
+        if (largest != i){
             int swap = arr[i];
             arr[i] = arr[largest];
             arr[largest] = swap;
@@ -79,16 +75,15 @@ public class HeapSortWithMaxHeapify {
         if(heapSize == 0){
             return -1;
         }
-
         //get max
-        int root_data = arr[0];
+        int max = arr[0];
         if(heapSize > 1){
             //replace max with last
             arr[0] = arr[heapSize - 1];
+            heapSize --;
             maxHeapify(arr, heapSize, 0);
         }
-        heapSize --;
-        return root_data;
+        return max;
     }
 
 
@@ -101,23 +96,20 @@ public class HeapSortWithMaxHeapify {
     }
 
     // Driver program
-    public static void main(String args[])
-    {
+    public static void main(String args[]){
         int arr[] = {12, 11, 13, 5, 26, 7};
 
         HeapSortWithMaxHeapify ob = new HeapSortWithMaxHeapify();
-        ob.sort(arr);
+        //ob.sort(arr);
 
-        /*ob.buildMaxHeap(arr, arr.length);
-        int k = 3, value = 0;
+        ob.buildMaxHeap(arr, arr.length);
+        int k = 2, value = 0;
         while (k != 0){
             value = extractMax(arr, arr.length);
             k--;
         }
 
-        System.out.println("kth largest integer is " + value);*/
-
-
+        System.out.println("kth largest integer is " + value);
         System.out.println("Sorted array is");
         printArray(arr);
     }
