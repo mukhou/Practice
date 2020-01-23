@@ -36,20 +36,6 @@ public class BalancedParenthesis {
                     return false;
                 }
             }
-          /*  *//* If exp[i] is an ending parenthesis
-             then pop from stack and check if the
-             popped parenthesis is a matching pair*//*
-            if(expr[i] == '}' || expr[i] == ')' || expr[i] == ']'){
-                *//* If we see an ending parenthesis without
-                 a pair then return false*//*
-                if(stack.isEmpty()){
-                    return false;
-                }
-                char c = (char) stack.pop();
-                if(!map.get(expr[i]).equals(c)){
-                    return false;
-                }
-            }*/
         }
 
         if(stack.isEmpty()){

@@ -2,7 +2,7 @@
  * Given an infinite number of quarters (25 cents), dimes (10 cents), nickels (5 cents), and
  * pennies (1 cent), write code to calculate the number of ways of representing n cents.
  */
-package crackingcodeinterview;
+package dynamicprog;
 
 import java.util.Arrays;
 
@@ -10,12 +10,20 @@ import java.util.Arrays;
 //https://www.geeksforgeeks.org/coin-change-dp-7/
 //watch this video: https://www.youtube.com/watch?v=DJ4a7cmjZY0
 //https://github.com/bephrem1/backtobackswe/blob/master/Dynamic%20Programming%2C%20Recursion%2C%20%26%20Backtracking/ChangeMakingProblem2/ChangeMakingProblem2.java
+
+/**
+ *        |  0  1  2  3  4  5
+ * []     |  1  0  0  0  0  0
+ * [1]    |  1  1  1  1  1  1
+ * [1,2]  |  1  1  2  2  3  3
+ * [1,2,5]|
+ */
 public class RepresentCoins {
 
     //FOLLOW THIS
     //Time Complexity: O(mn)
-    private static int countWaysDyn(int[] coins, int total){
-        int[][] ways = new int[coins.length + 1][total + 1];//coins on rows, amounts on cols
+    private static int countWaysDyn(int[] coins, int amount){
+        int[][] ways = new int[coins.length + 1][amount + 1];//coins on rows, amounts on cols
         //Max ways to make change for 0 will be 1, doing nothing.
         ways[0][0] = 1;
         //i starts from 1, because for the first row, it's an empty list of coins, []
@@ -28,14 +36,14 @@ public class RepresentCoins {
              * 1. not considering this coin:(waysTable[i-1][j]) and
              * 2. considering this coin(waysTable[i][j] - currentCoinValue] ONLY if currentCoinValue <= j,
              * otherwise this coin can not contribute to the total # of ways to make change at this sub problem target*/
-            for(int j = 1; j <= total; j++){//j represents current amount
+            for(int j = 1; j <= amount; j++){//j represents current amount
                 int withoutThisCoin = ways[i - 1][j];
                 int withThisCoin = currentCoin <= j ? ways[i][j - currentCoin] : 0;
                 ways[i][j] = withoutThisCoin + withThisCoin;
             }
         }
         //The answer considering ALL coins for the FULL amount is what we want to return
-        return ways[coins.length][total];
+        return ways[coins.length][amount];
 
     }
 

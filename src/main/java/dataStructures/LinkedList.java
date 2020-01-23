@@ -300,7 +300,6 @@ public class LinkedList {
 	 */
 	//ATM: current and temp; temp = current.prev
 	public static Node reverseDoublyLinkedListIterative(Node head) {
-
 		Node current = head;
 		Node temp = null;
 
@@ -337,14 +336,12 @@ public class LinkedList {
 		if (node.prev == null) {
 			return node;
 		}
-
 		// RECURSE ON "node.prev", EXACTLY SAME LIKE DLL ITERATIVE
 		return reverseDoublyLinkedListRecursive(node.prev);
 	}
 
 	//Clone a linked list with next and random pointer
 	public static Node cloneLLWithRandomPointers(Node head){
-
 		// Initialize two references, one with original list's head.
 		Node originalHead = head;
 		Map<Node, Node> map = new HashMap<>();

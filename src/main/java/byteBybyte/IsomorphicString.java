@@ -13,17 +13,18 @@ public class IsomorphicString {
 
 
     //FOLLOW THIS, RETURNS FALSE EARLY IN STAGE
-    public static boolean isIsomorphic1(String s, String t) {
-        if (s.length() != t.length()) {
+    public static boolean isIsomorphic1(String s1, String s2) {
+
+        if (s1.length() != s2.length()) {
             return false;
         }
 
         HashMap<Character, Character> map1 = new HashMap<>();
         HashMap<Character, Character> map2 = new HashMap<>();
 
-        for (int i = 0; i < s.length(); i++) {
-            char c1 = s.charAt(i);
-            char c2 = t.charAt(i);
+        for (int i = 0; i < s1.length(); i++) {
+            char c1 = s1.charAt(i);
+            char c2 = s2.charAt(i);
 
             if (map1.containsKey(c1)) {
                 if (c2 != map1.get(c1)) {

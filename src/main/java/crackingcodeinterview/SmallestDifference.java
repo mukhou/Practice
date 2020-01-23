@@ -42,10 +42,10 @@ public class SmallestDifference {
         Arrays.sort(b);
         //initialize both index to 0
         int indexA = 0, indexB = 0;
-        int smallestDiff = Integer.MAX_VALUE;
+        int minDiff = Integer.MAX_VALUE;
         while(indexA < a.length && indexB < b.length){
             int diff = Math.abs(a[indexA] - b[indexB]);
-            smallestDiff = Math.min(smallestDiff, diff);
+            minDiff = Math.min(minDiff, diff);
             //move pointers
             if(a[indexA] < b[indexB]){
                 indexA++;
@@ -54,7 +54,7 @@ public class SmallestDifference {
             }
         }
 
-        return smallestDiff;
+        return minDiff;
 
     }
 }

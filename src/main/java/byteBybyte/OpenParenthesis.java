@@ -13,13 +13,13 @@ package byteBybyte;
 import java.util.Stack;
 
 public class OpenParenthesis {
-    public static long solution(String parentheses, long index) {
+    public static long solution(String parentheses, int index) {
 
-        if(parentheses.charAt((int)index) != '('){
+        if(parentheses.charAt(index) != '('){
             return -1;
         }
         Stack<Character> stack = new Stack<>();
-        for( int i = (int) index; i < parentheses.length(); i++){
+        for( int i = index; i < parentheses.length(); i++){
             if(parentheses.charAt(i) == '('){
                 stack.push(parentheses.charAt(i));
             }else if (parentheses.charAt(i) == ')') {
@@ -34,6 +34,6 @@ public class OpenParenthesis {
     }
 
     public static void main(String[] args){
-        System.out.println(solution("((())())", 0L));
+        System.out.println(solution("((())())", 0));
     }
 }

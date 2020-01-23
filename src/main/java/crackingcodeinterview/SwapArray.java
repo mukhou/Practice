@@ -30,7 +30,6 @@ public class SwapArray {
         if(target == null){
             return null;
         }
-        //return findDifference(target, a, b);
         Set<Integer> set = createSet(b);
         for(int i : a){
             int diff = i - target;
@@ -38,7 +37,6 @@ public class SwapArray {
                 int[] values = {i, diff};
                 return values;
             }
-
         }
         return null;
     }

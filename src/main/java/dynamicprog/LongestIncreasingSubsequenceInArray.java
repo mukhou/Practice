@@ -47,7 +47,7 @@ public class LongestIncreasingSubsequenceInArray {
               of the LIS from 0...j, we conceptually "append" this item to
               that LIS by adding 1 to that subproblem answer, yielding a
                 potentially new answer for LIS[0..i]*/
-            for (int j = 0; j < i; j++) {//EXACTLY SAME AS MinJUmpatoArrayEnd
+            for (int j = 0; j < i; j++) {//EXACTLY SAME AS MinJumpstoArrayEnd
                 if (arr[i] > arr[j]) {
                     maxLengthTable[i] = Math.max(maxLengthTable[i], maxLengthTable[j] + 1);
                 }

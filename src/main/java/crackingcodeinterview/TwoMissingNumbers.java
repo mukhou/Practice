@@ -24,7 +24,6 @@ public class TwoMissingNumbers {
     }
 
     //  time complexity: O(n)
-    //  Extra Space O(n)
     private static void findTwoMissingNumbers1(int[] arr, int n) {
         int arrSum = getSum(arr);
         int totalSum = n * (n + 1) / 2;

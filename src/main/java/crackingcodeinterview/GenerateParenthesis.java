@@ -32,7 +32,7 @@ public class GenerateParenthesis {
     }
 
     private static void generateParens(List<String> list, int leftCount, int rightCount, char[] arr, int index) {
-        //IMP
+        //IMP: if used up all left paren or right parens > left parens
         if (leftCount < 0 || rightCount < leftCount) return; // invalid state
 
         if(leftCount == 0 && rightCount == 0){

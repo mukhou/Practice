@@ -6,9 +6,9 @@ public class DecimalToBinary {
 		int binary[] = new int[40];
 		int index = 0;
 		while(num > 0){
-			binary[index] = num % 2;
+			binary[index++] = num % 2;
 			num = num/2;
-			index++;
+			//index++;
 		}
 
 		for(int i = index; i >= 0; i --){

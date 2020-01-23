@@ -365,7 +365,8 @@ public class BinarySearchTree {
 	 * 2. check for left subtree, center and right subtree respectively
      * 3. if yes, return true
 	 */
-
+    //initial call: isBst(root, Integer.MIN_VALUE, Integer.MAX_VALUE)
+    //Time Complexity: O(n)
     public static boolean isBST(BinaryNode node, int min, int max){
         // base case
         if (node == null)
@@ -377,11 +378,9 @@ public class BinarySearchTree {
         }
 
         // recursively check left and right subtrees with updated range
-        return isBST(node.left, min, node.data) &&
-                isBST(node.right, node.data, max);
+        return isBST(node.left, min, node.data - 1) &&
+                isBST(node.right, node.data + 1, max);
     }
-
-
 
     /**
 	 * IMPORTANT:
@@ -402,7 +401,6 @@ public class BinarySearchTree {
 	public boolean checkLeavesSameLevel(BinaryNode rootNode, int previousLevel, int currentLevel){
 		// base case
 		if(rootNode == null) return true;
-		
 		// If a leaf node is encountered
 	    if (rootNode.left == null && root.right == null){
 	        // first leaf encountered
@@ -411,14 +409,12 @@ public class BinarySearchTree {
 	            previousLevel = currentLevel;
 	            return true;
 	        }
-	 
-	        //all Subsequent leaves should be equal to the first leaf encoutered
+	        //all Subsequent leaves should be equal to the first leaf encountered
 	        return (previousLevel == currentLevel);
 	    }
-	 
 	    // If this node is not leaf, recursively check left and right subtrees
 	    return checkLeavesSameLevel(rootNode.left, previousLevel, currentLevel + 1) &&
-	    checkLeavesSameLevel(rootNode.right, previousLevel, currentLevel + 1);
+                checkLeavesSameLevel(rootNode.right, previousLevel, currentLevel + 1);
 	}
 
 	/**
@@ -493,7 +489,6 @@ public class BinarySearchTree {
 			if(level % 2 != 0){
 				return level;
 			}
-			
 		}
 		//current node is not a leaf
 		return Math.max(findDeepestOddLevelNode(rootNode.left, level + 1), 
@@ -525,7 +520,6 @@ public class BinarySearchTree {
 		rootNode.left = buildTreeFromPreIn(inOrder, preOrder, inOrderStart, indexOfRoot - 1, preIndex);
 		rootNode.right = buildTreeFromPreIn(inOrder, preOrder, indexOfRoot + 1, inOrderEnd, preIndex);
 		return root;
-		
 	}
 	
 	private int searchInOrder(char[] inOrder, int inOrderStart, int inInorderEnd, int data) {
@@ -892,10 +886,8 @@ public class BinarySearchTree {
 	public static Stack<BinaryNode> inorderTraversalUsingStack(BinaryNode root){
 
 		Stack<BinaryNode> stack = new Stack<>();
-
 		// Start by adding left subtree to stack
 		addToStack(stack, root);
-
 		// While there are elements in the stack, pop and move the minimum
 		// possible distance to the right
 		while(!stack.isEmpty()){

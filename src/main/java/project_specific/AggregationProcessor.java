@@ -6,10 +6,7 @@ Time: 5:13 PM
 
 package project_specific;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static project_specific.AggregationFile.PRODUCT_CSV;
@@ -27,7 +24,7 @@ public class AggregationProcessor<T> {
             cusipToMergeType = getMergeKeyToMergeType(optimizedProblemId, aggregatedProblemId, PRODUCT_CSV);
         }
 
-        Map<AggregationFile, List<T>> aggregatedResult = new HashMap<>();
+        EnumMap<AggregationFile, List<T>> aggregatedResult = new EnumMap<>(AggregationFile.class);
         for(AggregationFile inputFile : AggregationFile.values()){
             List<T> aggregatedList = new ArrayList<>();//get this list
             List<T> optimizedList = new ArrayList<>();//get this list

@@ -50,7 +50,7 @@ public class ConstantTimeDataStructure {
     /**
      * 1) Check if x is present by doing a hash map lookup.
      * 2) If present, then find its index and remove it from a hash map.
-     * 3) Swap the last element with this element in an array and remove the last element.
+     * 3) Swap the last element with this element in list and remove the last element.
      *    Swapping is done because the last element can be removed in O(1) time.
      * 4) Update index of the last element in a hash map.
      */
@@ -62,15 +62,15 @@ public class ConstantTimeDataStructure {
         map.remove(elem);
 
         // Swap element with last element so that remove from
-        // arr[] can be done in O(1) time
+        // list can be done in O(1) time
         int size = list.size();
         int last = list.get(size - 1);
         Collections.swap(list, index, size - 1);
 
         // Remove last element (This is O(1))
         list.remove(size - 1);
-        // Update hash table for new index of last element
 
+        // Update hash table for new index of last element
         map.put(last, index);
     }
 
