@@ -6,7 +6,7 @@ Time: 3:18 PM
 
 package crackingcodeinterview;
 
-public class Testprefix {
+public class TestOperatorOverloading {
     public static void main(String[] args){
         int i = 1;
         if(--i == 0){

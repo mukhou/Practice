@@ -23,7 +23,6 @@ public class LongestUniqueSubstringInAString {
     //FOLLOW THIS
     //ATM: TWO CONSECUTIVE IF BLOCKS, start = 0, end = 0
     private static String getUniqueCharacterSubstring(String str) {
-
         String result = "";
         Map<Character, Integer> map = new HashMap<>();
         for (int start = 0, end = 0; end < str.length(); end++) {
