@@ -14,11 +14,12 @@ import java.util.Hashtable;
  */
 public class StackUsingQueue {
 
+    //q1 used for push and pop, q2 for temp storage
     QueueUsingArray q1, q2;
 
     public void push(int value){
         if(q1.isFull()){
-            System.out.println("Underflow");
+            System.out.println("Overflow");
         }else {
             q1.enQueue(value);
         }
@@ -27,7 +28,7 @@ public class StackUsingQueue {
 
     public int pop(){
         if(q1.isEmpty()){
-            System.out.println("Overflow");
+            System.out.println("Underflow");
             return -1;
         }else {
             while(q1.getSize() != 1){

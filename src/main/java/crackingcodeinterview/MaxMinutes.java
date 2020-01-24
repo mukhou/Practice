@@ -12,7 +12,7 @@ Time: 11:49 AM
  * {highest total booked minutes) set the masseuse can honor. Return the number of minutes.
  * EXAMPLE
  * input: {30, 15, 60, 75, 45, 15, 15, 45}
- * Output: 180 minutes ({30, 60, 45, 4 5 } ) .
+ * Output: 180 minutes ({30, 60, 45, 45 } ) .
  */
 package crackingcodeinterview;
 

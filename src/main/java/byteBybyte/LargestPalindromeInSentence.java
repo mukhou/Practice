@@ -6,21 +6,18 @@ public class LargestPalindromeInSentence {
         boolean b = false;
         int length = 0;
         String[] words = sentence.split(" ");
-        // use two variables
         for(int l = 0; l <= words.length - 1; l++){
             String word = words[l];
             System.out.println(word);
             int i = 0, n = word.length() - 1;
-            int temp = n + 1;
+            int temp = word.length();
             while (i < n){
                 if(word.charAt(i) != word.charAt(n)){
-                    b = false;
                     break;
                 }
                 i ++;
                 n --;
             }
-            b = true;
             length = length > temp ? length : temp;
         }
 

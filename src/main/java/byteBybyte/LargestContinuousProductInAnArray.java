@@ -16,7 +16,6 @@ public class LargestContinuousProductInAnArray {
         int minVal = arr[0], maxVal = arr[0], maxProduct = arr[0];
 
         for (int i = 1; i < arr.length; i++){
-
             // When multiplied by -ve number,
             // maxVal becomes minVal
             // and minVal becomes maxVal.

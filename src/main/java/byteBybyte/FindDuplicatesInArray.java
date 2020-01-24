@@ -15,6 +15,7 @@ import java.util.Set;
 //https://www.byte-by-byte.com/findduplicates/
 public class FindDuplicatesInArray {
 
+    //DOESN'T WORK IF ARRAY HAS 0 AS AN ELEMENT, FOLLOW BELOW METHOD
     public static Set<Integer> findDups(int[] arr){
         Set<Integer> result = new HashSet<>();
         for(int i = 0; i < arr.length; i++){
@@ -48,7 +49,7 @@ public class FindDuplicatesInArray {
     }
 
     public static void main(String[] args){
-        System.out.println(findDups(new int[]{2, 1, 2, 1}));
+        System.out.println(findDups(new int[]{0, 1, 1, 1}));
     }
 
 }

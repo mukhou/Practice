@@ -36,7 +36,7 @@ public class CountAllIncreasingSubsequencesInArray {
         for(int i = 1; i < arr.length; i++){
             for(int j = 0; j < i; j++){
                 if(arr[i] > arr[j]){
-                    //Similar to LIS, only NO NEED TO FIND MAX, JUST INCREASE COUNT
+                    //Similar to LIS, only NO NEED TO FIND MAX, JUST ADD TO PREVIOUS COUNT
                     countTable[i] += countTable[j];
                 }
             }

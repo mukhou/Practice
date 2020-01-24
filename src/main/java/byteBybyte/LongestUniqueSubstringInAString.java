@@ -19,7 +19,6 @@ public class LongestUniqueSubstringInAString {
         System.out.println(getUniqueCharacterSubstring(s));
     }
 
-
     //FOLLOW THIS
     //ATM: TWO CONSECUTIVE IF BLOCKS, start = 0, end = 0
     private static String getUniqueCharacterSubstring(String str) {

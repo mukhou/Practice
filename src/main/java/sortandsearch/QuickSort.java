@@ -53,11 +53,7 @@ public class QuickSort {
 		return j + 1;
 	}
 
-
-
-
-	public static void Quicksort(int A[], int p, int r)
-	   {
+	public static void Quicksort(int A[], int p, int r)	   {
 	      if (p >= r) return;
 	      int pivot = create_partition(A, p, r);
 	      Quicksort(A, p, pivot - 1);

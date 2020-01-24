@@ -18,7 +18,7 @@ import java.util.*;
 public class BalancedString {
     public static void main(String[] args) {
         System.out.println(1 % 2);
-        System.out.println(isBalancedString("{[(}{)]]){(}}(][{{)]{[(((}{}{)}[({[}[}((}{()}[]})]}]]))((]][[{{}[(}})[){()}}{(}{{({{}[[]})]{((]{[){["));
+        System.out.println(isBalancedString("({})"));
 
     }
 
@@ -41,7 +41,7 @@ public class BalancedString {
                 stack.push(expression.charAt(i));
             }
             else{
-                if(matchingPairs.get(expression.charAt(i)) != stack.peek()){
+                if(!stack.isEmpty() && matchingPairs.get(expression.charAt(i)) != stack.peek()){
                     return false;
                 }
                 stack.pop();

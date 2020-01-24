@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 //exactly same as LongestCommonSubstringInTwoStrings, but instead of returning the length,
 // it returns the longest common substring
-public class PrintCommonSubstringInTwoStrings {
+public class PrintLongestCommonSubstringInTwoStrings {
 
     private static String longestCommonSubstring(String s1, String s2, int m, int n){
         // Create a table to store lengths of longest common suffixes of

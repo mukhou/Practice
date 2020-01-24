@@ -23,7 +23,6 @@ public class ContinuousSubArraySum {
             // else add to next element
             curr_sum += arr[i];
 
-
             // If curr_sum exceeds the sum, then remove the starting elements
             while (curr_sum > sum && start < i - 1) {
                 // start subtracting from the beginning

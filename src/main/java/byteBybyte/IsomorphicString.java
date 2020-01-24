@@ -11,7 +11,6 @@ import java.util.HashSet;
 //papa, kiki
 public class IsomorphicString {
 
-
     //FOLLOW THIS, RETURNS FALSE EARLY IN STAGE
     public static boolean isIsomorphic1(String s1, String s2) {
 
