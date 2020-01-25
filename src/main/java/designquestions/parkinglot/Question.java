@@ -1,6 +1,7 @@
 package designquestions.parkinglot;
 
-import CtCILibrary.AssortedMethods;
+
+import java.util.Random;
 
 public class Question {
 
@@ -13,7 +14,7 @@ public class Question {
 		Vehicle v = null;
 		while (v == null || lot.parkVehicle(v)) {
 			lot.print();
-			int r = AssortedMethods.randomIntInRange(0, 10);
+			int r = new Random().nextInt(1);
 			if (r < 2) {
 				v = new Bus();
 			} else if (r < 4) {

@@ -33,20 +33,14 @@ public class PrintLongestCommonSubsequenceInTwoStrings {
 
         //PRINT THE LONGEST COMMON SUBSEQUENCE
         int index = maxLengthTable[m][n];
-        int temp = index;
-
-        // Create a character array to store the lcs string
-        char[] lcs = new char[index + 1];
-
-        // Start from the right-most-bottom-most corner and
-        // one by one store characters in lcs[]
+        // Start from the right-most-bottom-most corner and keep checking
         int i = m, j = n;
+        String res = "";
         while (i > 0 && j > 0) {
             // If current character in both strings are same, then
             // current character is part of LCS
             if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
-                // Put current character in result
-                lcs[index - 1] = s1.charAt(i - 1);
+                res = s1.charAt(i - 1) + res;
                 //keep going backwards
                 i--;
                 j--;
@@ -60,12 +54,7 @@ public class PrintLongestCommonSubsequenceInTwoStrings {
                 j--;
             }
         }
-
-        StringBuilder sb = new StringBuilder();
-        for (int k = 0; k <= temp; k++) {
-            sb.append(lcs[k]);
-        }
-        return sb.toString();
+        return res;
 
     }
 

@@ -18,7 +18,7 @@ public class PrintLongestCommonSubstringInTwoStrings {
         // common suffix of X[0..i-1] and Y[0..j-1].
         // IMP: The first row and first column entries have no logical meaning, they are used only
         // for simplicity of program
-        int longestLengthTable[][] = new int[m + 1][n + 1];
+        int maxLengthTable[][] = new int[m + 1][n + 1];
         int longestLength = 0;
         int row = 0, col =  0;
 
@@ -27,18 +27,18 @@ public class PrintLongestCommonSubstringInTwoStrings {
         for(int i = 0; i <= m; i++){
             for(int j = 0; j <= n; j++){
                 if(i == 0 || j == 0){
-                    longestLengthTable[i][j] = 0;
+                    maxLengthTable[i][j] = 0;
                 }else if(s1.charAt(i - 1) == s2.charAt(j - 1)){//IMP: check equality of chars at prev index
-                    longestLengthTable[i][j] = longestLengthTable[i - 1][j - 1] + 1;
+                    maxLengthTable[i][j] = maxLengthTable[i - 1][j - 1] + 1;
                     //IMP: CHECK FOR LENGTH AND ONLY THEN DO REST OF STUFF
-                    if(longestLength < longestLengthTable[i][j]){
-                        longestLength = longestLengthTable[i][j];
+                    if(longestLength < maxLengthTable[i][j]){
+                        longestLength = maxLengthTable[i][j];
                         //track end of both strings
                         row = i;
                         col = j;
                     }
                 }else {
-                    longestLengthTable[i][j] = 0;
+                    maxLengthTable[i][j] = 0;
                 }
             }
         }
@@ -50,8 +50,8 @@ public class PrintLongestCommonSubstringInTwoStrings {
         }
 
         String str = "";
-        // traverse up diagonally form the (row, col) cell until LCSuff[row][col] != 0
-        while (longestLengthTable[row][col] != 0){
+        // you know start and end: row nd col, keep traversing until maxLengthTable[row][col] != 0
+        while (maxLengthTable[row][col] != 0){
             str = s1.charAt(row - 1) + str; //or s2.charAt(col - 1)
             row --;
             col --;

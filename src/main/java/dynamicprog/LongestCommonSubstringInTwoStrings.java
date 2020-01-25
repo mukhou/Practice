@@ -24,7 +24,6 @@ public class LongestCommonSubstringInTwoStrings {
         // for simplicity of program
         int maxLengthTable[][] = new int[m + 1][n + 1];
         int longestLength = 0;
-
         /* IMP: s2 will be on the rows(i iteration), s1(j iteration) will be on the columns.
         +1 to leave room at the left for the "".*/
         for(int i = 0; i <= m; i++){
