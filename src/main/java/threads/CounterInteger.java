@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CounterInteger implements Callable<Integer> {
     AtomicInteger count = new AtomicInteger();
+    static int count1 = 2;
 
     @Override
     public Integer call(){
@@ -20,9 +21,11 @@ public class CounterInteger implements Callable<Integer> {
         //submit tasks
         Future<Integer> f1 = executorService.submit(counterInteger);
         Future<Integer> f2 = executorService.submit(counterInteger);
+        Future<Integer> f3 = executorService.submit(() -> ++ count1);
         int x = f1.get();
         int y = f2.get();
-        System.out.println(x + " " + y);
+        int z = f3.get();
+        System.out.println(x + " " + y + " " + z);
         executorService.shutdown();
 
     }

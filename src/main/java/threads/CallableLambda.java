@@ -1,12 +1,14 @@
 package threads;
 
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CallableLambda {
 
     public static void main(String[] args){
 
         ExecutorService es = Executors.newFixedThreadPool(1);
+        AtomicInteger count = new AtomicInteger();
 
         Callable<Integer> task = () -> {
             try {
@@ -17,6 +19,8 @@ public class CallableLambda {
                 throw new IllegalStateException("task interrupted", e);
             }
         };
+
+        Callable<Integer> task1 = () ->  count.incrementAndGet();
 
         Future<Integer> future = es.submit(task);
         try {
