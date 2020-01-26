@@ -42,7 +42,7 @@ public class KthMostFrequentString {
     }
 
 
-    public static List<String> kMostFreQuent(String[] strings, int k){
+    public static List<String> kMostFrequentStrings(String[] strings, int k){
 
         Map<String, Integer> map = new HashMap<>();
         for(String s : strings){
@@ -78,7 +78,7 @@ public class KthMostFrequentString {
 
     public static void main (String[]args){
         System.out.println(kthMostFreQuent(new String[]{"hello", "world", "hello"}, 1));
-        System.out.println(kMostFreQuent(new String[]{"hello", "world", "hello"}, 1));
+        System.out.println(kMostFrequentStrings(new String[]{"hello", "world", "hello"}, 1));
 
     }
 }

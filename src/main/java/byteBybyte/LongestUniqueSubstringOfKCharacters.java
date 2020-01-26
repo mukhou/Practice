@@ -46,39 +46,9 @@ public class LongestUniqueSubstringOfKCharacters {
                 result = str.substring(start, end + 1);
             }
         }
-
         System.out.println("result is " + result);
         // return longest substring found at str[begin..end]
         return result;
-    }
-
-    //NO NOT FOLLOW - DOES NOT RETURN THE SUBSTRING ITSELF
-    public static int lengthOfLongestSubstringKDistinct1(String s, int k) {
-        int longestLength = 0;
-        int start = 0;
-        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            map.merge(c, 1, Integer::sum);
-            if (map.size() <= k) {
-                longestLength = Math.max(longestLength, i - start + 1);
-            } else {
-                while (map.size() > k) {
-                    char l = s.charAt(start);
-                    int count = map.get(l);
-                    if (count == 1) {
-                        map.remove(l);
-                    } else {
-                        map.put(l, count - 1);
-                    }
-                    start++;
-                }
-            }
-        }
-
-        System.out.println("start is " + start);
-        return longestLength;
     }
 
     public static void main(String[] args) {

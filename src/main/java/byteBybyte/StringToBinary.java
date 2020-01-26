@@ -12,31 +12,20 @@ public class StringToBinary {
             int val = Integer.valueOf(s.charAt(i));
             String bin = "";
             while(val > 0){
-                if(val %2 == 1){
-                    bin += '1';
+                if(val % 2 == 1){
+                    bin = '1' + bin;
                 }else {
-                    bin += '0';
+                    bin = '0' + bin;
                 }
                 val /= 2;
             }
-            bin = reverse(bin);
-            System.out.println(bin);
+            //bin = reverse(bin) + " ";
+            System.out.print(bin + " ");
 
         }
     }
 
-    private static String reverse(String input){
-        char[] a = input.toCharArray();
-        int l, r = 0;
-        r = a.length - 1;
-
-        for (l = 0; l < r; l++, r--)
-        {
-            // Swap values of l and r
-            char temp = a[l];
-            a[l] = a[r];
-            a[r] = temp;
-        }
-        return String.valueOf(a);
+    public static void main(String[] args){
+        strToBinary("123");
     }
 }

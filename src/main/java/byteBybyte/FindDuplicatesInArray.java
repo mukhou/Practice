@@ -36,7 +36,6 @@ public class FindDuplicatesInArray {
 
     }
 
-    //BAD APPROACH
     public static void findDuplicates(int[] arr){
         Set<Integer> set = new HashSet<Integer>();
         for(int n : arr){

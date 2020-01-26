@@ -26,7 +26,6 @@ public class LargestContinuousSubArraySumOfSizeK {
         if(arr == null || arr.length == 0){
             return -1;
         }
-
         if(k > arr.length){
             return Arrays.stream(arr).reduce(Integer::sum).getAsInt();
         }

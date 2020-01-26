@@ -12,8 +12,6 @@ Time: 2:03 PM
  */
 package byteBybyte;
 
-import conceptual.IncorrectFileNameException;
-
 import java.util.Arrays;
 
 public class IncreasingTripletSubSequence {
@@ -24,7 +22,7 @@ public class IncreasingTripletSubSequence {
         }
         // Initializing small and large(second smaller)
         // by INT_MAX
-        int firstSmallest = +2147483647, secondSmallest = +2147483647;
+        int firstSmallest = Integer.MAX_VALUE, secondSmallest = Integer.MAX_VALUE;
         for(int i = 0; i < arr.length; i++){
             // Update small for smallest value of array
             if(arr[i] <= firstSmallest){

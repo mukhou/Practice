@@ -25,12 +25,10 @@ public class LongestUniformSubstring {
             //initialize start for each iteration
             int start = index - 1;//initialize start to the previous index
             int lengthSoFar = 1;// initialize lengthSoFar = 1(as we are starting from the 1st character
-
             while(index < str.length() && str.charAt(index) == str.charAt(index - 1)){// LENGTH CHECK 2
                 index ++;
                 lengthSoFar ++;
             }
-
             //assign max length and max start
             if(lengthSoFar > longestLength){
                 longestLength = lengthSoFar;
