@@ -29,13 +29,13 @@ public class RepresentMinCoins {
     //follow this, SIMILAR TO RepresentCoins(my own implementation)
     private static int countMinWays1(int[] coins, int amount){
         int[][] ways = new int[coins.length + 1][amount + 1];
-        //min ways to make 0 change with 0 coins is 0
-        ways[0][0] = 0;
 
         // We use this to fill the top row with default placeholder
         for(int j = 0; j <= amount; j++){
             ways[0][j] = Integer.MAX_VALUE;
         }
+        //min ways to make 0 change with 0 coins is 0
+        ways[0][0] = 0;
         for(int i = 1; i <= coins.length; i++){
             //min ways to make change for 0 with any coins is 0
             ways[i][0] = 0;

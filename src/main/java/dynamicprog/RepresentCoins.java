@@ -38,6 +38,7 @@ public class RepresentCoins {
              * otherwise this coin can not contribute to the total # of ways to make change at this sub problem target*/
             for(int j = 1; j <= amount; j++){//j represents current amount
                 int withoutThisCoin = ways[i - 1][j];
+                //IMP: NO ADDITION OF 1 TO WAYS IN CASE OF currentCoin <= j
                 int withThisCoin = currentCoin <= j ? ways[i][j - currentCoin] : 0;
                 ways[i][j] = withoutThisCoin + withThisCoin;
             }

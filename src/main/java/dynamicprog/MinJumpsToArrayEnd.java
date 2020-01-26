@@ -25,7 +25,7 @@ public class MinJumpsToArrayEnd {
 
         // jumps[arr.length - 1] will hold the final result
         int[] jumps = new int[arr.length];
-        jumps[0] = 0;
+        jumps[0] = 0;//jump to first index is always 0
 
         //find min no. of jumps from 0 -> i(arr[0] to arr[i]) and assign the value to arr[i]
         for (int i = 1; i < arr.length; i++) {

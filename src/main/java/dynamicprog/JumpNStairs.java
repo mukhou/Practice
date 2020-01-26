@@ -5,7 +5,7 @@ Time: 11:27 AM
 */
 
 
-package crackingcodeinterview;
+package dynamicprog;
 
 import java.util.Arrays;
 
