@@ -32,7 +32,6 @@ public class PrintLongestCommonSubsequenceInTwoStrings {
         }
 
         //PRINT THE LONGEST COMMON SUBSEQUENCE
-        int index = maxLengthTable[m][n];
         // Start from the right-most-bottom-most corner and keep checking
         int i = m, j = n;
         String res = "";
@@ -44,7 +43,6 @@ public class PrintLongestCommonSubsequenceInTwoStrings {
                 //keep going backwards
                 i--;
                 j--;
-                index--;
             }
             // If not same, then find the larger of two and
             // go in the direction of larger value

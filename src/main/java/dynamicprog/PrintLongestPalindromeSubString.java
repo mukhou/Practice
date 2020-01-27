@@ -18,11 +18,10 @@ public class PrintLongestPalindromeSubString {
         int longestLength = 1;
         int start = 0, end = 0;
         for(int len = 2; len <= str.length(); len++){
-            int lengthSoFar;
             //i from 0 -> first half
             for(int i = 0; i < str.length() - len + 1; i ++){
                 int j = i + len - 1;
-                lengthSoFar = 0;
+                int lengthSoFar = 0;
                 if(len == 2 && str.charAt(i) == str.charAt(j)){
                     table[i][j] = true;
                     lengthSoFar = 2;

@@ -34,13 +34,11 @@ public class PrintLongestPalindromeSubsequence {
             }
         }
         //print LCS
-        int index = maxLengthTable[m][n];
         String res = "";
         int i = m, j = n;
         while( i > 0 && j > 0){
             if(str1.charAt(i - 1) == str2.charAt(j - 1)){
                 res = str1.charAt(i - 1) + res;
-                index --;
                 i --;
                 j --;
             }else if(maxLengthTable[i - 1][j] > maxLengthTable[i][j - 1]){

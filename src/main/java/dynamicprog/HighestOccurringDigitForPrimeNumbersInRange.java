@@ -46,10 +46,10 @@ public class HighestOccurringDigitForPrimeNumbersInRange {
 
         int max = frequency[0], ans = 0;
         //iterate from 1 to 9
-        for (int j = 1; j < 10; j++) {
-            if (max <= frequency[j]) {
-                max = frequency[j];
-                ans = j;
+        for (int i = 1; i < 10; i++) {
+            if (max <= frequency[i]) {
+                max = frequency[i];
+                ans = i;
             }
         }
         return ans;
