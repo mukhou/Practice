@@ -25,12 +25,12 @@ public class MinimumCostPath {
 
         int[][] costTable = new int[m + 1][n + 1];
         costTable[0][0] = matrix[0][0];
-         //Initialize first column of total cost(tc) array
+         //Initialize first row of total cost(tc) array
         for(int i = 1; i <= m; i++){
             //making use of previous subproblems
             costTable[i][0] = matrix[i][0] + costTable[i - 1][0];
         }
-         //Initialize first row of tc array
+         //Initialize first column of tc array
         for(int j = 1; j <= n; j++){
             //making use of previous subproblems
             costTable[0][j] = matrix[0][j] + costTable[0][j - 1];

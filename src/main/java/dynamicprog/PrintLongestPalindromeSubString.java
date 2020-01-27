@@ -10,23 +10,24 @@ package dynamicprog;
 public class PrintLongestPalindromeSubString {
 
     private static String printLongestPalindromeDynamic(String str){
-        boolean table[][] = new boolean[str.length()][str.length()];
+        boolean maxLengthTable[][] = new boolean[str.length()][str.length()];
 
-        for(int i=0; i < table.length; i++){
-            table[i][i] = true;
+        for(int i=0; i < maxLengthTable.length; i++){
+            maxLengthTable[i][i] = true;
         }
         int longestLength = 1;
         int start = 0, end = 0;
         for(int len = 2; len <= str.length(); len++){
             //i from 0 -> first half
             for(int i = 0; i < str.length() - len + 1; i ++){
+                //j starts from second half
                 int j = i + len - 1;
                 int lengthSoFar = 0;
                 if(len == 2 && str.charAt(i) == str.charAt(j)){
-                    table[i][j] = true;
+                    maxLengthTable[i][j] = true;
                     lengthSoFar = 2;
-                }else if(str.charAt(i) == str.charAt(j) && table[i+1][j-1]){
-                    table[i][j] = true;
+                }else if(str.charAt(i) == str.charAt(j) && maxLengthTable[i+1][j-1]){
+                    maxLengthTable[i][j] = true;
                     lengthSoFar = j - i + 1;
                 }
                 //SIMILAR TO PrintLongestCommonSubstringInTwoStrings

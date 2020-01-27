@@ -5,7 +5,7 @@ Time: 6:05 PM
 */
 
 /**
- * Given a matrix of numbers, find the path from bottom lect to top right with the highest value.
+ * Given a matrix of numbers, find the path from bottom left to top right with the highest value.
  */
 package dynamicprog;
 
