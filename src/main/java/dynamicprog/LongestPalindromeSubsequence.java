@@ -47,6 +47,7 @@ public class LongestPalindromeSubsequence {
         for(int i = 0; i < maxLengthTable.length; i++){
             System.out.println(Arrays.toString(maxLengthTable[i]));
         }
+        //result will be the last column of first row
         return maxLengthTable[0][str.length() - 1];
     }
 

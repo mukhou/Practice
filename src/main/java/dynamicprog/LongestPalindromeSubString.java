@@ -22,7 +22,6 @@ public class LongestPalindromeSubString {
             for(int i = 0; i < str.length() - len + 1; i ++){
                 //j starts from second half
                 int j = i + len - 1;
-                //initialize lengthSoFar for iteration of i
                 int lengthSoFar = 0;
                 if(len == 2 && str.charAt(i) == str.charAt(j)){
                     maxLengthTable[i][j] = true;

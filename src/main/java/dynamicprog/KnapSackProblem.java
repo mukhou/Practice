@@ -35,7 +35,7 @@ public class KnapSackProblem {
                 if (curr_wt > j) {//w is current capacity
                     table[i][j] = table[i - 1][j];
                 } else {
-                    //we go up one row and subtract current weight from current capacity
+                    //go to previous row and subtract current weight from current capacity
                     table[i][j] = Math.max(table[i - 1][j], curr_value + table[i - 1][j - curr_wt]);
                 }
             }

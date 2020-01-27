@@ -28,26 +28,28 @@ public class RepresentMinCoins {
 
     //follow this, SIMILAR TO RepresentCoins(my own implementation)
     private static int countMinWays1(int[] coins, int amount){
-        int[][] ways = new int[coins.length + 1][amount + 1];
+        int[][] minCoins = new int[coins.length + 1][amount + 1];
 
         // We use this to fill the top row with default placeholder
         for(int j = 0; j <= amount; j++){
-            ways[0][j] = Integer.MAX_VALUE;
+            minCoins[0][j] = Integer.MAX_VALUE;
         }
         //min ways to make 0 change with 0 coins is 0
-        ways[0][0] = 0;
+        minCoins[0][0] = 0;
         for(int i = 1; i <= coins.length; i++){
             //min ways to make change for 0 with any coins is 0
-            ways[i][0] = 0;
+            minCoins[i][0] = 0;
             int currentCoin = coins[i - 1];
             for(int j = 1; j <= amount; j++){
-                int withoutThisCoin = ways[i - 1][j];
-                //IMP, withoutThisCoin if current coin > amount
-                int withThisCoin = currentCoin <= j ? 1 + ways[i][j - currentCoin] : withoutThisCoin;
-                ways[i][j] = Math.min(withoutThisCoin, withThisCoin);
+                if(currentCoin <= j){
+                    //stay on the SAME ROW when considering this coin
+                    minCoins[i][j] = Math.min(minCoins[i - 1][j], 1 + minCoins[i][j - currentCoin]);
+                }else {
+                    minCoins[i][j] = minCoins[i - 1][j];
+                }
             }
         }
-        return ways[coins.length - 1][amount];
+        return minCoins[coins.length - 1][amount];
     }
 
     private static int countMinWays(int[] coins, int amount) {
