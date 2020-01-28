@@ -12,7 +12,7 @@ package byteBybyte;
 
 import java.util.Stack;
 
-public class OpenParenthesis {
+public class FindParenthesisEnd {
     public static long solution(String parentheses, int index) {
 
         if(parentheses.charAt(index) != '('){

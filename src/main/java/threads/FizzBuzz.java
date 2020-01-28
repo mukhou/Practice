@@ -4,7 +4,7 @@ Date: 12/20/2019
 Time: 1:55 PM
 */
 
-package crackingcodeinterview;
+package threads;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -26,7 +26,6 @@ public class  FizzBuzz implements Runnable{
         this.max = max;
     }
 
-
     @Override
     public void run() {
         while (true){
@@ -38,10 +37,7 @@ public class  FizzBuzz implements Runnable{
                     System.out.println(printer.apply(current));
                     current++;
                 }
-
             }
         }
-
-
     }
 }

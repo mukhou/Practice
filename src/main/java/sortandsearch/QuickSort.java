@@ -53,7 +53,7 @@ public class QuickSort {
 		return j + 1;
 	}
 
-	public static void Quicksort(int A[], int p, int r)	   {
+	public static void Quicksort(int A[], int p, int r){
 	      if (p >= r) return;
 	      int pivot = create_partition(A, p, r);
 	      Quicksort(A, p, pivot - 1);
@@ -62,8 +62,7 @@ public class QuickSort {
 
 	   // Usage: java QuickSort [integer] ...
 	   // All integers must be distinct
-	   public static void main(String args[])
-	   {
+	   public static void main(String args[]){
 	      //int A[] = {6, 2, 15, 3, 45, 12, 34, 56, 23, 9, 10, 72, 4};
            int[] A = {2,8,7,1,4};
 	      

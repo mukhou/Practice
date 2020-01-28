@@ -13,7 +13,6 @@ public class ProducerConsumerSolution {
 	
 	public static void main(String args[]){
 		BlockingQueue<Integer> sharedQueue = new ArrayBlockingQueue<>(1024);
-		int size = 4;
 		Producer producer = new Producer(sharedQueue);
 		Consumer consumer = new Consumer(sharedQueue);
         new Thread(producer).start();

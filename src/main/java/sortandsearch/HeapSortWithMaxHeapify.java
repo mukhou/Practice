@@ -29,7 +29,6 @@ public class HeapSortWithMaxHeapify {
             int temp = arr[0];
             arr[0] = arr[heapSize];
             arr[heapSize] = temp;
-
             // call max minHeapify on the reduced heap
             maxHeapify(arr, heapSize, 0);
         }
@@ -81,6 +80,7 @@ public class HeapSortWithMaxHeapify {
             //replace max with last
             arr[0] = arr[heapSize - 1];
             heapSize --;
+            //LIKE in for loop of sort() method
             maxHeapify(arr, heapSize, 0);
         }
         return max;

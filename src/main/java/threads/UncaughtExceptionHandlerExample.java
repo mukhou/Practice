@@ -32,6 +32,8 @@ public class UncaughtExceptionHandlerExample {
         Thread t3 = new Thread(new WorkerThread());
         t3.setName("T3");
 
+        //creates an instance of UncaughtExceptionHandler and invokes its method:
+        //uncaughtException(Thread t, Throwable e)
         t3.setUncaughtExceptionHandler((t, e) ->
                 System.out.println("Thread Exception Handler :Thread Name :" + t.getName() + " Message :" + e.getMessage()));
 

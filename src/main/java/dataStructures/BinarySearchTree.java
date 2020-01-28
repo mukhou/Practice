@@ -365,6 +365,7 @@ public class BinarySearchTree {
 	 * 2. check for left subtree, center and right subtree respectively
      * 3. if yes, return true
 	 */
+	//https://www.geeksforgeeks.org/a-program-to-check-if-a-binary-tree-is-bst-or-not/
     //initial call: isBst(root, Integer.MIN_VALUE, Integer.MAX_VALUE)
     //Time Complexity: O(n)
     public static boolean isBST(BinaryNode node, int min, int max){
@@ -382,7 +383,69 @@ public class BinarySearchTree {
                 isBST(node.right, node.data + 1, max);
     }
 
-    /**
+    //https://www.geeksforgeeks.org/check-if-a-given-binary-tree-is-complete-tree-or-not/
+	//Time Complexity: O(n)
+	//space complexity: O(n)
+    private static boolean isCompleteIterative(BinaryNode root){
+    	if(root == null){
+    		return true;
+		}
+		Queue<BinaryNode> queue = new LinkedList<>();
+    	queue.add(root);
+    	//set to true when a non full node is seen
+    	boolean isNonFull = false;
+    	while(!queue.isEmpty()){
+    		BinaryNode temp = queue.poll();
+    		if(temp.left != null){
+				// If we have seen a non full node, and we see a node
+				// with non-empty left child, then the given tree is not
+				// a complete Binary Tree
+    			if(isNonFull){
+    				return false;
+				}
+				queue.add(temp.left);
+			}else {
+    			 //non-full node, set the flag as true
+				isNonFull = true;
+			}
+			if(temp.right != null){
+    			if(isNonFull){
+    				return false;
+				}
+				queue.add(temp.right);
+			}else {
+    			isNonFull = true;
+			}
+		}
+		return true;
+	}
+
+	private static int countNodes(BinaryNode root){
+    	if(root == null){
+    		return 0;
+		}
+		return (1 + countNodes(root.left) + countNodes(root.right));
+	}
+
+	//https://www.geeksforgeeks.org/check-whether-binary-tree-complete-not-set-2-recursive-solution/
+	//Time Complexity: O(n)
+	private static boolean isCompleteRecursive(BinaryNode root){
+    	return isCompleteRecursive(root, 0, countNodes(root));
+	}
+
+	private static boolean isCompleteRecursive(BinaryNode root, int index, int nodeCount) {
+    	if(root == null){
+    		return true;
+		}
+
+		if(index >= nodeCount){
+    		return false;
+		}
+		return isCompleteRecursive(root.left, 2 * index + 1, nodeCount)
+				&& isCompleteRecursive(root.right, 2 * index + 2, nodeCount);
+	}
+
+	/**
 	 * IMPORTANT:
 	 * Given a Binary Tree, check if all leaves are at same level or not.
 	 * ALGORITHM:

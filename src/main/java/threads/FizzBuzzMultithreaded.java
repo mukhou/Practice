@@ -4,7 +4,7 @@ Date: 12/20/2019
 Time: 1:55 PM
 */
 
-package crackingcodeinterview;
+package threads;
 
 public class FizzBuzzMultithreaded {
     public static void main(String[] args) {
