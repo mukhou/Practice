@@ -52,8 +52,8 @@ public class CallHandler {
     public Employee getHandlerForCall(Call call) {
         //get all employees for the call's rank
 
-        for (int level = call.getRank().getValue(); level < LEVELS - 1; level++) {
-            List<Employee> employeeLevel = employeeLevels.get(level);
+        for (int rank = call.getRank().getValue(); rank < LEVELS - 1; rank++) {
+            List<Employee> employeeLevel = employeeLevels.get(rank);
             for (Employee emp : employeeLevel) {
                 if (emp.isFree()) {
                     return emp;

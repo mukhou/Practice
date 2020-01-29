@@ -1,4 +1,4 @@
-package stacksandqueues;
+package dataStructures.stacksandqueues;
 
 
 /**
@@ -10,6 +10,7 @@ package stacksandqueues;
  */
 public class QueueUsingStack {
 
+    //s1 is used for push, s2 for pop
     StackUsingArray s1, s2;
 
     public void enQueue(int value){
@@ -41,5 +42,10 @@ public class QueueUsingStack {
             return s2.top;
         }
 
+    }
+
+    public static void main(String[] args){
+        QueueUsingStack queueUsingStack = new QueueUsingStack();
+        queueUsingStack.s1 = null;
     }
 }

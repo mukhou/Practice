@@ -36,7 +36,7 @@ public enum AggregationFile {
 
         @Override
         public String getMergeKey(Object o){
-            return o instanceof Trade ? ((Trade) o).getMergeKey() : "";
+            return o instanceof Position ? ((Position) o).getMergeKey() : "";
         }
 
     },
@@ -53,7 +53,7 @@ public enum AggregationFile {
 
         @Override
         public String getMergeKey(Object o){
-            return o instanceof Trade ? ((Trade) o).getMergeKey() : "";
+            return o instanceof Product ? ((Product) o).getMergeKey() : "";
         }
 
     };

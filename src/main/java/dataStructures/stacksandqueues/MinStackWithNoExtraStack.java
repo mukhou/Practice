@@ -4,7 +4,7 @@ Date: 1/7/2020
 Time: 9:43 PM
 */
 
-package stacksandqueues;
+package dataStructures.stacksandqueues;
 
 import java.util.Stack;
 

@@ -1,11 +1,10 @@
 package dataStructures;
 
-import stacksandqueues.StackUsingArray;
+import dataStructures.stacksandqueues.StackUsingArray;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
-import java.util.Stack;
 
 
 public class LinkedList {

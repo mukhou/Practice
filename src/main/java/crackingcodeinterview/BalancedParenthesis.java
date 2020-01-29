@@ -1,6 +1,6 @@
 package crackingcodeinterview;
 
-import stacksandqueues.StackUsingArray;
+import dataStructures.stacksandqueues.StackUsingArray;
 
 import java.util.HashMap;
 import java.util.Map;

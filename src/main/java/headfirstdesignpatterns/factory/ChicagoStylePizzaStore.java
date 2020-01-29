@@ -14,10 +14,10 @@ public class ChicagoStylePizzaStore extends PizzaStore{
         PizzaIngredientFactory pizzaIngredientFactory = new ChicagoPizzaIngredientFactory();
         if(type.equals("cheese")){
             pizza = new CheesePizza(pizzaIngredientFactory);
-            pizza.setName("NY Style Cheese Pizza");
+            pizza.setName("Chicago Style Cheese Pizza");
         }else if(type.equals("clams")){
             pizza = new ClamPizza(pizzaIngredientFactory);
-            pizza.setName("NY Style Fresh Clams Pizza");
+            pizza.setName("Chicago Style Fresh Clams Pizza");
         }//other pizza types
 
         return pizza;

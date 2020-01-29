@@ -1,7 +1,6 @@
-package stacksandqueues;
+package dataStructures.stacksandqueues;
 import dataStructures.*;
 
-import java.util.LinkedHashMap;
 import java.util.NoSuchElementException;
 
 public class QueueUsingLinkedList {

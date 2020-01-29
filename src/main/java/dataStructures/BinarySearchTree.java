@@ -3,7 +3,7 @@ package dataStructures;
 import java.util.*;
 import java.util.LinkedList;
 
-import stacksandqueues.StackUsingArray;
+import dataStructures.stacksandqueues.StackUsingArray;
 
 // BinarySearchTree class
 //
