@@ -23,23 +23,19 @@ public class TrieNode1 {
     public TrieNode1() {
     }
 
-    public void insertString(String s, int index){
-
+    public void insertString(String s, int index) {
         if (s == null || s.isEmpty()) {
             return;
         }
-
         indexes.add(index);
-
         char first = s.charAt(0);
-        TrieNode1 child= children.get(first);
+        TrieNode1 child = children.get(first);
         if (child == null) {
             child = new TrieNode1();
             children.put(first, child);
         }
-
         if (s.length() > 1) {
-             child.insertString(s.substring(1), index + 1);
+            child.insertString(s.substring(1), index + 1);
         } else {
             child.setTerminates(true);
         }
@@ -50,16 +46,16 @@ public class TrieNode1 {
         terminates = t;
     }
 
-    public ArrayList<Integer> search(String s){
+    public ArrayList<Integer> search(String s) {
         //we have reached the end of the string, so return index
-        if(s == null || s.length() == 0){
+        if (s == null || s.length() == 0) {
             return indexes;
-        }else {
+        } else {
             char first = s.charAt(0);
-            if(children.containsKey(first)){
+            if (children.containsKey(first)) {
                 TrieNode1 child = children.get(first);
                 String remainder = s.substring(1);
-                    return child.search(remainder);
+                return child.search(remainder);
             }
         }
         return null;

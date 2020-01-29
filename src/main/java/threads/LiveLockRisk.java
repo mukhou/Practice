@@ -25,6 +25,7 @@ public class LiveLockRisk {
 }
 
 class Worker{
+
     private String name;
     private boolean active;
 

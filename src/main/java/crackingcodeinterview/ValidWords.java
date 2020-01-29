@@ -19,46 +19,50 @@ import crackingcodeinterview.datastructures.TrieNode;
 import java.util.ArrayList;
 import java.util.List;
 
+import static crackingcodeinterview.util.DataUtil.getListOfWords;
+
 //See CTCI pg 517
 public class ValidWords {
 
     public static List<String> getValidT9Words(String number, Trie trie) {
-        List<String> result = Lists.newArrayList();
-        getValidT9Words(number, 0, "", trie.getRoot(), result);
+        ArrayList<String> result = Lists.newArrayList();
+        getValidWords(number, 0, "", trie.getRoot(), result);
         return result;
     }
 
-    private static void getValidT9Words(String number, int index, String prefix, TrieNode root, List<String> result) {
+    public static void getValidWords(String number, int index, String prefix, TrieNode trieNode, ArrayList<String> results) {
         /* If it's a complete word, print it. */
-        if(index == number.length()){
-            if(root.terminates()){
-                result.add(prefix);
+        if (index == number.length()) {
+            if (trieNode.terminates()) { // Is complete word
+                results.add(prefix);
             }
+            return;
         }
 
-        //get first digit
-        char firstDigit = number.charAt(index);
-        //get letters corresponding to the digit
-        char[] letters = getLettersForDigit(firstDigit);
-        for(char c : letters){
-            TrieNode child = root.getChild(c);
-            if(child != null){
-                //recurse
-                getValidT9Words(number, index + 1, prefix + c, child, result);
+        /* Get characters that match this digit */
+        char digit = number.charAt(index);
+        char[] letters = getLetterForDigit(digit);
+
+        /* Go through all remaining options. */
+        if (letters != null) {
+            for (char letter : letters) {
+                TrieNode child = trieNode.getChild(letter);
+                if (child != null) { /* If there are words that start with prefix + letter, continue */
+                    getValidWords(number, index + 1, prefix + letter, child, results);
+                }
             }
         }
     }
 
-    private static char[] getLettersForDigit(char digit) {
-        if(!Character.isDigit(digit)){
+    public static char[] getLetterForDigit(char digit) {
+        if (!Character.isDigit(digit)) {
             return null;
         }
-        //IMPORTANT
         int dig = Character.getNumericValue(digit) - Character.getNumericValue('0');
-        return t9Letters[dig];
+        return telephoneKeypad[dig];
     }
 
-    public static char[][] t9Letters = {
+    public static char[][] telephoneKeypad = {
             null, 					// 0
             null, 					// 1
             {'a', 'b', 'c'}, 		// 2
@@ -71,8 +75,12 @@ public class ValidWords {
             {'w', 'x', 'y', 'z'} 	// 9
     };
 
+    public static Trie getTrieDictionary() {
+        return new Trie(getListOfWords());
+    }
+
     public static void main(String[] args) {
-        List<String> words = getValidT9Words("8733", new Trie(Lists.newArrayList()));
+        List<String> words = getValidT9Words("8733", getTrieDictionary());
         for (String w: words) {
             System.out.println(w);
         }
