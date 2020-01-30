@@ -12,10 +12,12 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+//read: file:///C:/Users/Urmi/Desktop/08-threadsandlockspart2.pdf
 public class ProducerConsumerLock {
     public static void main(String[] args){
         List<Integer> sharedQueue = new LinkedList<Integer>();
         Lock lock = new ReentrantLock();
+
         //producerCondition
         Condition producerCondition = lock.newCondition();
         //consumerCondition
@@ -55,6 +57,11 @@ class ProducerLock implements Runnable{
             }catch (InterruptedException e) {  e.printStackTrace();   }
         }
     }
+
+    //NOTE: The thread has to acquire the lock and then check the condition
+    //If the condition is false, it needs to wait. The call to await() blocks the
+    //thread and unlocks the lock atomically, allowing other threads to access
+    //the shared resources
 
     private void produce(int i) throws InterruptedException{
         lock.lock();
