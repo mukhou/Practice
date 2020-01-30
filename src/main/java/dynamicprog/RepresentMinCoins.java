@@ -49,7 +49,7 @@ public class RepresentMinCoins {
                 }
             }
         }
-        return minCoins[coins.length - 1][amount];
+        return minCoins[coins.length][amount];
     }
 
     private static int countMinWays(int[] coins, int amount) {

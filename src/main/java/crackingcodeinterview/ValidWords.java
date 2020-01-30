@@ -65,6 +65,7 @@ public class ValidWords {
     public static char[][] telephoneKeypad = {
             null, 					// 0
             null, 					// 1
+
             {'a', 'b', 'c'}, 		// 2
             {'d', 'e', 'f'}, 		// 3
             {'g', 'h', 'i'}, 		// 4

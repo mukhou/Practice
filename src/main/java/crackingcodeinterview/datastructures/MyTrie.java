@@ -46,6 +46,7 @@ public class MyTrie {
             if (!node.children.containsKey(c)) {
                 node.add(c);
             }
+            //go to next node
             node = node.children.get(c);
         }
         node.terminates = true;
@@ -80,10 +81,11 @@ public class MyTrie {
 
     protected Collection<String> allPrefixes() {
         List<String> results = new ArrayList<String>();
-        if (this.terminates) {
-            results.add(this.content);
+        MyTrie node = this;
+        if (node.terminates) {
+            results.add(node.content);
         }
-        for (Map.Entry<Character, MyTrie> entry : children.entrySet()) {
+        for (Map.Entry<Character, MyTrie> entry : node.children.entrySet()) {
             MyTrie child = entry.getValue();
             Collection<String> childPrefixes = child.allPrefixes();
             results.addAll(childPrefixes);

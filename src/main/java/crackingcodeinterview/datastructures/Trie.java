@@ -1,6 +1,9 @@
 package crackingcodeinterview.datastructures;
 
+import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
+import java.util.List;
 
 
 /* Implements a trie. We store the input list of words in tries so
@@ -49,5 +52,12 @@ public class Trie
     
     public TrieNode getRoot() {
     	return root;
+    }
+
+
+
+    public static void main(String[] args){
+        Trie node = new Trie(new String[]{"tree", "tea"});
+       // node.getRoot().search("t");
     }
 }

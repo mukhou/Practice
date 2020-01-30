@@ -1,6 +1,10 @@
 package crackingcodeinterview.datastructures;
 
+import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /* One node in the trie. Most of the logic of the trie is implemented
  * in this class.
@@ -39,21 +43,20 @@ public class TrieNode {
     	if (word == null || word.isEmpty()) {
     		return;
     	}
-    	
         char firstChar = word.charAt(0);
-
         TrieNode child = getChild(firstChar);
         if (child == null) {
             child = new TrieNode(firstChar);
             children.put(firstChar, child);
-        } 
-
+        }
         if (word.length() > 1) {
             child.addWord(word.substring(1));
         } else {
         	child.setTerminates(true);
         }
     }
+
+
 
     /* Find a child node of this node that has the char argument as its
      * data. Return null if no such child node is present in the trie.
@@ -71,4 +74,25 @@ public class TrieNode {
     public void setTerminates(boolean t) {
     	terminates = t;
     }
+
+/*
+    public String search(String s) {
+        return search(s, "");
+    }
+
+    private String search(String s, String prefix) {
+        //we have reached the end of the string, so return index
+        if (s == null || s.length() == 0) {
+            return prefix;
+        } else {
+            char first = s.charAt(0);
+            if (children.containsKey(first)) {
+                TrieNode child = children.get(first);
+                String remainder = s.substring(1);
+                prefix = prefix + child.search(remainder);
+                return prefix;
+            }
+        }
+        return null;
+    }*/
 }
