@@ -2,6 +2,7 @@ package dataStructures;
 
 import dataStructures.stacksandqueues.StackUsingArray;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -189,7 +190,6 @@ public class LinkedList {
 		if(index == 0){
 			return head;
 		}
-
 		Node current = head.next;
 		for(int i = 1; i < index && current.next != null; i++){
 			current = current.next;
@@ -212,40 +212,39 @@ public class LinkedList {
 	 * 
 	 */
 	public static Node findNodeFromEnd(Node head, int n){
-        Node p1 = head;
-        Node p2 = head;
+        Node slow = head;
+        Node fast = head;
         while(n - 1 > 0){
-        	p2 = p2.next;
+        	fast = fast.next;
         	n --;
 		}
 		//EXACTLY SAME AS removeFromEnd()
-		while(p2.next != null){
-        	p1 = p1.next;
-        	p2 = p2.next;
+		while(fast.next != null){
+        	slow = slow.next;
+        	fast = fast.next;
 		}
-		return p1;
+		return slow;
 	}
 
 	private static Node removeFromEnd(Node head, int n){
-		Node p1 = head;
-		Node p2 = head;
+		Node slow = head;
+		Node fast = head;
 
 		while(n > 0){
-			p2 = p2.next;
+			fast = fast.next;
 			n --;
 		}
-
 		//IMP: p2 null, means need to remove the first or head node, so return head.next
-		if(p2 == null){
+		if(fast == null){
 			return head.next;
 		}
 		//IMP: check on p2.next
-		while (p2.next != null){
-			p1 = p1.next;
-			p2 = p2.next;
+		while (fast.next != null){
+			slow = slow.next;
+			fast = fast.next;
 		}
 		//IMP: at this point, p2 will be on the last node pointing to null, if n was 1
-		p1.next = p1.next.next;
+		slow.next = slow.next.next;
 		return head;
 	}
 	
@@ -272,7 +271,6 @@ public class LinkedList {
     //A -> B -> C -> NULL
     //initial call: reverseListRecursive(head, null)
 	public Node reverseListRecursive(Node curr, Node prev) {
-
 		/* If last node mark it head*/
 		//ATM: in a LL, next can NEVER be NULL, UNLESS IT'S LAST NODE
 		//So if next of head(curr) is null, it means we have fully reversed the LL
@@ -309,7 +307,7 @@ public class LinkedList {
 			current.next = temp;
 			//set current
 			current = current.prev;//seems travelling backward, but actually moving forward,
-			// as the prev is now the next of the original list
+			// SEE BELOW CHECK
 		}
 		//#################IMPORTANT########################
 		if (temp != null) {
@@ -374,7 +372,6 @@ public class LinkedList {
 		 return;
 	}
 
-
 	// Iterative
 	public void printReverseLinkedList1(Node node) {
 		StackUsingArray stack = new StackUsingArray();
@@ -398,7 +395,6 @@ public class LinkedList {
 		if(headB == null){
 			return headA;
 		}
-
 		Node newHead;
 		if((int)headA.data < (int)headB.data){
 			newHead = headA;
@@ -449,9 +445,10 @@ public class LinkedList {
     //IDEA: This problem can be solved in by min heap. The idea is to construct a min heap of size k
     // and insert first node of each list in it. Then we pop the root node(extract min) and
     // insert next node of "same" list as popped node. Repeat this process until heap is exhausted.
-    // time compelxity:  O(N log(K))
+    // time complexity:  O(N log(K))
 	static Node mergeKSortedLists(Node[] list, int k){
         PriorityQueue<Node> queue = new PriorityQueue<>((a, b) -> (int)a.data - (int)b.data);
+        //PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(a -> (int) a.data));
 
         // push first node of each list into the min-heap
         for(int i = 0; i < k; i++){
@@ -491,6 +488,7 @@ public class LinkedList {
 	 * While constructing the BST, we also keep moving the list head pointer to next so that we have the appropriate pointer in each recursive call.
 	 */
 	//https://www.geeksforgeeks.org/sorted-linked-list-to-balanced-bst/
+	//Time Complexity: O(n)
 	BinaryNode sortedListToBST(Node head){
 		int count = getCount(head);
 		return sortedListToBSTRecur(head, count);
@@ -501,7 +499,6 @@ public class LinkedList {
 		if(head == null){
 			return null;
 		}
-
 		/* Recursively construct the left subtree */
 		BinaryNode left = sortedListToBSTRecur(head, count / 2);
 
@@ -522,27 +519,6 @@ public class LinkedList {
 		return root;
 	}
 
-	/*
-      Find merge point of two linked lists
-      head pointer input could be NULL as well for empty list
-      ALGORITHM: compare each node of one head with all heads of other
-    */
-	//BAD APPROACH DUE TO TIME COMPLEXITY, CHECK intersectionOfTwoLinkedLists() method
-    int findMergeNode(Node headA, Node headB) {
-        // ATM: two while loops
-        while(headA != null){
-            Node tempB = headB;
-            while(tempB != null){
-                if(headA == tempB){
-                    return (int)headA.data;
-                }
-                tempB = tempB.next;
-            }
-            headA = headA.next;
-        }
-        return -1;
-    }
-
     /*
       Compare two linked lists A and B
       Return 1 if they are identical and 0 if they are not.
@@ -551,15 +527,12 @@ public class LinkedList {
         if(headA == null && headB == null){
             return 1;
         }
-
         if(headA == null && headB != null){
             return 0;
         }
-
         if(headA != null && headB == null){
             return 0;
         }
-
         while(headA != null && headB != null){
             if(headA.data != headB.data){
                 return 0;
@@ -582,8 +555,8 @@ public class LinkedList {
 
 	/**
 	 * Given a singly linked list, rotate the linked list counter-clockwise by k nodes, where k is a given positive integer.
-	 * For example, if the given linked list is 10->20->30->40->50->60->NULL and k is 4,
-	 * the list should be modified to 50->60->10->20->30->40->NULL
+	 * For example, if the given linked list is 10->20->30->40->50->60->70->NULL and k is 4,
+	 * the list should be modified to 50->60->70->10->20->30->40->NULL
 	 * Assume that k is smaller than the count of nodes in linked list.
 	 * Link: http://www.geeksforgeeks.org/rotate-a-linked-list/
 	 * Idea: To rotate the linked list, we need to do this IN REVERSE ORDER:
@@ -602,7 +575,7 @@ public class LinkedList {
 		Node current = head;
 		// traverse till the kth node
 	   //  current will point to node 40 in the above example
-		while(k > 0 && current.next != null){
+		while(k > 1 && current.next != null){
 			current = current.next;
 			k --;
 		}
@@ -651,7 +624,6 @@ public class LinkedList {
 	// 3. If the element is not present, then insert the element to result list. 
 	// 4. If the element is present, then ignore it.
 	public Map<Object, Integer>  unionOfTwoinkedLists(Node list1_head, Node list2_head){
-		
 		Map<Object, Integer> map = new HashMap<Object, Integer>();
 		Node current = list1_head;
 		while(current.next != null){
@@ -681,13 +653,12 @@ public class LinkedList {
 		//add null checks
 		int len1 = getCount(headA);
 		int len2 = getCount(headB);
-		return len1 > len2 ? getIntesectionNode(len1 - len2, headA, headB) : getIntesectionNode(len2 - len1,  headB, headA);
+		return len1 > len2 ? getIntesectionNode(len1 - len2, headA, headB)
+				: getIntesectionNode(len2 - len1,  headB, headA);
 	}
 
 	private static int getIntesectionNode(int diff, Node headA, Node headB) {
-
 		Node currA = headA, currB = headB;
-
 		//move forward currA by do nodes
 		for(int i = 0; i < diff; i ++){
 			if(currA == null){
@@ -762,7 +733,6 @@ public class LinkedList {
 	 * 3. Remove the next of middle which is no longer required
 	 * 4. point the middle to next of next
 	 */
-
     // career cup book solution - FOLLOW THIS
     public static boolean deleteNode(Node middle) {
         if (middle == null || middle.next == null) {
@@ -792,9 +762,8 @@ public class LinkedList {
 
         if(head == null){
             n = head;
-            return head;
+            return n;
         }
-
         if((int)head.data > data){
             n.next = head;
             head.prev = n;
@@ -828,7 +797,7 @@ public class LinkedList {
      */
     //NEED TWO POINTERS
     public Node deleteAtIndex(Node head, int index){
-		if(index < 1 || index > size()){
+		if(index < 0 || index > size()){
 			return head;
 		}
         if(head==null)
@@ -838,13 +807,11 @@ public class LinkedList {
             head = head.next;
             return head;
         }
-
 		//need two pointers here: prev and current(initialized to head)
 		// 1. prev to keep track
 		// 2. current to be the one deleted
 		Node current = head;
 		Node prev = null;
-
         //ATM: only check on index and nothing else
         //prev should land at (index - 1), current should be at index
         while(index > 0){
@@ -852,7 +819,6 @@ public class LinkedList {
             current = current.next; //6, 12, 87
             index --;//2, 1, 0
         }
-
         prev.next = current.next;
         current.next = null;
         return head;
@@ -885,17 +851,17 @@ public class LinkedList {
 	 * the first pointer will be at the middle of the List.
 	 */
 	public Node findMiddleNode(){
-		Node p1 = head, p2 = head;
-		while(p2.next != null){
+		Node slow = head, fast = head;
+		while(fast.next != null){
 			// Increment first time
-			p2 = p2.next;
-			if(p2.next != null){
+			fast = fast.next;
+			if(fast.next != null){
 				// Increment second time
-				p1 = p1.next;
-				p2 = p2.next;
+				slow = slow.next;
+				fast = fast.next;
 			}
 		}
-		return p1;
+		return slow;
 	}
 	
 	/**
@@ -909,17 +875,17 @@ public class LinkedList {
 	 * of list before the slow pointer does.	  
 	 */
 	public static boolean hasLoop(Node headNode){
-		Node p1 = headNode, p2 = headNode;
+		Node slow = headNode, fast = headNode;
         if(headNode == null){
             return false;
         }
-        while(p2.next != null){
-            p2 = p2.next;
-            if(p2.next != null){
-                p1 = p1.next;
-                p2 = p2.next;
+        while(fast.next != null){
+            fast = fast.next;
+            if(fast.next != null){
+                slow = slow.next;
+                fast = fast.next;
             }
-            if(p1 == p2){
+            if(slow == fast){
                 return true;
             }
         }
@@ -927,7 +893,7 @@ public class LinkedList {
 	}
 
 	/**
-	 * IMPORTANT: Find the number of nodes in a loop of a list, and the entry node of loop. 
+	 * IMPORTANT: Find the number of nodes in a loop of a list.
 	 */
 	public int numberOfNodesInLoop(Node headNode){
 		Node slow = headNode, fast = headNode;
@@ -1003,7 +969,7 @@ public class LinkedList {
 		if(!hasLoop){
 			return false;
 		}
-		//initialize p1(slow) to head and keep p2 where it was
+		//initialize slow to head and keep fast where it was
 		slow = head;
 		Node prevOfFast = null;
 		while(slow != fast){
@@ -1027,7 +993,7 @@ public class LinkedList {
     public static boolean isPalindrome(Node head){
         Node slow = head, fast = head;
         if (head != null && head.next != null) {
-            /* Get the PRIOR TO THE  middle of the list. */
+            /* Get the PRIOR TO THE middle of the list. */
             while (fast.next != null && fast.next.next != null) {
                 fast = fast.next.next;
                 slow = slow.next;
@@ -1058,7 +1024,6 @@ public class LinkedList {
 	 * else if fast_ptr reach to NULL its means linked list contain even elements
 	 * and we create backup of the previous node of slow_ptr and print (previous node of slow_ptr+ slow_ptr->data)/2
 	 */
-
 	public static int findMedianOfLinkedList(Node head){
 		Node slow = head, fast = head, prevOfSlow = head;
 		while(fast != null && fast.next != null){
@@ -1138,6 +1103,7 @@ public class LinkedList {
 		 node.down.next = next;
 		 node.down = null;
 		}
+
 	public int size(){
 		return listCount;
 	}

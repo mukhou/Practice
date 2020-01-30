@@ -63,8 +63,7 @@ public class MergeSort {
     // Main function that sorts arr[l..r] using
     // merge()
     void sort(int arr[], int l, int r){
-        if (l < r)
-        {
+        if (l < r){
             // Find the middle point
             int mid = (l+r)/2;
 
