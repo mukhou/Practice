@@ -23,7 +23,7 @@ public class LargestContinuousSubArraySum {
 	}
 	
 	public static void main(String[] args) {
-		int[] arr = new int[]{-2, 4, 2, 3, -12, 5, 9, -3, 4 };//new int[]{-4, -1, 2, 5, -9, 7, 10};
+		int[] arr = new int[]{-5, -4, 1, 0, 5, 10 };//new int[]{-4, -1, 2, 5, -9, 7, 10};
 		System.out.println(findContinuousSum(arr));
 
 	}
