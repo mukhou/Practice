@@ -36,7 +36,7 @@ public class CountAllIncreasingSubsequencesInArrayOfSizeK {
         for(int len = 1; len < k; len++){
             // for each increasing subsequence of size 'l' ending with element arr[i]
             for(int i = len; i < arr.length; i ++){
-                for(int j = len - 1; j < i; j++){
+                for(int j = len - 1; j < i; j++){//j = len - 1 -> i, just like j = 0 -> i
                     if(arr[i] > arr[j]){
                         //EXACTLY LIKE CountAllIncreasingSubsequencesInArray logic: countTable[i] += countTable[j];
                         countTable[len][i] += countTable[len - 1][j];

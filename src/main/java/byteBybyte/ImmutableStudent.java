@@ -6,19 +6,16 @@ Time: 5:45 PM
 
 package byteBybyte;
 
-public class ImmutableStudent {
+public class ImmutableStudent implements Cloneable{
 
     private final int id;
     private final String name;
     private final Age age;
 
-    public ImmutableStudent(int id, String name, Age age) {
+    public ImmutableStudent(int id, String name, Age age) throws CloneNotSupportedException {
         this.id = id;
         this.name = name;
-        Age clone = new Age();
-        clone.setDay(age.getDay());
-        clone.setMonth(age.getMonth());
-        clone.setYear(age.getYear());
+        Age clone = (Age) age.clone();
         this.age = clone;
     }
 
@@ -30,15 +27,16 @@ public class ImmutableStudent {
         return name;
     }
 
-    public Age getAge() {
-        Age clone = new Age();
+    public Age getAge() throws CloneNotSupportedException {
+       /* Age clone = new Age();
         clone.setDay(this.age.getDay());
         clone.setMonth(this.age.getMonth());
-        clone.setYear(this.age.getYear());
+        clone.setYear(this.age.getYear());*/
+       Age clone = (Age)this.age.clone();
         return clone;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         Age age = new Age();
         age.setDay(1);
         age.setMonth(1);
@@ -54,7 +52,7 @@ public class ImmutableStudent {
     }
 }
 
-class Age {
+class Age implements Cloneable{
     private int day;
     private int month;
     private int year;
@@ -75,6 +73,11 @@ class Age {
     }
     public void setYear(int year) {
         this.year = year;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
 

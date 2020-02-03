@@ -10,6 +10,8 @@ Time: 7:43 PM
  */
 package dynamicprog;
 
+import java.util.Arrays;
+
 //https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/MaximumSumSubsequence.java
 public class MaximumSumIncreasingSubsequence {
 
@@ -30,11 +32,12 @@ public class MaximumSumIncreasingSubsequence {
                 if(arr[i] > arr[j]){
                     //sum is maximum of the current sub problem and (previous sub problem + current item value)
                     //SIMILAR TO LongestIncreasingSubsequenceInArray
-                    maxSumTable[i] = Math.max(maxSumTable[i], maxSumTable[j] + arr[i]);
+                    maxSumTable[i] = Math.max(maxSumTable[i], arr[i] + maxSumTable[j]);
                 }
             }
             maxSumSoFar = Math.max(maxSumSoFar, maxSumTable[i]);
         }
+        System.out.println(Arrays.toString(maxSumTable));
 
         return maxSumSoFar;
     }
