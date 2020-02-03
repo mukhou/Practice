@@ -37,11 +37,12 @@ public class BalancedString {
     public static boolean isBalancedString(String expression) {
         Deque<Character> stack = new ArrayDeque<>();
         for(int i = 0; i < expression.length(); i++){
-            if(expression.charAt(i) == '{' || expression.charAt(i) == '[' || expression.charAt(i) == '('){
-                stack.push(expression.charAt(i));
+            char c = expression.charAt(i);
+            if(c == '{' || c == '[' || c == '('){
+                stack.push(c);
             }
             else{
-                if(!stack.isEmpty() && matchingPairs.get(expression.charAt(i)) != stack.peek()){
+                if(!stack.isEmpty() && matchingPairs.get(c) != stack.peek()){
                     return false;
                 }
                 stack.pop();

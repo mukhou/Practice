@@ -20,6 +20,11 @@ public class SubArraySumOfSize3 {
     //Time complexity is O(n^2).
     //THIS RETURNS ONLY UNIQUE ELEMENTS
     private static List<List<Integer>> threeSum(int[] arr, int k) {
+
+        //base case
+        if(arr == null|| arr.length<4) {
+            return null;
+        }
         // IMP: sort the array
         Arrays.sort(arr);
 

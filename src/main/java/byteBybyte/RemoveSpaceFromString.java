@@ -13,7 +13,7 @@ public class RemoveSpaceFromString {
         // To keep track of non-space character count
         int count = 0;
         // Traverse the given string.
-        // If current character is not space, then place it at index 'count++'
+        // If current character is not space, then place it at index 'count'
         for(int i = 0; i < arr.length; i++){
             if(arr[i] != ' '){
                 arr[count ++] = arr[i];

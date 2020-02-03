@@ -3,7 +3,9 @@ User: Urmi
 Date: 1/15/2020 
 Time: 11:34 AM
 */
-
+/**
+ * Given an array nums of n integers, find all unique quartlets which add up to a number k.
+ */
 package byteBybyte;
 
 import java.util.ArrayList;
@@ -13,13 +15,16 @@ import java.util.List;
 public class SubArraySumOfSize4 {
 
     private static List<List<Integer>> fourSum(int[] arr, int k) {
-        List<List<Integer>> result = new ArrayList<>();
+
         //base case
-        if(arr == null|| arr.length<4) {
+        if(arr == null|| arr.length < 4) {
             return null;
         }
         // IMP: sort the array
         Arrays.sort(arr);
+
+        List<List<Integer>> result = new ArrayList<>();
+
         for (int i = 0; i < arr.length - 3; i++) {
             //IMP: this is the check which PREVENTS DUPLICATE ELEMENTS FROM BEING CONSIDERED IN NEXT ITERATION
             //when current element is same as element on the left
@@ -27,15 +32,15 @@ public class SubArraySumOfSize4 {
                 continue;
             }
             for(int j = i + 1; j < arr.length - 2; j++){
+                //initialize left and right pointers
+                int left = j + 1;
+                int right = arr.length - 1;
                 //IMP: this is the check which PREVENTS DUPLICATE ELEMENTS FROM BEING CONSIDERED IN NEXT ITERATION
                 //when current starting element is same as element on the left
                 //NOTE: j starts from (i + 1) so check on j > i + 1
                 if (j > i + 1 && arr[j] == arr[j - 1]) {
                     continue;
                 }
-                //initialize left and right pointers
-                int left = j + 1;
-                int right = arr.length - 1;
                 while (left < right) {
                     //IMP: this is the check which PREVENTS DUPLICATE ELEMENTS FROM BEING CONSIDERED IN NEXT ITERATION
                     //when current element is same as element on the right

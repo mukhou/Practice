@@ -37,19 +37,17 @@ public class PrintDivisionWithDecimal {
         }
 
         int quotient = dividend / divisor;
-        for(int i = 0; i <= n; i++ ){
-            System.out.print(quotient);
+        System.out.print(quotient + ".(");
+        for(int i = 0; i < n; i++ ){
             //set x to remainder
-            dividend = dividend - (divisor * quotient);
+            dividend = dividend % divisor;
             if(dividend == 0){
                 break;
             }
             //remainder becomes dividend for next iteratoon
             dividend = dividend * 10;
             quotient = dividend / divisor;
-            if(i == 0){
-                System.out.print(".(");
-            }
+            System.out.print(quotient);
         }
         System.out.print(")");
     }

@@ -23,18 +23,22 @@ public class IncreasingTripletSubSequence {
         // Initializing small and large(second smaller)
         // by INT_MAX
         int firstSmallest = Integer.MAX_VALUE, secondSmallest = Integer.MAX_VALUE;
-        for(int i = 0; i < arr.length; i++){
+        int i;
+        for(i = 0; i < arr.length; i++){
             // Update small for smallest value of array
             if(arr[i] <= firstSmallest){
                 firstSmallest = arr[i];
             }else if(arr[i] <= secondSmallest){
                 secondSmallest = arr[i];
             }else {
-                return true;
+                break;
             }
         }
-
-        return false;
+        if(i == arr.length){
+            return false;
+        }else {
+            return true;
+        }
     }
 
     //time complexity: O(n)

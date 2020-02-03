@@ -18,8 +18,6 @@ public class StringReversal {
             arr[i] = arr[len - i];
             arr[len - i] = temp;
         }
-
-
         return new String(arr);
 
     }

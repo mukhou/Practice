@@ -29,12 +29,12 @@ public class CoinChange {
 
     private static int makeChangeFor5(int amount, Map<Integer,Integer> drawer) {
         if(amount >= 5){
-            int countOf5 = drawer.get(5);
+            int billsAvailable = drawer.get(5);
             int billsNeeded = amount / 5;
-            int min = Math.min(countOf5, billsNeeded);
+            int min = Math.min(billsAvailable, billsNeeded);
             //amount = 45 - (2 * 20)
             amount = amount - (min * 5);
-            drawer.put(5, countOf5 - min);
+            drawer.put(5, billsAvailable - min);
             return amount;
         }
         return amount;
@@ -42,12 +42,12 @@ public class CoinChange {
 
     private static int makeChangeFor10(int amount, Map<Integer,Integer> drawer) {
         if(amount >= 10){
-            int countOf10 = drawer.get(10);
+            int billsAvailable = drawer.get(10);
             int billsNeeded = amount / 10;
-            int min = Math.min(countOf10, billsNeeded);
+            int min = Math.min(billsAvailable, billsNeeded);
             //amount = 45 - (2 * 20)
             amount = amount - (min * 10);
-            drawer.put(10, countOf10 - min);
+            drawer.put(10, billsAvailable - min);
             return amount;
         }
         return amount;
@@ -55,12 +55,12 @@ public class CoinChange {
 
     private static int makeChangeFor20(int amount, Map<Integer,Integer> drawer) {
         if(amount >= 20){
-            int countOf20 = drawer.get(20);
+            int billsAvailable = drawer.get(20);
             int billsNeeded = amount / 20;
-            int min = Math.min(countOf20, billsNeeded);
+            int min = Math.min(billsAvailable, billsNeeded);
             //amount = 45 - (2 * 20)
             amount = amount - (min * 20);
-            drawer.put(20, countOf20 - min);
+            drawer.put(20, billsAvailable - min);
             return amount;
         }
         return amount;

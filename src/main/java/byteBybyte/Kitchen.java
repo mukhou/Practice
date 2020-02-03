@@ -7,6 +7,7 @@ Time: 3:00 PM
 package byteBybyte;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Kitchen {
     //Tina, 5, FS
@@ -17,20 +18,14 @@ public class Kitchen {
         //all table numbers
         List<String> tables = new ArrayList<>(map.keySet());
         List<String> allItems = new ArrayList<>();
-        for (Map.Entry<String, Map<String, Integer>> entry : map.entrySet()) {
-            Map<String, Integer> inner = entry.getValue();
-            allItems.addAll(inner.keySet());
-        }
+        allItems = map.entrySet().stream().map(entry -> entry.getValue().keySet())
+                .flatMap(Collection::stream).collect(Collectors.toList());
         //O/P
         List<String> headers = new ArrayList<>();
         StringBuilder str = new StringBuilder();
         str.append("Table");
         for (int i = 0; i < allItems.size(); i++) {
-            if (i == allItems.size() - 1) {
-                str.append(",").append(allItems.get(i));
-            } else {
-                str.append(",").append(allItems.get(i));
-            }
+            str.append(",").append(allItems.get(i));
 
         }
         headers.add(str.toString());

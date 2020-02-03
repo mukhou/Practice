@@ -34,6 +34,7 @@ public class LongestUniqueSubstringInAString {
             if (result.length() < end - start + 1) {
                 result = str.substring(start, end + 1);//IMP: end + 1, as second index is 1 based
             }
+            //########IMP############
             map.put(c, end);
         }
 

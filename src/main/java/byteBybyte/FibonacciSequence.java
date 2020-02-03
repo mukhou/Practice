@@ -21,17 +21,6 @@ public class FibonacciSequence {
 		    lookup[n] = fibo_dyn_top_down_recurse(n - 1) + fibo_dyn_top_down_recurse((n - 2));
 		    return lookup[n];
         }
-
-	/*	Arrays.fill(lookup, -1);
-
-		if(lookup[n] == -1){
-			if(n <= 1){
-				lookup[n] = n;
-			}else {
-				lookup[n] = fibo_dyn_top_down_recurse(n - 1) + fibo_dyn_top_down_recurse(n - 2);
-			}
-		}
-		return lookup[n];*/
 	}
 
 	private static int fibo_dyn_bottom_up_iterative(int n){

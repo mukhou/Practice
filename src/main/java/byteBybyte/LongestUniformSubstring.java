@@ -51,11 +51,11 @@ public class LongestUniformSubstring {
         System.out.println("longest starting index: " + arr[1]);
         //to print the longest uniform substring
         //printing the longest substring
-        int temp = arr[0], temp1 = arr[1];
+        int longestLength = arr[0], longestStart = arr[1];
         System.out.println("longest substring is: ");
-        while(temp > 0){
-            System.out.print(str.charAt(temp1++));
-            temp --;
+        while(longestLength > 0){
+            System.out.print(str.charAt(longestStart++));
+            longestLength --;
         }
         System.out.println();
 
