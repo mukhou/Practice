@@ -6,25 +6,45 @@ Time: 5:55 PM
 
 package threads;
 
+import headfirstdesignpatterns.strategy.Quack;
+
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Queue;
+import java.util.Random;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-//read: file:///C:/Users/Urmi/Desktop/08-threadsandlockspart2.pdf
+//read: file:D://ebooks//Java books//08-threadsandlockspart2.pdf
 public class ProducerConsumerLock {
     public static void main(String[] args){
-        List<Integer> sharedQueue = new LinkedList<Integer>();
-        Lock lock = new ReentrantLock();
 
+        // Object on which producer and consumer thread will operate
+        /*Queue<Integer> queue = new LinkedList<>();
+        Lock aLock = new ReentrantLock();
+        Condition consumerCondition = aLock.newCondition();
+        Condition producerCondition = aLock.newCondition();
+
+
+        ProducerLock p = new ProducerLock(queue, aLock, producerCondition, consumerCondition);
+        ConsumerLock c = new ConsumerLock(queue, aLock, producerCondition, consumerCondition);
+
+        // starting producer and consumer threads
+        p.start();
+        c.start();*/
+        Queue<Integer> sharedQueue = new LinkedList<>();
+        Lock lock = new ReentrantLock();
+        //A condition instance is intrinsically bound to a lock.
+        // We need to keep threads in separate wait-sets so that we can use the optimization of
+        // only notifying a single thread at a time when items or spaces become
+        // available in the buffer. This can be achieved using two Condition instances.
         //producerCondition
         Condition producerCondition = lock.newCondition();
         //consumerCondition
         Condition consumerCondition = lock.newCondition();
 
         ProducerLock producer = new ProducerLock(sharedQueue,lock,producerCondition,consumerCondition);
-        ProducerLock consumer = new ProducerLock(sharedQueue,lock,producerCondition,consumerCondition);
+        ConsumerLock consumer = new ConsumerLock(sharedQueue,lock,producerCondition,consumerCondition);
 
         Thread producerThread = new Thread(producer, "ProducerThread");
         Thread consumerThread = new Thread(consumer, "ConsumerThread");
@@ -33,16 +53,17 @@ public class ProducerConsumerLock {
     }
 }
 
-class ProducerLock implements Runnable{
 
-    private List<Integer> sharedQueue;
-    private int maxSize=2;
+class ProducerLock implements Runnable {
+    private final Random theRandom = new Random();
+    Queue<Integer> sharedQueue;
+    private int maxSize = 10;
 
     Lock lock;
     Condition producerCondition;
     Condition consumerCondition;
 
-    public ProducerLock(List<Integer> sharedQueue, Lock lock, Condition producerCondition, Condition consumerCondition) {
+    public ProducerLock(Queue<Integer> sharedQueue, Lock lock, Condition producerCondition, Condition consumerCondition) {
         this.sharedQueue = sharedQueue;
         this.lock = lock;
         this.producerCondition = producerCondition;
@@ -51,63 +72,87 @@ class ProducerLock implements Runnable{
 
     @Override
     public void run() {
-        for(int i = 0; i < 10; i++){
-            try {
-                produce(i);
-            }catch (InterruptedException e) {  e.printStackTrace();   }
+        try {
+            put();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
-    //NOTE: The thread has to acquire the lock and then check the condition
-    //If the condition is false, it needs to wait. The call to await() blocks the
-    //thread and unlocks the lock atomically, allowing other threads to access
-    //the shared resources
 
-    private void produce(int i) throws InterruptedException{
+    public void put() throws InterruptedException {
         lock.lock();
+        try {
+            while (sharedQueue.size() == maxSize) {
+                System.out.println(Thread.currentThread().getName()
+                        + " : Buffer is full, waiting");
+                producerCondition.await();
+            }
 
-        // if sharedQuey is full producer await until consumer consumes.
-        if(sharedQueue.size() == maxSize){
-            producerCondition.await();
+            int number = theRandom.nextInt();
+            boolean isAdded = sharedQueue.offer(number);
+            if (isAdded) {
+                System.out.printf("%s added %d into queue %n", Thread
+                        .currentThread().getName(), number);
+
+                // signal consumer thread that, buffer has element now
+                System.out.println(Thread.currentThread().getName()
+                        + " : Signalling that buffer is no more empty now");
+                consumerCondition.signalAll();
+            }
+        } finally {
+            lock.unlock();
         }
-        System.out.println("Produced : " + i);
-        // as soon as producer p
-        sharedQueue.add(i);
-        consumerCondition.signal();
-        lock.unlock();
     }
 }
 
-class ConsumerLock implements Runnable{
+class ConsumerLock implements Runnable {
+    Queue<Integer> sharedQueue;
 
-    private List<Integer> sharedQueue;
     Lock lock;
     Condition producerCondition;
     Condition consumerCondition;
 
-    public ConsumerLock(List<Integer> sharedQueue, Lock lock, Condition producerCondition, Condition consumerCondition) {
+    public ConsumerLock(Queue<Integer> sharedQueue, Lock lock, Condition producerCondition, Condition consumerCondition) {
         this.sharedQueue = sharedQueue;
         this.lock = lock;
         this.producerCondition = producerCondition;
         this.consumerCondition = consumerCondition;
     }
 
+
     @Override
     public void run() {
-        for(int i = 0; i < 10; i++){
-            try {
-                consume();
-            } catch (InterruptedException e) {  e.printStackTrace();   }
+        try {
+            get();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
-    private void consume() throws InterruptedException{
+    public void get() throws InterruptedException {
         lock.lock();
-        if(sharedQueue.size() == 0){
-            consumerCondition.await();
+        try {
+            while (sharedQueue.size() == 0) {
+                System.out.println(Thread.currentThread().getName()
+                        + " : Buffer is empty, waiting");
+                consumerCondition.await();
+            }
+
+            Integer value = sharedQueue.poll();
+            if (value != null) {
+                System.out.printf("%s consumed %d from queue %n", Thread
+                        .currentThread().getName(), value);
+
+                // signal producer thread that, buffer may be empty now
+                System.out.println(Thread.currentThread().getName()
+                        + " : Signalling that buffer may be empty now");
+                producerCondition.signalAll();
+            }
+
+        } finally {
+            lock.unlock();
         }
-        System.out.println("consumed " + sharedQueue.remove(0));
-        producerCondition.signal();
-        lock.unlock();
     }
 }
