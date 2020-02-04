@@ -65,7 +65,7 @@ public class LongestIncreasingSubsequenceInArray {
         int[] num = {1, 2, 3, 4, 5};
         int arr[] = {5, 7, 4, 8};
         int[] arr1 = {5, 4, 1, 0};
-        int[] arr2 = {1,3,5,4,7};
+        int[] arr2 = {3, 10, 3, 11, 4, 5, 6, 7, 8, 12};
         System.out.println(longestIncreasingSubsequence(arr2));
     }
 }

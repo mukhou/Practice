@@ -13,6 +13,7 @@ public class LargestContinuousSubArraySum {
 
     // keep track of the current sum
     //https://en.wikipedia.org/wiki/Maximum_subarray_problem#Kadane's_algorithm_(Algorithm_3:_Dynamic_Programming)
+    //FOLLOW THIS IF ASKED TO FIND JUST THE SUME
     public static int findContinuousSum(int[] arr) {
 
         int max_sum = arr[0], curr_max = arr[0];
@@ -26,6 +27,7 @@ public class LargestContinuousSubArraySum {
 
 
     //EXACTLY SAME LOGIC AS ABOVE, EXCEPT USING A DP TABLE
+    //NEED EXTRA SPACE, SO FOLLOW ABOVE
     public static int findContinuousSum1(int[] arr) {
         int max_sum = arr[0];
         int[] maxSumTable = new int[arr.length];
@@ -65,9 +67,10 @@ public class LargestContinuousSubArraySum {
     public static void main(String[] args) {
         int[] arr = new int[]{-5, -4, 1, 0, 5, 10};
         int[] arr1 = {-5, -4, -2, 0};
+        int[] arr2 = {3, 10, 3, 11, 4, 5, 6, 7, 8, 12};
         System.out.println(Arrays.toString(arr1));
         System.out.println(findContinuousSum(arr1));
-        maxSubArraySum((arr1));
+        maxSubArraySum(arr2);
         System.out.println(findContinuousSum1(arr1));
 
     }
