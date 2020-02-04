@@ -28,7 +28,6 @@ public class SparseSearch {
     private int searchIter(String[] arr, int start, int end, String key) {
         while (start <= end) {
             int mid = (start + end) / 2;
-
             //adjust mid
             if (arr[mid].isEmpty()) {
                 int left = mid - 1;
@@ -36,11 +35,11 @@ public class SparseSearch {
                 while (true) {
                     if (left < start && right > end) {
                         return -1;
-                    } else if (right <= end && !arr[right].isEmpty()) {
-                        mid = right;//new mid found
-                        break;
                     } else if (left >= start && !arr[left].isEmpty()) {//new mid
                         mid = left;
+                        break;
+                    }else if (right <= end && !arr[right].isEmpty()) {
+                        mid = right;//new mid found
                         break;
                     }
                     left--;

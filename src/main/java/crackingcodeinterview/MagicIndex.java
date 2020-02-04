@@ -31,7 +31,7 @@ public class MagicIndex {
     //ASSUMPTION: all elements are distinct
     //initial call: (arr, 0, arr.length - 1)
     public static int magicWithUniqueElements(int[] array, int start, int end) {
-        if (end < start) {
+        if (start > end) {
             return -1;
         }
         int mid = (start + end) / 2;
@@ -54,7 +54,7 @@ public class MagicIndex {
        int midIndex = (start + end) / 2;
        int midValue = arr[midIndex];
 
-       if(midValue == midValue){
+       if(midValue == midIndex){
            return midIndex;
        }
 

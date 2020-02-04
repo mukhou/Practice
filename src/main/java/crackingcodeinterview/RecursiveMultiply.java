@@ -29,11 +29,10 @@ public class RecursiveMultiply {
         }else if(smaller == 1){
             return bigger;
         }
-
-        int res;
         //or right shift smaller: temp = smaller >> 1
         int temp = smaller / 2;
         int halfprod = multHelper(temp, bigger);//recurse
+        int res;
 
         if(smaller % 2 == 0){
             res = halfprod + halfprod;

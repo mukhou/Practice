@@ -7,6 +7,7 @@ Time: 10:38 AM
 package crackingcodeinterview;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 //CTCI pg 376, Q 8.12
 public class EightQueen {
@@ -53,17 +54,11 @@ public class EightQueen {
         return true;
     }
 
-    private static void clear(Integer[] columns){
-        for(int i = 0; i < GRID_SIZE; i ++){
-            columns[i] = -1;
-        }
-    }
-
 
     public static void main(String[] args) {
         ArrayList<Integer[]> results = new ArrayList<Integer[]>();
         Integer[] columns = new Integer[GRID_SIZE];
-        clear(columns);
+        Arrays.fill(columns, -1);
         placeQueens(0, columns, results);
         System.out.println(results.size());
     }

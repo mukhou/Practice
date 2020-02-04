@@ -18,7 +18,7 @@ public class FindIndicesFromAListOfNumbers {
             return new int[]{0,0};
 
         HashMap<Integer, Integer> map = new HashMap<>();
-        for(int i = 0; i<arr.length; i++){
+        for(int i = 0; i < arr.length; i++){
             if(map.containsKey(arr[i])){
                 return new int[]{map.get(arr[i]), i};
             }else{

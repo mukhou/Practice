@@ -13,7 +13,7 @@ import java.util.List;
 public class FindDifferenceFromAListOfNumbers {
 
     //FOLLOW THIS
-    //Time Complexity: O(nlogn)
+    //Time Complexity: O(n log n)
     public static void findDiff1(int[] arr, int diff){
         //sort the array
         //n log(n)

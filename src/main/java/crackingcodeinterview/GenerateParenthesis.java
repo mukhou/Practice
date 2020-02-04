@@ -16,7 +16,7 @@ import java.util.List;
 //Algorithm:
 // On each recursive call, we have the index for a particular character in the string. We need to select either a
 //left or a right paren. When can we use a left paren, and when can we use a right paren?
-//1. left Paren: As iong as we haven't used up all the left parentheses, we can always insert a left paren.
+//1. left Paren: As long as we haven't used up all the left parentheses, we can always insert a left paren.
 //2. Right Paren: We can insert a right paren as long as it won't lead to a syntax error. When will we get a
 //syntax error? We will get a syntax error if there are more right parentheses than left.
 //So, we simply keep track of the number of left and right parentheses allowed. If there are left parens
