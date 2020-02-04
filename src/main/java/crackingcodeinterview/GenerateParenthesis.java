@@ -16,12 +16,12 @@ import java.util.List;
 //Algorithm:
 // On each recursive call, we have the index for a particular character in the string. We need to select either a
 //left or a right paren. When can we use a left paren, and when can we use a right paren?
-//1. left Paren: As long as we haven't used up all the left parentheses, we can always addWord a left paren.
-//2. Right Paren: We can addWord a right paren as long as it won't lead to a syntax error. When will we get a
+//1. left Paren: As long as we haven't used up all the left parentheses, we can always insert a left paren.
+//2. Right Paren: We can insert a right paren as long as it won't lead to a syntax error. When will we get a
 //syntax error? We will get a syntax error if there are more right parentheses than left.
 //So, we simply keep track of the number of left and right parentheses allowed. If there are left parens
-//remaining, we'll addWord a left paren and recurse. If there are more right parens remaining than left {i.e., if
-//there are more left parens in use than right parens), then we'll addWord a right paren and recurse.
+//remaining, we'll insert a left paren and recurse. If there are more right parens remaining than left {i.e., if
+//there are more left parens in use than right parens), then we'll insert a right paren and recurse.
 public class GenerateParenthesis {
 
     public static List<String> generateParens(int n){
@@ -38,11 +38,11 @@ public class GenerateParenthesis {
         if(leftCount == 0 && rightCount == 0){
             list.add(String.copyValueOf(arr));
         }else{
-            //addCharacter left and recurse
+            //add left and recurse
             arr[index] = '(';
             generateParens(list, leftCount - 1, rightCount, arr, index + 1);
 
-            //addCharacter right and recurse
+            //add right and recurse
             arr[index] = ')';
             generateParens(list, leftCount, rightCount - 1, arr, index + 1);
         }

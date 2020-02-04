@@ -140,7 +140,7 @@ public class DataUtil {
                 "provided", "serious", "led", "wait", "hotel", "opened",
                 "performance", "maybe", "station", "changes", "literature",
                 "marry", "claim", "works", "bed", "wrong", "main", "unit",
-                "George", "hit", "planning", "supply", "systems", "addCharacter",
+                "George", "hit", "planning", "supply", "systems", "add",
                 "chief", "officer", "Soviet", "pattern", "stopped", "price",
                 "success", "lack", "myself", "truth", "freedom", "manner",
                 "quality", "gun", "manufacture", "clearly", "share",

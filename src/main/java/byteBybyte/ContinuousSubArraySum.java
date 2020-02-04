@@ -20,7 +20,7 @@ public class ContinuousSubArraySum {
                         String.valueOf(start) + " " + String.valueOf(i - 1));
                 return 1;
             }
-            // else addCharacter to next element
+            // else add to next element
             curr_sum += arr[i];
 
             // If curr_sum exceeds the sum, then remove the starting elements

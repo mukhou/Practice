@@ -443,8 +443,8 @@ public class LinkedList {
 
 	//https://www.techiedelight.com/efficiently-merge-k-sorted-linked-lists/
     //IDEA: This problem can be solved in by min heap. The idea is to construct a min heap of size k
-    // and addWord first node of each list in it. Then we pop the root node(extract min) and
-    // addWord next node of "same" list as popped node. Repeat this process until heap is exhausted.
+    // and insert first node of each list in it. Then we pop the root node(extract min) and
+    // insert next node of "same" list as popped node. Repeat this process until heap is exhausted.
     // time complexity:  O(N log(K))
 	static Node mergeKSortedLists(Node[] list, int k){
         PriorityQueue<Node> queue = new PriorityQueue<>((a, b) -> (int)a.data - (int)b.data);
@@ -462,15 +462,15 @@ public class LinkedList {
         while (!queue.isEmpty()){
             // extract minimum node from the min-heap
             Node min =  queue.poll();
-            // addCharacter the minimum node to the output list
+            // add the minimum node to the output list
             if(head == null){
                 head = tail = min;
             }else {
-                //addWord at tail
+                //insert at tail
                 tail.next = min;
                 tail = min;
             }
-            // take next node from "same" list and addWord it into the min-heap
+            // take next node from "same" list and insert it into the min-heap
             if(min.next != null){
                 queue.add(min.next);
             }
@@ -621,7 +621,7 @@ public class LinkedList {
 	// Union
 	// 1. Create an empty hash table.
 	// 2. Traverse both lists one by one, for each element being visited, look the element in hash table.
-	// 3. If the element is not present, then addWord the element to result list.
+	// 3. If the element is not present, then insert the element to result list.
 	// 4. If the element is present, then ignore it.
 	public Map<Object, Integer>  unionOfTwoinkedLists(Node list1_head, Node list2_head){
 		Map<Object, Integer> map = new HashMap<Object, Integer>();
@@ -650,7 +650,7 @@ public class LinkedList {
 	
 	// https://www.geeksforgeeks.org/write-a-function-to-get-the-intersection-point-of-two-linked-lists/
 	public static int intersectionOfTwoLinkedLists(Node headA, Node headB){
-		//addCharacter null checks
+		//add null checks
 		int len1 = getCount(headA);
 		int len2 = getCount(headB);
 		return len1 > len2 ? getIntesectionNode(len1 - len2, headA, headB)
@@ -700,7 +700,7 @@ public class LinkedList {
 	 * Implement this recursively by adding node by node, just as we would digit by digit.
 	 * 1. result.data = (left + right + any earlier carry) % 10
 	 * 2. if left + right > 10, then carry a 1 to the next addition.
-	 * 3. addCharacter the tails of the two nodes, passing along the carry.
+	 * 3. add the tails of the two nodes, passing along the carry.
 	 */
 	//first call, carry is 0
 	public static Node addTwoLinkedLists(Node n1, Node n2, int carry){
@@ -783,7 +783,7 @@ public class LinkedList {
             current = current.next;
         }
 
-        //reached end of list, now addWord anyway
+        //reached end of list, now insert anyway
         current.next = n;
         n.prev = current;
         return head;

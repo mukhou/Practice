@@ -47,7 +47,7 @@ public class ConcurrentModificationExample {
             String key = it1.next();
             //IMP: this will throw exception(WITHOUT break) as its not thread safe
             if(key.equals("3")) {
-                //addCharacter new entry and break will cause NO EXCEPTION
+                //add new entry and break will cause NO EXCEPTION
                 myMap.put(key+"new", "new3");
                 //updating entry instead of adding new
                 myMap.put(key, "new3");

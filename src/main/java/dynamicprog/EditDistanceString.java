@@ -25,7 +25,7 @@ public class EditDistanceString {
         for(int i = 0; i <= m; i++){
             for(int j = 0; j <= n; j++){
                 // If first string is empty, only option is to
-                // addWord all characters of second string
+                // insert all characters of second string
                 if(i == 0){
                     dp[i][j] = j;//Min. operations = j
                 }else if(j == 0){
@@ -44,7 +44,7 @@ public class EditDistanceString {
                     // possibilities and find the minimum
                     //assumption: the sub problems at dp[i][j - 1], dp[i - 1][j] and dp[i - 1][j - 1]
                     //are already calculated, so just use them
-                    dp[i][j] = 1 + min(dp[i][j - 1],//addWord
+                    dp[i][j] = 1 + min(dp[i][j - 1],//insert
                             dp[i - 1][j], //remove
                             dp[i - 1][j - 1]);//replace
                 }

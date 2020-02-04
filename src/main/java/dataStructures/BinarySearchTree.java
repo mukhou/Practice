@@ -10,7 +10,7 @@ import dataStructures.stacksandqueues.StackUsingArray;
 // CONSTRUCTION: with no initializer
 //
 // ******************PUBLIC OPERATIONS*********************
-// void addWord( x )       --> Insert x
+// void insert( x )       --> Insert x
 // void remove( x )       --> Remove x
 // Comparable find( x )   --> Return item that matches x
 // Comparable findMin( )  --> Return smallest item
@@ -167,7 +167,7 @@ public class BinarySearchTree {
 		if(node == null){
 			return 0;
 		}
-		//IMP: addCharacter node data to curr_sum
+		//IMP: add node data to curr_sum
 		curr_sum += node.data;
 		int totalPaths = 0;
 		if(curr_sum == targetSum){
@@ -786,7 +786,7 @@ public class BinarySearchTree {
 		// follow BFS
 		queue.add(rootNode);
 		StackUsingArray stack = new StackUsingArray();
-		// addCharacter root to stack
+		// add root to stack
 		stack.push(queue.peek().data);
 		while (!queue.isEmpty()) {
 			// DEQUE
@@ -1094,7 +1094,7 @@ public class BinarySearchTree {
 			}
 			// IMPORTANT: increase level, even if there are no new nodes at present level
 			level = level + 1;
-			// addCharacter the nodes of this level to the result list
+			// add the nodes of this level to the result list
 			if (nodeList.size() > 0) {
 				resultList.add(level, nodeList);
 			} else {
@@ -1124,7 +1124,7 @@ public class BinarySearchTree {
 		// no. of nodes at the previous and current level
 		int prevLevelCount_Nodes = 0, currentLevelCount_Nodes = 0;
 
-		// addCharacter the root node
+		// add the root node
 		if (rootNode != null) {
 			currentLevelQueue.add(rootNode);
 		}
@@ -1195,7 +1195,7 @@ public class BinarySearchTree {
     	if(root == null){
     		return false;
 		}
-		//addCharacter current node to path
+		//add current node to path
 		path.add(root.data);
 
 		// if it is the required node

@@ -11,8 +11,8 @@ Time: 12:56 PM
  */
 package crackingcodeinterview;
 
-//IDEA: if we addWord an element into the front of A, then we'll have to shift the existing
-//elements backwards to make room for it. It's better to addWord elements into the back of the array, where
+//IDEA: if we insert an element into the front of A, then we'll have to shift the existing
+//elements backwards to make room for it. It's better to insert elements into the back of the array, where
 //there's empty space.
 //CTCI Q 10.1
 

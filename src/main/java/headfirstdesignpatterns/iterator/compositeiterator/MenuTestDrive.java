@@ -13,7 +13,7 @@ public class MenuTestDrive {
         allMenus.add(dinerMenu);
         allMenus.add(cafeMenu);
 
-        //addCharacter menu items here
+        //add menu items here
         MenuComponent dessertMenu = new Menu("DESSERT MENU", "Dessert!");
         //dessert menu item
         dessertMenu.add(new MenuItem(

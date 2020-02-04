@@ -27,7 +27,7 @@ public class LongestUniqueSubstringOfKCharacters {
         Set<Character> window = new HashSet<>();
         for (int start = 0, end = 0; end < str.length(); end++) {
             char c = str.charAt(end);
-            //addCharacter to window and map
+            //add to window and map
             window.add(c);
             map.merge(c, 1, Integer::sum);
             // if window size is more than k, remove characters from the left

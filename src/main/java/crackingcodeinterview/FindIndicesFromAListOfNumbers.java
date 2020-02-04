@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class FindIndicesFromAListOfNumbers {
 
 
-    //Given an array of integers, return indices of the two numbers such that they addCharacter up to a specific target.e.
+    //Given an array of integers, return indices of the two numbers such that they add up to a specific target.e.
     public static int[] findIndicesOfSum(int[] arr, int sum) {
         if(arr == null || arr.length < 2)
             return new int[]{0,0};

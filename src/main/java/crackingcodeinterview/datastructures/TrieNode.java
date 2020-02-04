@@ -39,7 +39,7 @@ public class TrieNode {
 
     /* Add this word to the trie, and recursively create the child
      * nodes. */
-    public void addWord(String word) {
+    public void insert(String word) {
     	if (word == null || word.isEmpty()) {
     		return;
     	}
@@ -50,7 +50,7 @@ public class TrieNode {
             children.put(firstChar, child);
         }
         if (word.length() > 1) {
-            child.addWord(word.substring(1));
+            child.insert(word.substring(1));
         } else {
         	child.setTerminates(true);
         }

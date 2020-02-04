@@ -4,7 +4,7 @@ Date: 1/15/2020
 Time: 11:34 AM
 */
 /**
- * Given an array nums of n integers, find all unique quartlets which addCharacter up to a number k.
+ * Given an array nums of n integers, find all unique quartlets which add up to a number k.
  */
 package byteBybyte;
 

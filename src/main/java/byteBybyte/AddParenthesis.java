@@ -13,8 +13,8 @@ package byteBybyte;
 //https://www.geeksforgeeks.org/convert-an-unbalanced-bracket-sequence-to-a-balanced-sequence/
 //Algorithm
 //Let us assume that whenever we encounter with opening bracket the depth increases by one and with a closing bracket the depth decreases by one.
-//Find the maximum negative depth in minDep and addCharacter that number of ‘(‘ at the beginning.
-//Then loop the new sequence to find the number of ‘)’s needed at the end of the string and addCharacter them.
+//Find the maximum negative depth in minDep and add that number of ‘(‘ at the beginning.
+//Then loop the new sequence to find the number of ‘)’s needed at the end of the string and add them.
 //Finally, return the string.
 public class AddParenthesis {
     private static String solution(String str) {
@@ -28,7 +28,7 @@ public class AddParenthesis {
             }
             minCount = Math.min(minCount, count);
         }
-        //addCharacter opening braces to the beginning
+        //add opening braces to the beginning
         if(minCount < 0){
             while (minCount != 0){
                 str = '(' + str;

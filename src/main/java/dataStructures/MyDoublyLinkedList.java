@@ -51,7 +51,7 @@ public class MyDoublyLinkedList {
             }
             current = current.next;
         }
-        //reached end of list, now addWord anyway
+        //reached end of list, now insert anyway
         current.next = n;
         n.prev = current;
         return head;
@@ -85,7 +85,7 @@ public class MyDoublyLinkedList {
     }
 
     /* UTILITY FUNCTIONS */
-    /* Function to addWord a node at the beginning of the Doubly Linked List */
+    /* Function to insert a node at the beginning of the Doubly Linked List */
     void push(int new_data) {
         /* allocate node */
         Node new_node = new Node(new_data);

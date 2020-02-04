@@ -47,14 +47,14 @@ public class FindPathInMaze {
             return false;
         }
 
-        //If there's a path from start to my current location, addCharacter my l o c a t i o n .
+        //If there's a path from start to my current location, add my l o c a t i o n .
         if(isAtOrigin || getPath(maze, row - 1, col, path, failedPoints) ||
                 getPath(maze, row, col - 1, path, failedPoints)){
             path.add(p);
             return true;
         }
 
-        //otherwise addCharacter point
+        //otherwise add point
         failedPoints.add(p);
         return false;
 
