@@ -35,7 +35,7 @@ public class Operations {
     }
 
     /* Divide a by b by literally counting how many times b can go into
-     * a. That is, count how many times you can add b to itself until you reach a. */
+     * a. That is, count how many times you can addCharacter b to itself until you reach a. */
     public static int divide(int a, int b) throws java.lang.ArithmeticException {
         if (b == 0) {
             throw new java.lang.ArithmeticException("ERROR: Divide by zero.");

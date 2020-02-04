@@ -40,7 +40,7 @@ public class CreatePowerSet {
 	    // recursively call the powerSet method over the rest ONLY
 	    for (Set<T> permute : powerSet(rest)) {
 	    	Set<T> newSet = new HashSet<T>();
-	    	// add head to newSet
+	    	// addCharacter head to newSet
 	    	newSet.add(first);
 	    	newSet.addAll(permute);
 	    	powerSet.add(newSet);

@@ -6,7 +6,7 @@ Time: 6:39 PM
 
 /**
  * Design a data structure that supports the following operations in Θ(1) time:
- * insert(x): Inserts an item x to the data structure if not already present.
+ * addWord(x): Inserts an item x to the data structure if not already present.
  * remove(x): Removes an item x from the data structure if present.
  *search(x): Searches an item x in the data structure.
  * getRandom(): Returns a random element from current set of elements *
@@ -34,7 +34,7 @@ public class ConstantTimeDataStructure {
 
     /**
      * 1) Check if x is already present by doing a hash map lookup.
-     * 2) If not present, then insert it at the end of the array.
+     * 2) If not present, then addWord it at the end of the array.
      * 3) Add in the hash table also, x is added as key and last array index as the index.
      */
     private void insert(Integer x){

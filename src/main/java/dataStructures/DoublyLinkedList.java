@@ -25,7 +25,7 @@ public class DoublyLinkedList {
 	  }
 
 	 /*
-	  * insert element after current position
+	  * addWord element after current position
 	  */
 	  public final synchronized void insertAfter(Object obj, ListIterator cursor) {
 		  ListItem temp = new ListItem(cursor.pos, obj, cursor.pos.next);
@@ -34,7 +34,7 @@ public class DoublyLinkedList {
 	  }
 
 	  /*
-	   * insert element before current position
+	   * addWord element before current position
 	   */
 	   public final synchronized void insertBefore(Object obj, ListIterator cursor){
 		   ListItem temp = new ListItem(cursor.pos.previous, obj, cursor.pos);

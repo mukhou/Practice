@@ -17,7 +17,7 @@ public class InsertionSort {
     public static int[] insertionSortCormen(int[] arr){
         // like a pack of cards, start with the first card on the left hand and the pile
         // from next card, keep checking from right to left
-        // insert card in correct position
+        // addWord card in correct position
         // NOTE: j starts from 2nd INDEX, which implies from the second card on the pile
         for(int j = 1; j < arr.length; j++){
             int key = arr[j];

@@ -13,7 +13,7 @@ public class HasQuarterState implements State {
 
     @Override
     public void insertQuarter() {
-        System.out.println("You can’t insert another quarter");
+        System.out.println("You can’t addWord another quarter");
     }
 
     @Override

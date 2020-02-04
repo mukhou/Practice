@@ -27,7 +27,7 @@ public class WordBreak {
 
             input = input.substring(longest.length());
 
-            //result.add(longest);
+            //result.addCharacter(longest);
         }
         return result;
     }

@@ -34,7 +34,7 @@ public class LongestPalindromeSubsequence {
                     //    0 1 2 3 4 5
                     //eg: a d b b c a; i = 0, j = 5: both are a, so now we need to find
                     //the longest length between [d b b c] => [1 -> 4] => [i + 1, j - 1] and
-                    //add 2 to it
+                    //addCharacter 2 to it
                     maxLengthTable[i][j] = maxLengthTable[i + 1][j - 1] + 2;
                 }else {
                     //i = 1, j = 4: chars NOT MATCH. so max length b/w [d b b c] will be

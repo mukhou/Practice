@@ -23,7 +23,7 @@ public class GroupedAnagrams {
         //here input will be replaced with words
          AnagramSolution sol = (input) -> {
              Map<String, Set<String>> wordMap = new HashMap<>();
-             //for each word, create the map and add to it
+             //for each word, create the map and addCharacter to it
              input.stream().forEach(word -> {
                  String sorted = sortCharacters(word);
                  if(!wordMap.containsKey(sorted)){

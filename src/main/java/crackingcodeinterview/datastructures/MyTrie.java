@@ -15,16 +15,16 @@ public class MyTrie {
     protected boolean terminates = false;
 
     public MyTrie() {
-        this(null);
-    }
-
-    private MyTrie(String content) {
-        this.content = content;
         children = new HashMap<>();
     }
 
+    private MyTrie(String content) {
+        this();
+        this.content = content;
+    }
+
     //method to append character
-    protected void add(char character) {
+    protected void addCharacter(char character) {
         String s;
         if (this.content == null) {
             s = Character.toString(character);
@@ -37,14 +37,14 @@ public class MyTrie {
 
 
     //method for inserting a new diagnosis
-    public void insert(String str) {
+    public void addWord(String str) {
         if (str == null) {
-            throw new IllegalArgumentException("Null diagnoses entries are not valid.");
+            return;
         }
         MyTrie node = this;
         for (char c : str.toCharArray()) {
             if (!node.children.containsKey(c)) {
-                node.add(c);
+                node.addCharacter(c);
             }
             //go to next node
             node = node.children.get(c);
@@ -54,6 +54,9 @@ public class MyTrie {
 
     //method to search for a diagnosis entry
     public String find(String str) {
+        if (str == null) {
+            return "";
+        }
         MyTrie node = this;
         for (char c : str.toCharArray()) {
             if (!node.children.containsKey(c)) {
@@ -95,8 +98,8 @@ public class MyTrie {
 
     public static void main(String[] args){
         MyTrie myTrie = new MyTrie();
-        myTrie.insert("tree");
-        myTrie.insert("tea");
+        myTrie.addWord("tree");
+        myTrie.addWord("tea");
         System.out.println(myTrie.autoComplete("t"));
     }
 

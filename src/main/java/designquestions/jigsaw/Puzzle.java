@@ -76,7 +76,7 @@ public class Puzzle {
 		}
 	}
 	
-	/* Find the matching piece within piecesToSearch and insert it at row, column. */
+	/* Find the matching piece within piecesToSearch and addWord it at row, column. */
 	private boolean fitNextEdge(LinkedList<Piece> piecesToSearch, int row, int column) {
 		if (row == 0 && column == 0) {
 			Piece p = piecesToSearch.remove();

@@ -20,7 +20,7 @@ public class JumpNStairs {
 
     //For each recursive call(sub-problem), If we've seen this value of n before, return the cached value.
     // Each time we compute a fresh value,
-    //add it to the cache.
+    //addCharacter it to the cache.
     private static int countStairs1(int n, int[] jumps) {
         if(n < 0){
             return 0;

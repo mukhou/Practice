@@ -33,7 +33,7 @@ public class BirthdayChocolate {
         if(sum == d){
             count++;
         }
-        //now continuing from the mth number(i = 2), add  the (m + 1)th number(3rd number) to the sum
+        //now continuing from the mth number(i = 2), addCharacter  the (m + 1)th number(3rd number) to the sum
         // and subtract the (i - m)th (1st number, i = 0) and you can only pick 2 consecutive pieces
         // and keep checking if sum == d for each consecutive pair
         while(i < s.length){

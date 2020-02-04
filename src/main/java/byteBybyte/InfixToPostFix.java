@@ -38,7 +38,7 @@ public class InfixToPostFix {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < exp.length(); ++i){
             char c = exp.charAt(i);
-            // If the scanned character is an operand, add it to output.
+            // If the scanned character is an operand, addCharacter it to output.
             if (Character.isLetterOrDigit(c)) {
                 result += c;
             } else if (c == '(') { // If the scanned character is an '(', push it to the stack.

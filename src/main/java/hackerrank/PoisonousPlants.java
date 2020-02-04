@@ -31,7 +31,7 @@ public class PoisonousPlants {
         /*while(moreDying){
             for(int i = 1; i < list.size(); i++){
                 if(list.get(i) < list.get(start)){
-                    temp.add(list.get(i));
+                    temp.addCharacter(list.get(i));
                     moreDying = false;
                 }else {
                     moreDying = true;

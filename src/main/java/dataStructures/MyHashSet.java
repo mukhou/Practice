@@ -20,7 +20,7 @@ public class MyHashSet<K> {
     /**
      * In a HashMap each key is unique and when we call put(Key, Value) method, it returns the previous value associated with key,
      * or null if there was no mapping for key.
-     * So in add() method we check the return value of map.put(key, value) method with null value.
+     * So in addCharacter() method we check the return value of map.put(key, value) method with null value.
      * If map.put(key, value) returns null, then the statement “map.put(e, PRESENT) == null” will return true
      * and element is added to the HashSet(internally HashMap).
      * If map.put(key, value) returns old value of the key, then the statement “map.put(e, PRESENT) == null” will return false

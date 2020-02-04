@@ -29,7 +29,7 @@ public class VowelsInString {
                 if (!allVowels.contains(str.charAt(j))) {
                     break;
                 }
-                // If vowel, then we insert it in hash
+                // If vowel, then we addWord it in hash
                 hash.add(str.charAt(j));
                 // If all vowels are present in current
                 // substring
