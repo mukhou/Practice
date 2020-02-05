@@ -897,7 +897,7 @@ public class LinkedList {
 	 */
 	public int numberOfNodesInLoop(Node headNode){
 		Node slow = headNode, fast = headNode;
-		while (slow != null && fast != null && fast.next != null){
+		while (fast != null && fast.next != null){
 			fast = fast.next.next;
 			slow = slow.next;
 
