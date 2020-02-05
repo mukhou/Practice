@@ -12,22 +12,28 @@ public class LiveLockThread {
 
     private static class Human {
         String gender;
-        Human(String gender) {
+        Object lock ;
+        Human(String gender, Object lock) {
             this.gender = gender;
+            this.lock = lock;
         }
 
         String word = "!";
 
         public void sayHello(Human stranger) {
             System.out.println("word is " + word);
-            while (!stranger.word.equals("Hello")) {
-                try {
-                    System.out.println("Sleeping " + this.gender + " as " + stranger.gender + " hasn't said hello");
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
+            synchronized (lock){
+                while (!stranger.word.equals("Hello")) {
+                    try {
+                        System.out.println("Sleeping " + this.gender + " as " + stranger.gender + " hasn't said hello");
+                        lock.wait();
+                    } catch (InterruptedException e) {
+                    }
                 }
+                this.word = "Hello";
+                lock.notifyAll();
             }
-            this.word = "Hello";
+
         }
 
     }
@@ -36,34 +42,27 @@ public class LiveLockThread {
         Human human;
         Human stanger;
 
+        public HelloThread(Human human, Human stanger) {
+            this.human = human;
+            this.stanger = stanger;
+        }
+
         @Override
         public void run() {
             human.sayHello(this.stanger);
-        }
-
-        void setHuman(Human human) {
-            this.human = human;
-        }
-        void setStranger(Human stanger) {
-            this.stanger = stanger;
         }
     }
 
     public static void main(String[] args) {
 
-        LiveLockThread.Human boy = new LiveLockThread.Human("boy");
-        LiveLockThread.Human girl = new LiveLockThread.Human("girl");
+        Object lock = new Object();
+        LiveLockThread.Human boy = new LiveLockThread.Human("boy", lock);
+        LiveLockThread.Human girl = new LiveLockThread.Human("girl", lock);
 
-        LiveLockThread.HelloThread ht1 = new LiveLockThread.HelloThread();
-        ht1.setHuman(boy);
-        ht1.setStranger(girl);
-
-        LiveLockThread.HelloThread ht2 = new LiveLockThread.HelloThread();
-        ht2.setHuman(girl);
-        ht2.setStranger(boy);
-
-        new Thread(ht1).start();
-        new Thread(ht2).start();
+        LiveLockThread.HelloThread boyThread = new LiveLockThread.HelloThread(boy, girl);
+        LiveLockThread.HelloThread girlThread = new LiveLockThread.HelloThread(girl, boy);
+        new Thread(boyThread).start();
+        new Thread(girlThread).start();
 
     }
 }

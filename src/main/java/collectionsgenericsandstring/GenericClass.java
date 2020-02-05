@@ -11,8 +11,6 @@ public class GenericClass {
 		animals.add(new Dog());
 		addAnimalsSuper(animals);
 
-		GenericClass generics = new GenericClass();
-
 		List<Animal> dogs = new ArrayList<Animal>();
 		dogs.add(new Dog());
 		dogs.add(new Dog());
@@ -20,6 +18,8 @@ public class GenericClass {
         addDogs(dogs);
 		addAnimalsSuper(dogs);
 		removeAnimalsWildcard(dogs);
+		addAnimalsWildcard(animals);
+		removeWildCardOnly(animals);
 		
 
 		// gives a compile time error
@@ -57,6 +57,16 @@ public class GenericClass {
 		System.out.println(animals.size());
 		animals.add(new Dog());
 		System.out.println(animals.size());
+	}
+
+	private static void removeWildCardOnly(List<?> animals){
+		System.out.println("############ inside wildcard");
+		System.out.println(animals.size());
+		animals.remove(0);
+		System.out.println(animals.size());
+		//compile error
+		//animals.add(new Dog());
+		//animals.set(0, animals.get(0));
 	}
 
 	private static void addDogs(List<Animal> dogs) {

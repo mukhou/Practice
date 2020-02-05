@@ -6,8 +6,6 @@ Time: 5:55 PM
 
 package threads;
 
-import headfirstdesignpatterns.strategy.Quack;
-
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
@@ -18,20 +16,6 @@ import java.util.concurrent.locks.ReentrantLock;
 //read: file:D://ebooks//Java books//08-threadsandlockspart2.pdf
 public class ProducerConsumerLock {
     public static void main(String[] args){
-
-        // Object on which producer and consumer thread will operate
-        /*Queue<Integer> queue = new LinkedList<>();
-        Lock aLock = new ReentrantLock();
-        Condition consumerCondition = aLock.newCondition();
-        Condition producerCondition = aLock.newCondition();
-
-
-        ProducerLock p = new ProducerLock(queue, aLock, producerCondition, consumerCondition);
-        ConsumerLock c = new ConsumerLock(queue, aLock, producerCondition, consumerCondition);
-
-        // starting producer and consumer threads
-        p.start();
-        c.start();*/
         Queue<Integer> sharedQueue = new LinkedList<>();
         Lock lock = new ReentrantLock();
         //A condition instance is intrinsically bound to a lock.
@@ -56,8 +40,9 @@ public class ProducerConsumerLock {
 
 class ProducerLock implements Runnable {
     private final Random theRandom = new Random();
+
     Queue<Integer> sharedQueue;
-    private int maxSize = 10;
+    private int SIZE = 10;
 
     Lock lock;
     Condition producerCondition;
@@ -73,17 +58,17 @@ class ProducerLock implements Runnable {
     @Override
     public void run() {
         try {
-            put();
+            produce();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
 
-    public void put() throws InterruptedException {
+    public void produce() throws InterruptedException {
         lock.lock();
         try {
-            while (sharedQueue.size() == maxSize) {
+            while (sharedQueue.size() == SIZE) {
                 System.out.println(Thread.currentThread().getName()
                         + " : Buffer is full, waiting");
                 producerCondition.await();
@@ -124,14 +109,14 @@ class ConsumerLock implements Runnable {
     @Override
     public void run() {
         try {
-            get();
+            consume();
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-    public void get() throws InterruptedException {
+    public void consume() throws InterruptedException {
         lock.lock();
         try {
             while (sharedQueue.size() == 0) {
