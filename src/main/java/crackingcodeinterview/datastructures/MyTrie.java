@@ -83,8 +83,10 @@ public class MyTrie {
     }
 
     protected Collection<String> allPrefixes() {
+        //create result list
         List<String> results = new ArrayList<String>();
         MyTrie node = this;
+        //check if reached last node
         if (node.terminates) {
             results.add(node.content);
         }
