@@ -27,8 +27,8 @@ public class CallHandler {
 
     public CallHandler() {
         //total 3 levels of employees and 3 levels of call queues
-    	employeeLevels = new ArrayList<List<Employee>>(LEVELS);
-    	callQueues = new ArrayList<List<Call>>(LEVELS);
+    	employeeLevels = new ArrayList<>(LEVELS);
+    	callQueues = new ArrayList<>(LEVELS);
     	
         // Create respondents.
         ArrayList<Employee> respondents = new ArrayList<Employee>(NUM_RESPONDENTS);
@@ -51,7 +51,6 @@ public class CallHandler {
     /* Gets the first available employee who can handle this call. */
     public Employee getHandlerForCall(Call call) {
         //get all employees for the call's rank
-
         for (int rank = call.getRank().getValue(); rank < LEVELS - 1; rank++) {
             List<Employee> employeeLevel = employeeLevels.get(rank);
             for (Employee emp : employeeLevel) {
