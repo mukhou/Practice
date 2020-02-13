@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorCompletionService;
 
 //VV IMP
 public class ConcurrentModificationExample {
@@ -56,5 +57,7 @@ public class ConcurrentModificationExample {
 
         }
         System.out.println("HashMap after iterator: "+myMap);
+        String val = myMap.putIfAbsent("33", "99");
+        System.out.println("val is " + val);
     }
 }

@@ -20,6 +20,7 @@ public class CallableLambda {
             }
         };
 
+        //OR
         Callable<Integer> task1 = () ->  count.incrementAndGet();
 
         Future<Integer> future = es.submit(task);
