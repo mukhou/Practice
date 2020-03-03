@@ -1,21 +1,20 @@
 /* 
 User: Urmi
-Date: 1/22/2020 
-Time: 7:43 PM
+Date: 3/3/2020 
+Time: 12:23 PM
 */
 
 /**
- * Given an array of n positive integers. Write a program to find the sum of maximum sum subsequence of the given array
- * such that the integers in the subsequence are in increasing order.
+ * Given an array of n positive and negative integers. Write a program to find the sum of maximum sum subsequence
+ * of the given array such that the integers in the subsequence are in increasing order.
  */
 package dynamicprog;
 
 import java.util.Arrays;
 
-//https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/MaximumSumSubsequence.java
-public class MaximumSumIncreasingSubsequence {
+public class MaximumSumSubsequence {
 
-    private static int maxSumIncreasingSubsequences(int [] arr){
+    private static int maxSumSubsequences(int [] arr){
         if (arr.length == 0) {
             return 0;
         }
@@ -30,7 +29,7 @@ public class MaximumSumIncreasingSubsequence {
 
         for(int i = 1; i < arr.length; i++){
             for(int j = 0; j < i; j++){
-                if(arr[i] > arr[j]){
+                if(arr[i] >= arr[j]){
                     //sum is maximum of the current sub problem and (previous sub problem + current item value)
                     //SIMILAR TO LongestIncreasingSubsequenceInArray
                     maxSumTable[i] = Math.max(maxSumTable[i], arr[i] + maxSumTable[j]);
@@ -44,8 +43,11 @@ public class MaximumSumIncreasingSubsequence {
     }
 
     public static void main(String[] args){
-        int[] arr = {2, 0, 1, 5};
-        System.out.println(maxSumIncreasingSubsequences(arr));
+        //int[] arr = {2, 0, 1, 5};
+        int[] arr = {2, -1, 2, 3, 4, -5};
+        System.out.println(Arrays.toString(arr));
+        System.out.println(maxSumSubsequences(arr));
 
     }
+
 }
