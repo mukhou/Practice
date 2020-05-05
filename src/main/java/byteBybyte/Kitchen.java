@@ -4,6 +4,7 @@ Date: 2/2/2020
 Time: 3:00 PM
 */
 
+//JP interview coding challenge
 package byteBybyte;
 
 import java.util.*;
@@ -17,7 +18,7 @@ public class Kitchen {
         Map<String, Map<String, Integer>> map = createOrders(orders);
         //all table numbers
         List<String> tables = new ArrayList<>(map.keySet());
-        List<String> allItems = new ArrayList<>();
+        List<String> allItems;
         allItems = map.entrySet().stream().map(entry -> entry.getValue().keySet())
                 .flatMap(Collection::stream).collect(Collectors.toList());
         //O/P

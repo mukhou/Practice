@@ -13,7 +13,7 @@ public class LargestContinuousSubArraySum {
 
     // keep track of the current sum
     //https://en.wikipedia.org/wiki/Maximum_subarray_problem#Kadane's_algorithm_(Algorithm_3:_Dynamic_Programming)
-    //FOLLOW THIS IF ASKED TO FIND JUST THE SUME
+    //FOLLOW THIS IF ASKED TO FIND JUST THE SUM
     public static int findContinuousSum(int[] arr) {
 
         int max_sum = arr[0], curr_max = arr[0];
@@ -44,7 +44,8 @@ public class LargestContinuousSubArraySum {
 
     //USE IT ONLY IF YOU NEED TO PRINT THE SUBARRAY AS WELL
     static void maxSubArraySum(int a[]) {
-        int max_sum = Integer.MIN_VALUE, maxSoFar = 0, start = 0, end = 0, s = 0;
+        int max_sum = Integer.MIN_VALUE;
+        int maxSoFar = 0, start = 0, end = 0, s = 0;
         for (int i = 0; i < a.length; i++) {
             maxSoFar += a[i];
             if (max_sum < maxSoFar) {
