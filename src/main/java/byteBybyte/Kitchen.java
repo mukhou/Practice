@@ -4,7 +4,7 @@ Date: 2/2/2020
 Time: 3:00 PM
 */
 
-//JP interview coding challenge
+//JP Morgan & Chase interview coding challenge
 package byteBybyte;
 
 import java.util.*;
