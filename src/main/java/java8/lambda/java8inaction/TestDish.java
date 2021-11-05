@@ -51,6 +51,7 @@ public class TestDish {
                 .collect(toList());
         System.out.println(threeHighCalorieDishes);
 
+        //limit use
         List<String> names =
                 menu.stream()
                 .filter(d -> d.getCalories() > 300)
@@ -58,10 +59,14 @@ public class TestDish {
                 .limit(3)
                 .collect(toList());
 
+        //veg dishes
         List<Dish> vegetarianDishes =
                 menu.stream()
                         .filter(Dish::isVegetarian)
                         .collect(toList());
+
+        //count the number of dishes
+        int dishCount = menu.stream().map(d -> 1).reduce(0, (a, b) -> a + b);
     }
 
 
