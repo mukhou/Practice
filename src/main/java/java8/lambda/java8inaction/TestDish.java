@@ -67,6 +67,12 @@ public class TestDish {
 
         //count the number of dishes
         int dishCount = menu.stream().map(d -> 1).reduce(0, (a, b) -> a + b);
+
+        //sum of all calories in dish
+        int sum = menu.stream().mapToInt(Dish::getCalories).sum();
+
+        //max calorie
+        int maxCal = menu.stream().mapToInt(Dish::getCalories).max().orElse(1);
     }
 
 
