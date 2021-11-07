@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
+import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.*;
 
 /**
@@ -35,10 +36,20 @@ public class TestDish {
                         .map(Dish::getName)
                         .collect(toList());
 
+        //####################################################################################
+
         //dish by type
         Map<Dish.Type, List<Dish>> dishesByType =
                 menu.stream().collect(groupingBy(Dish::getType));
         System.out.println(dishesByType);
+
+        //####################################################################################
+
+        //dish type count
+        Map<Dish.Type, Long> dishTypeCount = menu.stream().collect(groupingBy(Dish::getType, counting()));
+
+
+        //####################################################################################
 
         //three high calorie dishes
         List<String> threeHighCalorieDishes =
@@ -49,6 +60,8 @@ public class TestDish {
                 .collect(toList());
         System.out.println(threeHighCalorieDishes);
 
+        //####################################################################################
+
         //limit use
         List<String> names =
                 menu.stream()
@@ -56,6 +69,8 @@ public class TestDish {
                 .map(Dish::getName)
                 .limit(3)
                 .collect(toList());
+
+        //####################################################################################
 
         //veg dishes
         List<Dish> vegetarianDishes =
@@ -76,6 +91,8 @@ public class TestDish {
         //Note: always choose the most specialized one that’s general enough to solve it(in this case,
         // the last option using IntStream.
 
+        //####################################################################################
+
         //total number of calories in menu
         int totalCalories = menu.stream().collect(summingInt(Dish::getCalories));
 
@@ -88,17 +105,83 @@ public class TestDish {
         //OR -- MOST OPTIMAL
         int totalCalories3 = menu.stream().mapToInt(Dish::getCalories).sum();
 
+        //####################################################################################
+
         //sum of all calories in dish
         int sum = menu.stream().mapToInt(Dish::getCalories).sum();
+
+        //####################################################################################
 
         //max calorie
         int maxCal = menu.stream().mapToInt(Dish::getCalories).max().orElse(1);
 
+        //####################################################################################
+
         //max calorie dish
-        //create a Comparator for the field you want to compare, in this case, calorie
+        //PREFERRED
+        Optional<Dish> maxCalDish1 = menu.stream().collect(maxBy(comparingInt(Dish::getCalories)));
+
+        //OR - create a Comparator for the field you want to compare, in this case, calorie
         Comparator<Dish> dishComparator = Comparator.comparingInt(Dish::getCalories);
         //pass in the comparator
-        Optional<Dish> dish = menu.stream().collect(maxBy(dishComparator));
+        Optional<Dish> maxCalDish = menu.stream().collect(maxBy(dishComparator));
+
+        //OR
+        Optional<Dish> maxCalDish2 = menu.stream()
+                .collect(reducing((d1, d2) -> d1.getCalories() > d2.getCalories() ? d1: d2));
+
+        //####################################################################################
+
+        //max calorie dish by type
+        //Note: maxBy(comparingInt(Dish::getCalories)) => this gives max calorie dish
+        //so to group max calorie dish BY TYPE, just add a grouping beforehand using groupBy
+        //and pass this as the second param of the groupBy method
+        Map<Dish.Type, Optional<Dish>> mostCalorieByType = menu.stream()
+                .collect(groupingBy(Dish::getType, maxBy(comparingInt(Dish::getCalories))));
+
+        //OR
+        Map<Dish.Type, Dish> mostCalorieByType1 = menu.stream()
+                .collect(
+                        groupingBy( Dish::getType,
+                                collectingAndThen(maxBy(comparingInt(Dish::getCalories)), Optional::get)));
+
+        // In the above example, the collectingAndThen factory method, takes the following:
+        //1. the collector to be adapted
+        //2. a transformation function
+        //and returns another collector. This additional collector acts as a wrapper for the old
+        //one and maps the value it returns using the transformation function as the last step of the collect
+        //operation. In this case, the wrapped collector is the one created with maxBy, and the
+        //transformation function, Optional::get, extracts the value contained in the Optional returned
+
+        //########################IMPORTANT########################
+        /**
+         * The process outlined in steps below:
+         * 1. groupingBy is the outermost one and groups the menu stream into three substreams
+         * according to the different dishes’ types.
+         * 2. The groupingBy collector wraps the collectingAndThen collector, so each substream resulting
+         * from the grouping operation is further reduced by this second collector.
+         * 3. The collectingAndThen collector wraps in turn a third collector, the maxBy one. This reduction operation
+         * on the substreams is then performed by the reducing collector, but the collectingAndThen collector
+         * containing it applies the Optional::get transformation function to its result.
+         */
+
+        //####################################################################################
+
+        //total calories by type
+        Map<Dish.Type, Integer> totalCaloriesByType = menu.stream()
+                .collect(groupingBy(Dish::getType, summingInt(Dish::getCalories)));
+
+        //####################################################################################
+
+        //partition menu
+        Map<Boolean, List<Dish>> partitionedMenu = menu.stream()
+                .collect(partitioningBy(Dish::isVegetarian));
+
+        //####################################################################################
+
+        //partition by and collect
+        Map<Boolean, Map<Dish.Type, List<Dish>>> menuByType = menu.stream()
+                .collect(partitioningBy(Dish::isVegetarian, groupingBy(Dish::getType)));
     }
 
 
