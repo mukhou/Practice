@@ -6,15 +6,13 @@ Time: 6:35 PM
 
 package java8.lambda.java8inaction;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
 
-public class TestTrader {
+public class TestTransaction {
 
     public static void main(String[] args) {
         Trader raoul = new Trader("Raoul", "Cambridge");
@@ -129,6 +127,12 @@ public class TestTrader {
         Transaction smallest1 = transactions.stream()
                 .reduce((t11, t21) -> t11.getValue() < t21.getValue() ? t11 : t21)
                 .get();
+
+        //####################################################################################
+
+        //Grouping transactions by currency
+        Map<Currency, List<Transaction>> transactionsByCurrency = transactions.stream()
+                .collect(groupingBy(Transaction::getCurrency));
 
     }
 

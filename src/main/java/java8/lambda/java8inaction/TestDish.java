@@ -1,12 +1,10 @@
 package java8.lambda.java8inaction;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -66,13 +64,41 @@ public class TestDish {
                         .collect(toList());
 
         //count the number of dishes
-        int dishCount = menu.stream().map(d -> 1).reduce(0, (a, b) -> a + b);
+        int dishCount = menu.stream().map(d -> 1).reduce(0, Integer::sum);
+
+        //OR
+        long discount1 = menu.stream().collect(counting());
+
+        //OR
+        long dishCount2 = menu.stream().count();
+
+
+        //Note: always choose the most specialized one that’s general enough to solve it(in this case,
+        // the last option using IntStream.
+
+        //total number of calories in menu
+        int totalCalories = menu.stream().collect(summingInt(Dish::getCalories));
+
+        //OR
+        int totalCalories1 = menu.stream().collect(reducing(0, Dish::getCalories, Integer::sum));
+
+        //OR
+        int totalCalories2 = menu.stream().map(Dish::getCalories).reduce(Integer::sum).get();
+
+        //OR -- MOST OPTIMAL
+        int totalCalories3 = menu.stream().mapToInt(Dish::getCalories).sum();
 
         //sum of all calories in dish
         int sum = menu.stream().mapToInt(Dish::getCalories).sum();
 
         //max calorie
         int maxCal = menu.stream().mapToInt(Dish::getCalories).max().orElse(1);
+
+        //max calorie dish
+        //create a Comparator for the field you want to compare, in this case, calorie
+        Comparator<Dish> dishComparator = Comparator.comparingInt(Dish::getCalories);
+        //pass in the comparator
+        Optional<Dish> dish = menu.stream().collect(maxBy(dishComparator));
     }
 
 
