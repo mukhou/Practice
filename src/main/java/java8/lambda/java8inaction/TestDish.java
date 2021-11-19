@@ -94,16 +94,18 @@ public class TestDish {
         //####################################################################################
 
         //total number of calories in menu
+        //OR -- MOST OPTIMAL
+        int totalCalories3 = menu.stream().mapToInt(Dish::getCalories).sum();
+
+        //OR
+        int totalCalories2 = menu.stream().map(Dish::getCalories).reduce(Integer::sum).get();
+
+        //OR
         int totalCalories = menu.stream().collect(summingInt(Dish::getCalories));
 
         //OR
         int totalCalories1 = menu.stream().collect(reducing(0, Dish::getCalories, Integer::sum));
 
-        //OR
-        int totalCalories2 = menu.stream().map(Dish::getCalories).reduce(Integer::sum).get();
-
-        //OR -- MOST OPTIMAL
-        int totalCalories3 = menu.stream().mapToInt(Dish::getCalories).sum();
 
         //####################################################################################
 
