@@ -11,7 +11,7 @@ Time: 4:37 PM
  */
 package dynamicprog;
 
-//https://java2blog.com/check-if-possible-to-reach-end-given-array-by-jumping/
+// https://java2blog.com/check-if-possible-to-reach-end-given-array-by-jumping/
 public class CanJumpToArrayEnd {
 
 
@@ -32,7 +32,12 @@ public class CanJumpToArrayEnd {
         jumps[0] = true;/* first index is always reachable, as this is the position we start from*/
 
         for(int currPos = 0; currPos < arr.length; currPos++){
-            //IMP: check if 1) curr_pos has > 0 value and 2) is true
+            /* if the index we are currently at is not reachable from
+             * 0th index, then we obviously can not make further jumps
+             * from this position.
+             * Also, number of jumps possible from the current position
+             * needs to be greater than zero, as in case of zero, we can
+             * not move to any other position by making a jump*/
             if(jumps[currPos] && arr[currPos] > 0){
                 int maxJumps = arr[currPos];
                 /* IMP: mark all the reachable positions from current position to true
@@ -43,12 +48,15 @@ public class CanJumpToArrayEnd {
                 for(int jump = 1; jump <= maxJumps; jump ++){
                     //check if within array bounds
                     if(currPos + jump < arr.length){
+                        //set ALL INTERMEDIATE SPOTS THAT ARE REACHABLE to true
                         jumps[currPos + jump] = true;
                     }
                 }
             }
         }
 
+        /*return the result of last index of the array if it is reachable
+         * from zeroth index or not*/
         return jumps[arr.length - 1];
     }
 
@@ -83,7 +91,7 @@ public class CanJumpToArrayEnd {
     public static void main(String args[]){
         int arr[] = { 3, 2, 1, 0, 4 };
         int n = arr.length;
-        System.out.println(canJump1(arr ));
+        //System.out.println(canJump1(arr ));
         System.out.println(canJumpDynamic(arr));
     }
 
