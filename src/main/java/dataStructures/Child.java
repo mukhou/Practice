@@ -1,10 +1,10 @@
 package dataStructures;
-import test.OtherClass;
+//import test.OtherClass;
 
-public class Child extends OtherClass{
+public class Child /*extends OtherClass*/{
 	
-	public void access(){
+	/*public void access(){
 		System.out.println("x is "+x);
-	}
+	}*/
 
 }
