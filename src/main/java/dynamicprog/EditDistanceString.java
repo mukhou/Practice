@@ -28,7 +28,7 @@ public class EditDistanceString {
                 // insert all characters of second string
                 if(i == 0){
                     dp[i][j] = j;//Min. operations = j
-                }else if(j == 0){
+                } else if(j == 0){
                     // If second string is empty, only option is to
                     // remove all characters of second string
                     dp[i][j] = i;//Min. operations = i
@@ -39,7 +39,7 @@ public class EditDistanceString {
                     //both chars same, so at this stage, the no of operations will be same as the
                     //previous subproblem, i.e. at the previous set of chars in both strings
                     dp[i][j] = dp[i - 1][j - 1];
-                }else {
+                } else {
                     // If the last character is different, consider all
                     // possibilities and find the minimum
                     //assumption: the sub problems at dp[i][j - 1], dp[i - 1][j] and dp[i - 1][j - 1]
