@@ -47,9 +47,9 @@ public class CanJumpToArrayEnd {
                  * index*/
                 for(int jump = 1; jump <= maxJumps; jump ++){
                     //check if within array bounds
-                    if(currPos + jump < arr.length){
+                    if(jump + currPos < arr.length){
                         //set ALL INTERMEDIATE SPOTS THAT ARE REACHABLE to true
-                        jumps[currPos + jump] = true;
+                        jumps[jump + currPos] = true;
                     }
                 }
             }
