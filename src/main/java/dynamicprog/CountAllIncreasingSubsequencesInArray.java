@@ -6,7 +6,7 @@ Time: 9:50 AM
 
 /**
  * We are given an array of digits (values lie in range from 0 to 9).
- * The task is to count all the sub sequences possible in array such that in each subsequence every digit is greater than
+ * The task is to count all the subsequences possible in array such that in each subsequence every digit is greater than
  * its previous digits in the subsequence.
  * Input : arr[] = {4, 3, 6, 5}
  * Output: 8
@@ -27,11 +27,12 @@ public class CountAllIncreasingSubsequencesInArray {
     //Time Complexity : O(n2)
     //Auxiliary Space : O(n)
     private static int countAllIncreasingSubsequences(int[] arr){
+        //Base case
         if (arr.length == 0) {
             return 0;
         }
         int[] countTable = new int[arr.length];
-        Arrays.fill(countTable, 1);//SAME AS longest increasing subsequenc
+        Arrays.fill(countTable, 1);//SAME AS longest increasing subsequence
 
         for(int i = 1; i < arr.length; i++){
             for(int j = 0; j < i; j++){
@@ -56,6 +57,6 @@ public class CountAllIncreasingSubsequencesInArray {
         int arr[] = {3, 2, 4, 5, 4};
         int[] arr1 = {5, 4, 1, 0};
         int[] arr2 = {1, 3, 5, 4, 7};
-        System.out.println(countAllIncreasingSubsequences(arr));
+        System.out.println(countAllIncreasingSubsequences(num));
     }
 }
