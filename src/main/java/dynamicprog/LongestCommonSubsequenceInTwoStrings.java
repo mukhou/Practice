@@ -27,7 +27,7 @@ public class LongestCommonSubsequenceInTwoStrings {
                 } else if(s1.charAt(i - 1) == s2.charAt(j - 1)){//IMP: check equality of chars at prev index, because
                     //maxLengthTable[i][j] contains length of LCS of s1[0..i-1] and s2[0..j-1]
                     /*Characters match. Remove both and lengthen the best answer at the subproblem
-                     * without either final character. That is the answer to this subproblem.
+                     * without either final character. That is the answer to this subproblem. */
                     maxLengthTable[i][j] = maxLengthTable[i - 1][j - 1] + 1;
                 } else {
                     /**Character mismatch. No +1 happens, we can't lengthen the lcs. But we do need
