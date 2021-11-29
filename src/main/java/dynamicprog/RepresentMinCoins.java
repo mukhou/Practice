@@ -41,11 +41,12 @@ public class RepresentMinCoins {
             minCoins[i][0] = 0;
             int currentCoin = coins[i - 1];
             for(int j = 1; j <= amount; j++){
-                if(currentCoin <= j){
+                if(currentCoin > j){
+                    //SIMPLY COPY THE VALUE FROM THE ABOVE ROW AND COLUMN, i.e ABOVE CELL
+                    minCoins[i][j] = minCoins[i - 1][j];
+                } else {
                     //stay on the SAME ROW when considering this coin
                     minCoins[i][j] = Math.min(minCoins[i - 1][j], 1 + minCoins[i][j - currentCoin]);
-                } else {
-                    minCoins[i][j] = minCoins[i - 1][j];
                 }
             }
         }
