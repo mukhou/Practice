@@ -44,7 +44,7 @@ public class RepresentMinCoins {
                 if(currentCoin <= j){
                     //stay on the SAME ROW when considering this coin
                     minCoins[i][j] = Math.min(minCoins[i - 1][j], 1 + minCoins[i][j - currentCoin]);
-                }else {
+                } else {
                     minCoins[i][j] = minCoins[i - 1][j];
                 }
             }
