@@ -19,7 +19,7 @@ public class LargestContinuousSubArraySum {
         int max_sum = arr[0], curr_max = arr[0];
         for (int i = 1; i < arr.length; i++) {
             //IMP: MAX of arr[i] and curr_max + arr[i]
-            curr_max = Math.max(arr[i], curr_max + arr[i]);
+            curr_max = Math.max(arr[i], arr[i] + curr_max);
             max_sum = Math.max(max_sum, curr_max);
         }
         return max_sum;
@@ -69,10 +69,10 @@ public class LargestContinuousSubArraySum {
         int[] arr = new int[]{-5, -4, 1, 0, 5, 10};
         int[] arr1 = {-5, -4, -2, 0};
         int[] arr2 = {3, 10, 3, 11, 4, 5, 6, 7, 8, 12};
-        System.out.println(Arrays.toString(arr1));
-        System.out.println(findContinuousSum(arr1));
-        maxSubArraySum(arr2);
-        System.out.println(findContinuousSum1(arr1));
+        //System.out.println(Arrays.toString(arr));
+        System.out.println(findContinuousSum(arr));
+        maxSubArraySum(arr);
+        //System.out.println(findContinuousSum1(arr1));
 
     }
 

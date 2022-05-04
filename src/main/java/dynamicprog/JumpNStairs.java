@@ -24,11 +24,11 @@ public class JumpNStairs {
     private static int countStairs1(int n, int[] jumps) {
         if(n < 0){
             return 0;
-        }else if( n == 0){
+        } else if( n == 0){
             return 1;
-        }else if(jumps[n] > -1){
+        } else if(jumps[n] > -1){
             return jumps[n];
-        }else {
+        } else {
             //recursively calculate sub problems
             jumps[n] = countStairs1(n - 1, jumps) + countStairs1(n - 2, jumps) + countStairs1(n - 3, jumps);
             return jumps[n];

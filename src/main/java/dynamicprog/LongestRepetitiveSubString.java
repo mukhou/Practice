@@ -38,28 +38,28 @@ public class LongestRepetitiveSubString {
     }
 
     public static int[] longestRepitetiveSubString(String input) {
-        int startOfLongest=0;
-        int lengthOfLongest=0;
-        int currLonggest=1;
-        int currentStart=0;
+        int startOfLongest = 0;
+        int lengthOfLongest = 0;
+        int currLonggest = 1;
+        int currentStart = 0;
         if(input.length()>0) {
             char last= input.charAt(0);
-            for(int i=1;i<input.length();i++) {
-                if(last==input.charAt(i)) {
+            for (int i = 1; i < input.length(); i ++) {
+                if (last == input.charAt(i)) {
                     currLonggest++;
-                }else {
-                    if(currLonggest>lengthOfLongest) {
-                        startOfLongest=currentStart;
-                        lengthOfLongest=currLonggest;
+                } else {
+                    if (currLonggest > lengthOfLongest) {
+                        startOfLongest = currentStart;
+                        lengthOfLongest = currLonggest;
                     }
-                    currentStart=i;
-                    currLonggest=1;
+                    currentStart = i;
+                    currLonggest = 1;
                 }
-                last=input.charAt(i);
+                last = input.charAt(i);
             }
-            if(currentStart>startOfLongest && currLonggest>=lengthOfLongest) {
-                startOfLongest=currentStart;
-                lengthOfLongest=currLonggest;
+            if (currentStart > startOfLongest && currLonggest >= lengthOfLongest) {
+                startOfLongest = currentStart;
+                lengthOfLongest = currLonggest;
             }
         }
 

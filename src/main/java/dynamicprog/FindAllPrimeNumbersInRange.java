@@ -11,7 +11,7 @@ public class FindAllPrimeNumbersInRange {
 
         //p starts from 2 and terminates when p * p <= n
         for(int p = 2; p * p <= n; p++){
-            // If prime[p] is not changed, then it is a prime
+            // If prime[p] is NOT changed, then it is a prime
             if(!prime[p]){
                 // Update all multiples of p
                 for(int i = p * 2 ; i <= n; i += p){

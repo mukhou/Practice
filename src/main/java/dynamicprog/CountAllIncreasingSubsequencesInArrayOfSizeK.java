@@ -29,10 +29,10 @@ public class CountAllIncreasingSubsequencesInArrayOfSizeK {
         // countTable[i][j] stores the count of increasing subsequences of size i ending with element arr[j].
         for(int i = 0; i < arr.length; i++){
             // default value count of increasing subsequences of size 1 ending at each arr[i]
-            countTable[0][i] = 1;//A single item for siza k = 0 is neither increasing or decreasing
+            countTable[0][i] = 1;//A single item for size k = 0 is neither increasing nor decreasing
         }
         // building up the matrix dp[][]. Here 'l' signifies the size of increasing subsequence of size (l+1).
-        //ATM: THE OUTERMOST LOOP IS JUST FOR CONTROLLING SIZE OF SUBESQUENCE,
+        //ATM: THE OUTERMOST LOOP IS JUST FOR CONTROLLING SIZE OF SUBSEQUENCE,
         for(int len = 1; len < k; len++){
             // for each increasing subsequence of size 'l' ending with element arr[i]
             for(int i = len; i < arr.length; i ++){

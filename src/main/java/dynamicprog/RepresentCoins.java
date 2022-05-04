@@ -1,6 +1,6 @@
 /**
  * Given an infinite number of quarters (25 cents), dimes (10 cents), nickels (5 cents), and
- * pennies (1 cent), write code to calculate the number of ways of representing n cents.
+ * pennies (1 cent), write code to calculate the NUMBER of WAYS of representing n cents.
  */
 package dynamicprog;
 
@@ -34,11 +34,10 @@ public class RepresentCoins {
             int currentCoin = coins[i - 1];
             /* waysTable[i][j] will be the sum of the ways to make change:
              * 1. not considering this coin:(waysTable[i-1][j]) and
-             * 2. considering this coin(waysTable[i][j] - currentCoinValue] ONLY if currentCoinValue <= j,
+             * 2. considering this coin(waysTable[i][j - currentCoinValue] ONLY if currentCoinValue <= j,
              * otherwise this coin can not contribute to the total # of ways to make change at this sub problem target*/
             for(int j = 1; j <= amount; j++){//j represents current amount
                 int withoutThisCoin = ways[i - 1][j];
-                //IMP: NO ADDITION OF 1 TO WAYS IN CASE OF currentCoin <= j
                 int withThisCoin = currentCoin <= j ? ways[i][j - currentCoin] : 0;
                 ways[i][j] = withoutThisCoin + withThisCoin;
             }
@@ -153,14 +152,15 @@ public class RepresentCoins {
     }
 
     public static void main(String[] args) {
-        int[] denoms = {25, 10, 5, 1};
+        //int[] denoms = {25, 10, 5, 1};
+        int[] denoms = {1, 2, 5};
         /*int ways = ways(10, denoms);
         System.out.println(ways);
         ways = ways1(10, denoms, 0);
         System.out.println(ways);
         System.out.println(makeChange(10, denoms));
         System.out.println(countWays(denoms, 10));*/
-        System.out.println(countWaysDyn(denoms, 10));
+        System.out.println(countWaysDyn(denoms, 5));
     }
 
 

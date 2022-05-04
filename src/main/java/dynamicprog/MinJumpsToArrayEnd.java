@@ -28,13 +28,13 @@ public class MinJumpsToArrayEnd {
         jumps[0] = 0;//jump to first index is always 0
 
         //find min no. of jumps from 0 -> i(arr[0] to arr[i]) and assign the value to arr[i]
-        for (int i = 1; i < arr.length; i++) {
-            jumps[i] = Integer.MAX_VALUE;
-            for (int j = 0; j < i; j++) {
+        for (int currPos = 1; currPos < arr.length; currPos ++) {
+            jumps[currPos] = Integer.MAX_VALUE;
+            for (int j = 0; j < currPos; j++) {
                 //IMP: i <= j + arr[j] is to check if within array bounds
-                if (jumps[j] != Integer.MAX_VALUE && i <= j + arr[j]) {
+                if (jumps[j] != Integer.MAX_VALUE && currPos <= j + arr[j]) {
                     //take minimum
-                    jumps[i] = Math.min(jumps[i], jumps[j] + 1);
+                    jumps[currPos] = Math.min(jumps[currPos], jumps[j] + 1);
                     break;
                 }
             }
