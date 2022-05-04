@@ -26,7 +26,7 @@ public class LongestCommonSubsequenceInTwoStrings {
             for(int j = 0; j <= n; j++){
                 if(i == 0 || j == 0){
                     maxLengthTable[i][j] = 0;
-                }else if(s1.charAt(i - 1) == s2.charAt(j - 1)){//IMP: check equality of chars at prev index
+                } else if(s1.charAt(i - 1) == s2.charAt(j - 1)){//IMP: check equality of chars at prev index
                     /*Characters match. Remove both and lengthen the best answer at the subproblem
                      * without either final character. That is the answer to this subproblem.*/
                     maxLengthTable[i][j] = maxLengthTable[i - 1][j - 1] + 1;
@@ -45,9 +45,9 @@ public class LongestCommonSubsequenceInTwoStrings {
     private static int longestCommonSubsequence1(String s1, String s2, int m, int n){
         if(m == 0 || n == 0){
             return 0;
-        }else if(s1.charAt(m - 1) == s2.charAt(n - 1)){
+        } else if(s1.charAt(m - 1) == s2.charAt(n - 1)){
             return 1 + longestCommonSubsequence1(s1, s2, m - 1, n - 1);
-        }else {
+        } else {
             return Math.max(longestCommonSubsequence1(s1, s2, m - 1, n), longestCommonSubsequence1(s1, s2, m, n - 1));
         }
     }
