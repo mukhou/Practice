@@ -1,0 +1,26 @@
+package arraysandstrings;
+
+public class RemoveMultipleSpacesInString {
+
+	
+
+	public static void main(String[] args) {
+		//String str = "Ur     m  i";
+		String str = "m     i";
+		int count = 0;
+		StringBuilder sb = new StringBuilder(str);
+		for (int i = 0; i < sb.length(); i++) {
+			if (Character.toString(sb.charAt(i)).equals(" ")) {
+				count++;
+				if (count >= 1) {
+					sb.deleteCharAt(i);
+					//count = 0;
+				}
+			}
+
+		}
+		System.out.println(sb);
+
+	}
+
+}
