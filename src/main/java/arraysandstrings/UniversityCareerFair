@@ -1,0 +1,46 @@
+public class UniversityCareerFair {
+
+    /*
+     * Complete the 'maxEvents' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER_ARRAY arrival
+     *  2. INTEGER_ARRAY duration
+     */
+
+    public static int maxEvents(List<Integer> arrival, List<Integer> duration) {
+        int drop = 0;
+        int NumOfEvents = arrival.size();
+        int [][] intervals = new int[NumOfEvents][2];
+
+        for (int i = 0; i < NumOfEvents; i++) {
+            intervals[i] = new int[] {arrival.get(i), arrival.get(i) + duration.get(i)};
+        }
+
+        //Arrays.sort(intervals, (a, b) -> (a[1] - b[1]));
+        //OR
+        //Arrays.sort(intervals, (a, b) -> Integer.compare(a[1], b[1]));
+        //OPTIMAL SOLUTION
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[1]));
+        // the finish time of first event;
+        int curTime = intervals[0][1];
+
+        for (int i = 1; i < NumOfEvents; i++) {
+            int [] toSchedual = intervals[i];
+            if (toSchedual[0] < curTime)
+                drop++;
+            else {
+                curTime = toSchedual[1];
+            }
+        }
+        return NumOfEvents - drop;
+
+    }
+
+    public static void main(String[] args) throws IOException {
+        List<Integer> arr = Arrays.asList(1, 3, 5);
+        List<Integer> dur = Arrays.asList(2, 2, 2);
+        System.out.println(maxEvents(arr, dur));
+    }
+}
